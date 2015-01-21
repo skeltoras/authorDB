@@ -1,0 +1,122 @@
+<template name="bookNew">
+  <h1 class="page-header">Neues Buch</h1>  
+  <div class="row">
+    <div class="col-sm-12">
+      <form class="form-horizontal" role="form">
+        <div class="row">
+          <div class="col-sm-6">
+            <fieldset>
+              <legend>Grunddaten</legend>
+              <!-- bookTitle -->
+              <div class="form-group form-group-sm">
+                <label for="bookTitle" class="col-sm-3 control-label">Titel</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="bookTitle" name="bookTitle">
+                </div>
+              </div>
+              <!-- bookSubtitle -->
+              <div class="form-group form-group-sm">
+                <label for="bookSubtitle" class="col-sm-3 control-label">Untertitel</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="bookSubtitle" name="bookSubtitle">
+                </div>
+              </div>
+              <!-- bookSeries -->
+              <div class="form-group form-group-sm">
+                <label for="bookSeries" class="col-sm-3 control-label">Reihe</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="bookSeries" name="bookSeries">
+                </div>
+              </div>
+            </fieldset>
+            <div class="spacer-20"></div>
+            <fieldset>
+              <!-- authors -->
+              <div class="form-group form-group-sm">
+                <label for="authors" class="col-sm-3 control-label">Autor(en)</label>
+                <div class="col-sm-9">
+                  {{> listAuthorListSel2}}
+                </div>
+              </div>
+              <!-- bookPrice -->
+              <div class="form-group form-group-sm">
+                <label for="bookPrice" class="col-sm-3 control-label">Ladenpreis</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <input type="text" pattern="\d+(,\d{2})?" class="form-control" id="bookPrice" name="bookPrice" placeholder="12,00 oder 12">
+                    <span class="input-group-addon"><i class="icon-euro"></i></span>                    
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-sm-6">
+            <fieldset>
+              <legend>IDs / Überschriftengedöns</legend>
+              <!-- bookISBN -->
+              <div class="form-group form-group-sm">
+                <label for="bookISBN" class="col-sm-3 control-label">ISBN</label>
+                <div class="col-sm-9">
+                  <input type="text" pattern="(?=.{17}$)97[89]-(?:[0-9]+-){2}[0-9]+-[0-9]" placeholder="978-3-" class="form-control" id="bookISBN" name="bookISBN">
+                </div>
+              </div>
+              <!-- bookEAN -->
+              <div class="form-group form-group-sm">
+                <label for="bookEAN" class="col-sm-3 control-label">EAN</label>
+                <div class="col-sm-9">
+                  <input type="text" pattern="97[89][0-9]{10}" placeholder="9783" class="form-control" id="bookEAN" name="bookEAN">
+                </div>
+              </div>
+              <!-- bookArtNrI3 -->
+              <div class="form-group form-group-sm">
+                <label for="bookArtNrI3" class="col-sm-3 control-label">ArtNr. I3</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="bookArtNrI3" name="bookArtNrI3">
+                </div>
+              </div>
+              <!-- bookArtNrBH -->
+              <div class="form-group form-group-sm">
+                <label for="bookArtNrBH" class="col-sm-3 control-label">ArtNr. BH</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="bookArtNrBH" name="bookArtNrBH">
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        
+        <div class="spacer-20"></div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <legend>Weiteres</legend>
+            Eventuell kommen hier dann noch Auflistung der versch. Auflagen etc. rein. Mal sehen...             
+          </div>
+          
+          <div class="col-sm-6">
+            <fieldset>
+              <legend>Notizen</legend>
+              <!-- notes -->
+              <div class="form-group">
+                <div class="col-sm-12">              
+                  <textarea rows="3" name="notes" data-schema-key="notes" maxlength="1000" class="form-control"></textarea>
+                </div>           
+              </div>
+            </fieldset>           
+          </div>
+        </div>
+        
+        <div class="row">
+          <!-- buttons -->
+          <div class="control-group">
+            <div class="controls">
+              <input type="submit" value="Buch anlegen" class="btn btn-default"/>
+              <input type="reset" value="Abbrechen" class="btn btn-default"/>
+            </div>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+</template>

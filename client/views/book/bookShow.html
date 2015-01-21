@@ -1,0 +1,117 @@
+<template name="bookShow">
+  {{setStats}}
+  <a class="btn btn-default pull-right" href="/book/edit/{{_id}}" role="button">bearbeiten</a>
+  <h1 class="page-header">Buch anzeigen</h1>  
+  <div class="row">
+    <div class="col-sm-6">
+      <table class="table table-condensed">
+        <caption>Grunddaten</caption>
+        <thead>
+          <tr>
+            <th class="col-sm-3"></th>
+            <th class="col-sm-9"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><i><small>ID (DEBUG)</small></i></td>
+            <td><i>{{_id}}</i></td>
+          </tr>
+          <tr>
+            <td>Titel</td>
+            <td><strong>{{bookTitle}}</strong></td>
+          </tr>          
+          <tr>
+            <td>Untertitel</td>
+            <td><strong>{{bookSubtitle}}</strong></td>
+          </tr>
+          <tr>
+            <td>Reihe</td>
+            <td><strong>{{bookSeries}}</strong></td>
+          </tr>
+          <tr>
+            <td>Autor(en)</td>
+            <td>{{#each authorData}}<strong><a href="/author/edit/{{authorId}}" alt="{{authorName}}">{{authorName}}</a></strong>, {{/each}}</td>
+          </tr>
+          <tr>
+            <td>Preis</td>
+            <td><strong>{{bookPrice}} €</strong></td>
+          </tr>
+        </tbody>   
+      </table>
+    </div>
+    <div class="col-sm-6">
+      <table class="table table-condensed">
+        <caption>IDs / Überschriftengedöns</caption>
+        <thead>
+          <tr>
+            <th class="col-sm-3"></th>
+            <th class="col-sm-9"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ISBN</td>
+            <td><strong>{{bookISBN}}</strong></td>
+          </tr>
+          <tr>
+            <td>EAN</td>
+            <td><strong>{{bookEAN}}</strong></td>
+          </tr>
+          <tr>
+            <td>ArtNr. I3</td>
+            <td><strong>{{bookArtNrI3}}</strong></td>
+          </tr>
+          <tr>
+            <td>ArtNr. BH</td>
+            <td><strong>{{bookArtNrBH}}</strong></td>
+          </tr>
+        </tbody>   
+      </table>
+    </div>
+  </div>  
+  <div class="row">
+    <div class="col-sm-6">
+      <table class="table table-condensed">
+        <caption>Zeug</caption>
+        <thead>
+          <tr>
+            <th class="col-sm-3"></th>
+            <th class="col-sm-9"></th>
+          </tr>
+        </thead>
+        <tbody>                                    
+        </tbody>   
+      </table>
+    </div>
+    <div class="col-sm-6">
+      <table class="table table-condensed">
+        <caption>Weiteres</caption>
+        <thead>
+          <tr>
+            <th class="col-sm-12"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Notizen:<br>
+              <i>{{#if notes}}{{notes}}{{else}}---{{/if}}</i>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Änderungslog:<br>
+              <ul>
+                {{#each changes}}
+                  <li>{{formatDate date}} - {{{content}}}</li>
+                {{/each}}
+              </ul>  
+            </td>
+          </tr>
+        </tbody>   
+      </table>
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+</template>
