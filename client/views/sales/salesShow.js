@@ -7,6 +7,43 @@ Template.salesShow.destroyed = function(){
 };
 
 //-- template rendered functions
+Template.salesShow.rendered = function(){
+  tplChartUnits = Blaze.render(Template.chartUnits, document.getElementById('chartData'));  
+};
+
+//-- template helpers
+Template.salesShow.helpers({
+  getYear: function() {
+    var year = Session.get('year');
+    if(year) {
+      year = '| ' + year;
+      return year;
+    }
+  }
+});
+
+//-- template events
+Template.salesShow.events({
+  'change #years': function(e, tpl){
+    e.preventDefault();
+    
+    var year = $('#years :selected').text();
+    Session.set('year', year);
+  }
+});
+
+
+/*
+
+//-- template created functions
+Template.salesShow.created = function(){ 
+};
+
+//-- template destroyed functions
+Template.salesShow.destroyed = function(){
+};
+
+//-- template rendered functions
 Template.salesShow.rendered = function(){  
   if(Stats.find().count()>0){ 
     tplLoading = Blaze.render(Template.loading, document.getElementById('chartData'));
@@ -179,3 +216,5 @@ Template.chart.rendered = function () {
     ]});
   });
 }
+
+*/
