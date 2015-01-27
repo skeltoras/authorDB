@@ -1,17 +1,17 @@
 //-- template created functions
-Template.salesUpload.created = function(){ 
+Template.statsUpload.created = function(){ 
 };
 
 //-- template destroyed functions
-Template.salesUpload.destroyed = function(){
+Template.statsUpload.destroyed = function(){
 };
 
 //-- template rendered functions
-Template.salesUpload.rendered = function(){
+Template.statsUpload.rendered = function(){
 };
 
 //-- template helpers
-Template.salesUpload.helpers({
+Template.statsUpload.helpers({
   listFirstQuarter: function(){    
     var count = 0;
     var i = 1;
@@ -63,7 +63,7 @@ Template.salesUpload.helpers({
 });
 
 //-- template events
-Template.salesUpload.events({
+Template.statsUpload.events({
   'change #brockhausFiles': function(e, tpl){
     e.preventDefault();
     var input = tpl.find('#brockhausFiles').files;

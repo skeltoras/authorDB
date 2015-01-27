@@ -6,3 +6,5 @@ Meteor.subscribe('sales');
 Meteor.subscribe('stats');
 //@since v0.6
 Meteor.subscribe('images');
+//@since v0.6.2
+Meteor.subscribe('stock');

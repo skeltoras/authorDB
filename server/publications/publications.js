@@ -14,6 +14,10 @@ Meteor.publish('sales', function() {
   return Sales.find();
 });
 
+Meteor.publish('stock', function() {
+  return Stock.find();
+});
+
 Meteor.publish('stats', function() {
   return Stats.find();
 });

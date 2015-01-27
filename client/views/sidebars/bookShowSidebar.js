@@ -16,6 +16,13 @@ Template.bookShowSidebar.helpers({
 
 //-- template events
 Template.bookShowSidebar.events({  
+  'click a.showSales': function(e){
+    e.preventDefault();
+    var year = moment().year();
+    Session.set('bookId', this._id);
+    Session.set('year', year);
+    Router.go('sales.show', {_id: this._id});
+  },
   'click a.showStats': function(e){
     e.preventDefault();
     var year = moment().year();

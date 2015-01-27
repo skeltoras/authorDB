@@ -64,11 +64,11 @@
           </tr>
           <tr>
             <td>EAN</td>
-            <td>{{bookEAN}}</td>
+            <td>{{#if bookEAN}}{{bookEAN}}{{else}}---{{/if}}</td>
           </tr>
           <tr>
             <td>ArtNr. I3</td>
-            <td><strong>{{bookArtNrI3}}</strong></td>
+            <td>{{#if bookArtNrI3}}<strong>{{bookArtNrI3}}</strong>{{else}}---{{/if}}</td>
           </tr>
           <tr>
             <td>ArtNr. BH</td>
@@ -89,6 +89,10 @@
           </tr>
         </thead>
         <tbody> 
+          <tr>
+            <td>Typ</td>
+            <td>{{#if bookGroup}}{{bookGroup}}{{else}}---{{/if}}</td>
+          </tr>
           <tr>
             <td>Einband</td>
             <td>{{#if bookType}}{{bookType}}{{else}}---{{/if}}</td>

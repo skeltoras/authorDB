@@ -1,0 +1,13 @@
+<template name="statsShow">
+  <form class="form-horizontal" role="form">
+    <div class="col-sm-4 pull-right">
+      Jahr zur Auswertung wählen{{> listYears}}
+      <input name="bookId" type="hidden" value={{_id}}>
+    </div>
+  </form>
+  
+  <h1 class="page-header">{{bookTitle}} {{getYear}}</h1> 
+        
+  <div id="chartData"></div>
+  
+</template>
