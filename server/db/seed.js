@@ -1,3 +1,4 @@
+/*
 if (Books.find().count() === 0) {
   for (i = 0; i <= 10; i++) {
     author = Fake.user({fields: ['name', 'surname', 'fullname']});
@@ -156,3 +157,4 @@ if (Books.find().count() === 0) {
     });
   }
 }
+*/

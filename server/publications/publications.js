@@ -18,6 +18,10 @@ Meteor.publish('stats', function() {
   return Stats.find();
 });
 
+Meteor.publish('images', function() {
+  return Images.find();
+});
+
 Meteor.publish('saleGetAllDataPerYear', function(bookId, year) {
   self = this;
   

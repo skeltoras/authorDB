@@ -5,7 +5,7 @@ StatsController = RouteController.extend({
   }
 });
 
-Router.route('stats/show/:_id', {
+Router.route('/stats/show/:_id', {
   name: 'stats.show',
   controller: 'StatsController',
   waitOn: function () {

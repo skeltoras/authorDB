@@ -33,3 +33,8 @@ anti:fake
 peernohell:c3
 meteorhacks:aggregate
 reactive-var
+peerlibrary:xml2js
+cfs:standard-packages
+cfs:ui
+cfs:filesystem
+mrt:pagination

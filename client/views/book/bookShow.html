@@ -14,8 +14,16 @@
         </thead>
         <tbody>
           <tr>
-            <td><i><small>ID (DEBUG)</small></i></td>
-            <td><i>{{_id}}</i></td>
+            <td>Vertragspartner</td>
+            <td>{{#each authorData}}<strong><a href="/author/edit/{{authorId}}" alt="{{authorName}}">{{authorName}}</a></strong>, {{/each}}</td>
+          </tr>
+          <tr>
+            <td>Autor(en)</td>
+            <td>{{#if bookRealAuthor}}{{bookRealAuthor}}{{else}}---{{/if}}</td>
+          </tr>
+          <tr>
+            <td>Herausgeber</td>
+            <td>{{#if bookRealEditor}}{{bookRealEditor}}{{else}}---{{/if}}</td>
           </tr>
           <tr>
             <td>Titel</td>
@@ -23,16 +31,12 @@
           </tr>          
           <tr>
             <td>Untertitel</td>
-            <td><strong>{{bookSubtitle}}</strong></td>
+            <td>{{#if bookSubtitle}}{{bookSubtitle}}{{else}}---{{/if}}</td>
           </tr>
           <tr>
             <td>Reihe</td>
-            <td><strong>{{bookSeries}}</strong></td>
-          </tr>
-          <tr>
-            <td>Autor(en)</td>
-            <td>{{#each authorData}}<strong><a href="/author/edit/{{authorId}}" alt="{{authorName}}">{{authorName}}</a></strong>, {{/each}}</td>
-          </tr>
+            <td>{{#if bookSeries}}{{bookSeries}}{{else}}---{{/if}}</td>
+          </tr>          
           <tr>
             <td>Preis</td>
             <td><strong>{{bookPrice}} €</strong></td>
@@ -42,7 +46,7 @@
     </div>
     <div class="col-sm-6">
       <table class="table table-condensed">
-        <caption>IDs / Überschriftengedöns</caption>
+        <caption>Zugehörige Nummern</caption>
         <thead>
           <tr>
             <th class="col-sm-3"></th>
@@ -55,8 +59,12 @@
             <td><strong>{{bookISBN}}</strong></td>
           </tr>
           <tr>
+            <td>ISBN10</td>
+            <td>{{#if bookISBN10}}{{bookISBN10}}{{else}}---{{/if}}</td>
+          </tr>
+          <tr>
             <td>EAN</td>
-            <td><strong>{{bookEAN}}</strong></td>
+            <td>{{bookEAN}}</td>
           </tr>
           <tr>
             <td>ArtNr. I3</td>
@@ -64,7 +72,7 @@
           </tr>
           <tr>
             <td>ArtNr. BH</td>
-            <td><strong>{{bookArtNrBH}}</strong></td>
+            <td>{{#if bookArtNrBH}}{{bookArtNrBH}}{{else}}---{{/if}}</td>
           </tr>
         </tbody>   
       </table>
@@ -73,20 +81,48 @@
   <div class="row">
     <div class="col-sm-6">
       <table class="table table-condensed">
-        <caption>Zeug</caption>
+        <caption>Weiteres</caption>
         <thead>
           <tr>
             <th class="col-sm-3"></th>
             <th class="col-sm-9"></th>
           </tr>
         </thead>
-        <tbody>                                    
+        <tbody> 
+          <tr>
+            <td>Einband</td>
+            <td>{{#if bookType}}{{bookType}}{{else}}---{{/if}}</td>
+          </tr>
+          <tr>
+            <td>Seiten</td>
+            <td>{{#if bookPages}}{{bookPages}}{{else}}---{{/if}}</td>
+          </tr>
+          <tr>
+            <td>Höhe</td>
+            <td>{{#if bookHeigh}}{{bookHeigh}} cm{{else}}---{{/if}}</td>
+          </tr>
+          <tr>
+            <td>Breite</td>
+            <td>{{#if bookWidth}}{{bookWidth}} cm{{else}}---{{/if}}</td>
+          </tr>
+          <tr>
+            <td>Gewicht</td>
+            <td>{{#if bookWeight}}{{bookWeight}} g{{else}}---{{/if}}</td>
+          </tr> 
+          <tr>
+            <td>Erscheinungsdatum</td>
+            <td>{{#if bookPublished}}{{bookPublished}}{{else}}---{{/if}}</td>
+          </tr>
+          <tr>
+            <td>Lieferbarkeit</td>
+            <td>{{#if bookStatus}}{{bookStatus}}{{else}}---{{/if}}</td>
+          </tr>                                            
         </tbody>   
       </table>
     </div>
     <div class="col-sm-6">
       <table class="table table-condensed">
-        <caption>Weiteres</caption>
+        <caption>Notizen</caption>
         <thead>
           <tr>
             <th class="col-sm-12"></th>
@@ -95,13 +131,21 @@
         <tbody>
           <tr>
             <td>
-              Notizen:<br>
-              <i>{{#if notes}}{{notes}}{{else}}---{{/if}}</i>
+              <i>{{#if bookNotes}}{{bookNotes}}{{else}}---{{/if}}</i>
             </td>
           </tr>
+        </tbody>   
+      </table>
+      <table class="table table-condensed">
+        <caption>Änderungslog</caption>
+        <thead>
+          <tr>
+            <th class="col-sm-12"></th>
+          </tr>
+        </thead>
+        <tbody>
           <tr>
             <td>
-              Änderungslog:<br>
               <ul>
                 {{#each changes}}
                   <li>{{formatDate date}} - {{{content}}}</li>
