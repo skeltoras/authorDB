@@ -22,6 +22,11 @@ Meteor.publish('stats', function() {
   return Stats.find();
 });
 
+//@since 0.7.0
+Meteor.publish('salesperyear', function() {
+  return SalesPerYear.find();
+});
+
 Meteor.publish('images', function() {
   return Images.find();
 });

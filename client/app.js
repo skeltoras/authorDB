@@ -8,3 +8,5 @@ Meteor.subscribe('stats');
 Meteor.subscribe('images');
 //@since v0.6.2
 Meteor.subscribe('stock');
+//@since v0.7.0
+Meteor.subscribe('salesperyear');

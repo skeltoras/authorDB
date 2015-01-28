@@ -9,6 +9,7 @@ Router.route('/sales/show/:_id', {
   name: 'sales.show',
   controller: 'SalesController',
   waitOn: function () {
+    //return SalesPerYear.find({bookId: this.params._id});
   },
   data: function () {
     return Books.findOne({_id: this.params._id});

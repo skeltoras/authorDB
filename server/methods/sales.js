@@ -1,158 +1,55 @@
 Meteor.methods({
-  newSale: function(sale) {
-    Sales.insert(sale);
-  }, 
-  bookGetAllSales: function(bookId) {
-    Stats.remove({});
+  salesPerYear: function(bookId) {    
+    SalesPerYear.remove({});
+    //console.log('bookId: ' + bookId); //debug server
+    
     var firstYear = '2013';
     var currYear = moment().year();
     var years = currYear - firstYear;
     var year = '';
     
-    var pipeBH = [];
-    var resultBH = '';
-    var unitsBH = [];
-    var volumesBH = [];
-    var monthBH = [];
-    var dataBH = [];
-    
-    var pipeI3 = [];
-    var resultI3 = '';
-    var unitsI3 = [];
-    var volumesI3 = [];
-    var monthI3 = [];
-    var dataI3 = [];
-    
-    var pipeAVA = [];
-    var resultAVA = '';
-    var unitsAVA = [];
-    var volumesAVA = [];
-    var monthAVA = [];
-    var dataAVA = [];
-    
-    var pipeSum = [];
-    var resultSum = '';
-    var unitsSum = [];
-    var volumesSum = [];
-    var monthSum = [];
-    var dataSum = [];
+    var pipeline = [];
+    var result = '';
+    var stats = [];
     
     for(i=0; i<=years; i++){
       year = currYear - i; 
-      // Set Brockhaus data  
-      pipeBH = [
-        { $match : { bookId: bookId, salesSeller: 'Brockhaus', salesYear: year } },
-        { $group : { _id : { sale: { "salesMonth": "$salesMonth" } }, 
-            units: { $sum: "$salesUnits" }, volumes: { $sum: "$salesVolumes" }, month: { $first: "$salesMonth" }, year: { $first: "$salesYear" }, seller: { $first: "$salesSeller" }   
-          }
-        },
-        { $sort : { month: 1 } }
-      ];
-      resultBH = Sales.aggregate(pipeBH);
-      
-      if(resultBH != ''){
-        unitsBH.push('Brockhaus');
-        volumesBH.push('Brockhaus');
-        resultBH.forEach(function(data){
-          unitsBH.push(data.units);
-          volumesBH.push(data.volumes);
-          monthBH.push(data.month);
-        });
-        dataBH = {
-          seller: 'Brockhaus',
-          units: unitsBH, 
-          volumes: volumesBH, 
-          month: monthBH, 
-          year: year
-        };      
-        Stats.insert(dataBH); 
-      }
-    
-      // Set Info3 data
-      pipeI3 = [
-        { $match : { bookId: bookId, salesSeller: 'Info3', salesYear: year } },
-        { $group : { _id : { sale: { "salesMonth": "$salesMonth" } }, 
-            units: { $sum: "$salesUnits" }, volumes: { $sum: "$salesVolumes" }, month: { $first: "$salesMonth" }, year: { $first: "$salesYear" }, seller: { $first: "$salesSeller" }   
-          }
-        },
-        { $sort : { month: 1 } }
-      ];
-      resultI3 = Sales.aggregate(pipeI3);
-    
-      if(resultI3 != ''){
-        unitsI3.push('Info3');
-        volumesI3.push('Info3');
-        resultI3.forEach(function(data){
-          unitsI3.push(data.units);
-          volumesI3.push(data.volumes);
-          monthI3.push(data.month);
-        });
-        dataI3 = {
-          seller: 'Info3',
-          units: unitsI3, 
-          volumes: volumesI3, 
-          month: monthI3, 
-          year: year
-        };      
-        Stats.insert(dataI3);
-      }
-    
-      // Set AVA data
-      pipeAVA = [
-        { $match : { bookId: bookId, salesSeller: 'AVA', salesYear: year } },
-        { $group : { _id : { sale: { "salesMonth": "$salesMonth" } }, 
-            units: { $sum: "$salesUnits" }, volumes: { $sum: "$salesVolumes" }, month: { $first: "$salesMonth" }, year: { $first: "$salesYear" }, seller: { $first: "$salesSeller" }   
-          }
-        },
-        { $sort : { month: 1 } }
-      ];
-      resultAVA = Sales.aggregate(pipeAVA);
-    
-      if(resultAVA != ''){
-        unitsAVA.push('AVA');
-        volumesAVA.push('AVA');
-        resultAVA.forEach(function(data){
-          unitsAVA.push(data.units);
-          volumesAVA.push(data.volumes);
-          monthAVA.push(data.month);
-        });
-        dataAVA = {
-          seller: 'AVA',
-          units: unitsAVA, 
-          volumes: volumesAVA, 
-          month: monthAVA, 
-          year: year
-        };      
-        Stats.insert(dataAVA);
-      }
-      
-      // Set Sum data
-      pipeSum = [
+      // Set data  
+      pipeline = [
         { $match : { bookId: bookId, salesYear: year } },
         { $group : { _id : { sale: { "salesMonth": "$salesMonth" } }, 
-            units: { $sum: "$salesUnits" }, volumes: { $sum: "$salesVolumes" }, month: { $first: "$salesMonth" }, year: { $first: "$salesYear" }, seller: { $first: "$salesSeller" }   
+            bookId: { $sum: "$bookId" },
+            unit: { $sum: "$salesUnits" }, 
+            volume: { $sum: "$salesVolumes" },
+            volumeNet: { $sum: "$salesVolumesNet" }, 
+            month: { $first: "$salesMonth" }, 
+            year: { $first: "$salesYear" }   
           }
         },
         { $sort : { month: 1 } }
       ];
-      resultSum = Sales.aggregate(pipeSum);
+      //console.log('--- Pipeline ---'); //debug server
+      //console.log(pipeline); //debug server
       
-      if(resultSum != ''){
-        unitsSum.push('Summe');
-        volumesSum.push('Summe');
-        resultSum.forEach(function(data){
-          unitsSum.push(data.units);
-          volumesSum.push(data.volumes);
-          monthSum.push(data.month);
+      result = Sales.aggregate(pipeline);
+      
+      //console.log('--- Result ---'); //debug server
+      //console.log(result); //debug server
+      
+      if(result != ''){
+        result.forEach(function(data){
+          //var month = data.month;
+          //for(cnt=0;cnt<month.length;cnt++){
+        	 stats.push({month: data.month, units: data.unit, volumes: data.volume, volumesNet: data.volumeNet});
+        	//}
+          //console.log(stats);
         });
-        dataSum = {
-          seller: 'Summe',
-          units: unitsSum, 
-          volumes: volumesSum, 
-          month: monthSum, 
+        sale = {
+          bookId: bookId,
+          values: stats,
           year: year
         };      
-        Stats.insert(dataSum);
+        SalesPerYear.insert(sale); 
       }
     }
   }

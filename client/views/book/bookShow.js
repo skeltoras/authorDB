@@ -14,7 +14,7 @@ Template.bookShow.rendered = function(){
 Template.bookShow.helpers({ 
   setStats: function(){
     //var bookId = Session.get('bookId');
-    Meteor.call('bookGetAllSales', this._id);
+    Meteor.call('salesPerYear', this._id);
   }
 });
 

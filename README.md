@@ -3,6 +3,9 @@ Manage bookauthors - meteor.js based webapp
 
 ## Changelog
 
+### v0.7
+- v0.7.0 - added sales-functions and views
+
 ### v0.6
 - v0.6.3 - changed README
 - v0.6.2 - upload-function contracts
