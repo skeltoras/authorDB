@@ -4,7 +4,7 @@
     <h2>{{bookTitle}}</h2>
     {{#each salesPerYear}}
     <div class="col-sm-12">
-      <table class="table table-condensed">
+      <table class="table table-condensed table-hover">
         <caption>{{year}}</caption>
         <thead>
           <tr>
@@ -19,9 +19,17 @@
             <tr>
               <td>{{formatMonth month}}</td>
               <td>{{units}} Ex.</td>
-              <td>{{volumesNet}} €</td>
-              <td>{{volumes}} €</td>
+              <td>{{formatCurrency volumesNet}} €</td>
+              <td>{{formatCurrency volumes}} €</td>
             </tr>          
+          {{/each}}
+          {{#each sum}}
+            <tr class="active">
+              <td>Summe</td>
+              <td>{{units}} Ex.</td>
+              <td>{{formatCurrency volumesNet}} €</td>
+              <td>{{formatCurrency volumes}} €</td>
+            </tr>
           {{/each}} 
         </tbody>   
       </table>

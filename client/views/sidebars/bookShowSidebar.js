@@ -19,15 +19,15 @@ Template.bookShowSidebar.events({
   'click a.showSales': function(e){
     e.preventDefault();
     var year = moment().year();
-    Session.set('bookId', this._id);
+    var bookId = Session.get('bookId');
     Session.set('year', year);
-    Router.go('sales.show', {_id: this._id});
+    Router.go('sales.show', {_id: bookId});
   },
   'click a.showStats': function(e){
     e.preventDefault();
     var year = moment().year();
-    Session.set('bookId', this._id);
+    var bookId = Session.get('bookId');
     Session.set('year', year);
-    Router.go('stats.show', {_id: this._id});
+    Router.go('stats.show', {_id: bookId});
   }
 });

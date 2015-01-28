@@ -11,3 +11,7 @@ UI.registerHelper('formatDate', function(date) {
 UI.registerHelper('formatMonth', function(month) {
   return moment(month, 'M').format('MMMM');
 });
+//@since v0.8.0
+UI.registerHelper('formatCurrency', function(value) {
+  return value.toFixed(2)
+});
