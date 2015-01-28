@@ -8,6 +8,7 @@ Template.bookNew.destroyed = function(){
 
 //-- template rendered functions
 Template.bookNew.rendered = function(){
+  $(document).ready(function() { $("#affiliateData").select2(); });
   $(document).ready(function() { $("#authors").select2(); });
 };
 
@@ -21,8 +22,16 @@ Template.bookNew.events({
   'submit form': function(e) {
     e.preventDefault();
 
+    var affiliateData = [];
     var authorData = [];
     var changes = [];
+    
+    $('#affiliateData :selected').each(function(i, selected){
+      affiliateData[i] = {
+        authorId: $(selected).val(),
+        authorName: $(selected).text()
+      };
+    });
     
     $('#authors :selected').each(function(i, selected){
       authorData[i] = {
@@ -30,6 +39,8 @@ Template.bookNew.events({
         authorName: $(selected).text()
       };
     });
+    
+    var bookGroup = $('#bookGroup :selected').text();
 
     changes = [{
       date: new Date().getTime(),
@@ -37,6 +48,7 @@ Template.bookNew.events({
     }];
     
     var book = {
+      affiliateData: affiliateData,
       bookTitle: $(e.target).find('[name=bookTitle]').val(),
       bookSubtitle: $(e.target).find('[name=bookSubtitle]').val(),
       bookSeries: $(e.target).find('[name=bookSeries]').val(),
@@ -44,17 +56,24 @@ Template.bookNew.events({
       bookPrice: $(e.target).find('[name=bookPrice]').val(),
       bookISBN: $(e.target).find('[name=bookISBN]').val(),
       bookEAN: $(e.target).find('[name=bookEAN]').val(),
+      bookISBN10: $(e.target).find('[name=bookISBN10]').val(),
       bookArtNrI3: $(e.target).find('[name=bookArtNrI3]').val(),
       bookArtNrBH: $(e.target).find('[name=bookArtNrBH]').val(),
-      notes: $(e.target).find('[name=notes]').val(),
+      bookType: $(e.target).find('[name=bookType]').val(),
+      bookGroup: bookGroup,
+      bookPages: $(e.target).find('[name=bookPages]').val(),
+      bookHeigh: $(e.target).find('[name=bookHeigh]').val(),
+      bookWidth: $(e.target).find('[name=bookWidth]').val(),
+      bookWeight: $(e.target).find('[name=bookWeight]').val(),
+      bookNotes: $(e.target).find('[name=bookNotes]').val(),
       changes: changes,
       submitted: new Date().getTime(),
       updatedAt: new Date().getTime()
     };
     
     Meteor.call('newBook', book, function(error, result) {
-      //if (error)
-        //return throwError(error.reason);
     });
+    
+    Router.go('books.list');
   }  
 });
