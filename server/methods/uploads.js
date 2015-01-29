@@ -3,15 +3,17 @@ Meteor.methods({
   insertBookUpload: function(data) {
     var bookPrice = Number(data.EUR.replace( /,/,"." ));      
     var book = {
+      bookTitle: data.Titel,
+      bookSubtitle: data.Untertitel,
+      bookPrice: bookPrice,      
       bookISBN: data.ISBN13,
       bookISBN10: data.ISBN10,
       bookEAN: data.EAN13,
       bookArtNrI3: data.BestNr,
       bookArtNrBH: data.BestNrBrockhaus,
-      bookRealAuthor: data.Autoren,
-      bookRealEditor: data.Herausgeber,
-      bookTitle: data.Titel,
-      bookSubtitle: data.Untertitel,
+      changes: [{date: new Date().getTime(), content: 'Buch importiert'}],
+      submitted: new Date().getTime(),
+      updatedAt: new Date().getTime(),
       bookType: data.Produktform + ' | ' + data.Einband,
       bookGroup: data.Produktgruppe,
       bookHeigh: data.Produkthöhe,
@@ -19,12 +21,8 @@ Meteor.methods({
       bookWeight: data.Produktgewicht,
       bookStatus: data.Lieferbarkeit,
       bookPages: data.Seiten,
-      bookPrice: bookPrice,
-      bookNotes: 'Preis: ' + data.EUR + ', Auflage: ' + data.Auflagennr + ' ' + data.Auflagentyp + ' ' + data.Auflagentext + ' Erscheinungsdatum: ' + data.Erscheinungsdatum,
-      changes: [{date: new Date().getTime(), content: 'Buch importiert'}],
-      submitted: new Date().getTime()
-    };   
-    //console.log(book);    
+      bookNotes: 'Autor: ' + data.Autoren + ', Hg: ' + data.Herausgeber + ', Auflage: ' + data.Auflagennr + ' ' + data.Auflagentyp + ' ' + data.Auflagentext + ', Erscheinungsdatum: ' + data.Erscheinungsdatum      
+    };    
     Books.insert(book);
   },
   //@since v0.6.2
@@ -124,5 +122,38 @@ Meteor.methods({
       };      
       Sales.insert(sale);
     }
+  },
+  //@since v0.7.3
+  insertAuthorsUpload: function(data) {   
+    var author = {
+      title: data.Titel,
+      graduate: data.Untertitel,
+      firstName: bookPrice,      
+      lastName: data.ISBN13,
+      company: data.ISBN10,
+      street: data.EAN13,
+      additional: data.BestNr,
+      plz: data.BestNrBrockhaus,
+      city: data,
+      country: data,
+      telephone: data,
+      telefax: data,
+      mobil: data,
+      emailPriv: data,
+      emailOff: data,
+      url: data,
+      salutation: data,
+      vatBool: false,
+      vat: data,
+      iban: data,
+      bic: data,
+      bank: data,
+      notes: data,
+      isAutor: true,      
+      changes: [{date: new Date().getTime(), content: 'Buch importiert'}],
+      submitted: new Date().getTime(),
+      updatedAt: new Date().getTime()
+    };    
+    Authors.insert(author);
   } 
 })
