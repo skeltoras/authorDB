@@ -62,7 +62,7 @@ Template.bookEdit.events({
     Session.set('changesContent', sessionChangesAdd);
   },
   // save form on submit
-  'submit form': function(e) {
+  'submit #formBookEdit': function(e) {
     e.preventDefault();
 
     var bookId = this._id;
@@ -127,5 +127,12 @@ Template.bookEdit.events({
     e.preventDefault();
     var bookId = this._id;    
     Router.go('book.show', {_id: bookId});
+  },
+  'click .deleteEdition': function(e) {
+    e.preventDefault();
+    var bookId = Session.get('bookId');
+    var editionId = e.currentTarget.id;
+    Meteor.call('removeBookEdition', bookId, editionId, function(error, result) {
+    });
   }  
 });

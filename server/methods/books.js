@@ -8,5 +8,11 @@ Meteor.methods({
     } else {
       Books.update(bookId, {$set: book});
     }    
+  },
+  updateBookEdition: function(bookId, editionData) {
+    Books.update(bookId, {$addToSet: {editionData: editionData} });  
+  },
+  removeBookEdition: function(bookId, editionId) {
+    Books.update(bookId, {$pull: {editionData: {editionId: editionId}} });    
   }
 })

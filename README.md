@@ -3,7 +3,12 @@ Manage bookauthors - meteor.js based webapp
 
 ## Changelog
 
+### v0.8
+- v0.8.0 - added author billing
+
 ### v0.7
+- v0.7.5 - added fields to book schema, changed bookEdit and bookShow and added modals for edition
+- v0.7.4 - added npm modules
 - v0.7.3 - fixed book-import, added author-import
 - v0.7.2 - fixed navigation and sales view
 - v0.7.1 - fixed book new and edit functions

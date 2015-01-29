@@ -2,7 +2,7 @@
   <h1 class="page-header">Buch bearbeiten</h1>  
   <div class="row">
     <div class="col-sm-12">
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal" id="formBookEdit" role="form">
         <div class="row">
           <div class="col-sm-12">
             <fieldset>
@@ -135,26 +135,63 @@
               <div class="form-group form-group-sm">
                 <label for="bookHeigh" class="col-sm-3 control-label">Höhe</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="bookHeigh" name="bookHeigh" placeholder="in cm" value="{{bookHeigh}}">
+                  <div class="input-group">                                    
+                    <input type="text" class="form-control" id="bookHeigh" name="bookHeigh" placeholder="in cm" value="{{bookHeigh}}">
+                    <span class="input-group-addon">cm</span>
+                  </div>
                 </div>
               </div>
               <!-- bookWidth -->
               <div class="form-group form-group-sm">
                 <label for="bookWidth" class="col-sm-3 control-label">Breite</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="bookWidth" name="bookWidth" placeholder="in cm" value="{{bookWidth}}">
+                  <div class="input-group">  
+                    <input type="text" class="form-control" id="bookWidth" name="bookWidth" placeholder="in cm" value="{{bookWidth}}">
+                    <span class="input-group-addon">cm</span>
+                  </div>
                 </div>
               </div>
               <!-- bookWeight -->
               <div class="form-group form-group-sm">
                 <label for="bookWeight" class="col-sm-3 control-label">Gewicht</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="bookWeight" name="bookWeight" placeholder="in g" value="{{bookWeight}}">
+                  <div class="input-group">  
+                    <input type="text" class="form-control" id="bookWeight" name="bookWeight" placeholder="in g" value="{{bookWeight}}">
+                    <span class="input-group-addon">g</span>
+                  </div>
                 </div>
               </div>
             </fieldset>             
           </div>          
           <div class="col-sm-6">
+            <fieldset>
+              <legend>Auflagen</legend>
+              <!-- editionData -->
+              {{#if editionData}}
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                      <th class="col-sm-10"></th>
+                      <th class="col-sm-1"></th>
+                      <th class="col-sm-1"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each editionData}}
+                      <tr>
+                        <td>{{editionNr}}. {{editionText}} {{#if releaseDate}}({{formatDate releaseDate}}){{/if}}</td> 
+                        <td><a href="" id="{{editionId}}" class="editEdition">edit</a></td> 
+                        <td><a href="" id="{{editionId}}" class="deleteEdition">delete</a></td>
+                      </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              {{else}}
+                <p>Keine Auflage eingegeben</p>
+              {{/if}}
+              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editionNew">Neu hinzufügen</button>
+            </fieldset>
+            <div class="spacer-20"></div>
             <fieldset>
               <legend>Notizen</legend>
               <!-- notes -->
@@ -171,7 +208,7 @@
           <!-- buttons -->
           <div class="control-group">
             <div class="controls">
-              <input type="submit" name="submit" value="Aktualisieren" class="btn btn-default"/>
+              <input type="submit" id="submit" name="submit" value="Aktualisieren" class="btn btn-default"/>
               <input type="button" id="back" name="back" value="Zurück" class="btn btn-default"/>
             </div>
           </div>
@@ -180,4 +217,5 @@
       </form>
     </div>
   </div>
-</template>
+  {{> modalEditionNew}}
+</template>             

@@ -38,3 +38,8 @@ cfs:standard-packages
 cfs:ui
 cfs:filesystem
 mrt:pagination
+meteorhacks:npm
+
+
+npm-container
+pfafman:filesaver

@@ -3,6 +3,13 @@
   <a class="btn btn-default pull-right" href="/book/edit/{{_id}}" role="button">bearbeiten</a>
   <h1 class="page-header">Buch anzeigen</h1>  
   <div class="row">
+    <div class="col-sm-12">
+      <p>Vertragspartner: {{#each affiliateData}}<strong><a href="/author/edit/{{authorId}}" alt="{{authorName}}">{{authorName}}</a></strong> {{/each}}</p>
+    </div>
+  </div>
+  <hr>
+  <div class="spacer-20"></div>
+  <div class="row">
     <div class="col-sm-6">
       <table class="table table-condensed">
         <caption>Grunddaten</caption>
@@ -14,18 +21,6 @@
         </thead>
         <tbody>
           <tr>
-            <td>Vertragspartner</td>
-            <td>{{#each authorData}}<strong><a href="/author/edit/{{authorId}}" alt="{{authorName}}">{{authorName}}</a></strong>, {{/each}}</td>
-          </tr>
-          <tr>
-            <td>Autor(en)</td>
-            <td>{{#if bookRealAuthor}}{{bookRealAuthor}}{{else}}---{{/if}}</td>
-          </tr>
-          <tr>
-            <td>Herausgeber</td>
-            <td>{{#if bookRealEditor}}{{bookRealEditor}}{{else}}---{{/if}}</td>
-          </tr>
-          <tr>
             <td>Titel</td>
             <td><strong>{{bookTitle}}</strong></td>
           </tr>          
@@ -36,10 +31,14 @@
           <tr>
             <td>Reihe</td>
             <td>{{#if bookSeries}}{{bookSeries}}{{else}}---{{/if}}</td>
-          </tr>          
+          </tr>
+          <tr>
+            <td>Autor(en)</td>
+            <td>{{#if authorData}}{{#each authorData}}<a href="/author/edit/{{authorId}}" alt="{{authorName}}">{{authorName}}</a> {{/each}}{{else}}---{{/if}}</td>
+          </tr>   
           <tr>
             <td>Preis</td>
-            <td><strong>{{bookPrice}} €</strong></td>
+            <td>{{bookPrice}} €</td>
           </tr>
         </tbody>   
       </table>
@@ -57,14 +56,14 @@
           <tr>
             <td>ISBN</td>
             <td><strong>{{bookISBN}}</strong></td>
+          </tr>          
+          <tr>
+            <td>EAN</td>
+            <td>{{#if bookEAN}}{{bookEAN}}{{else}}---{{/if}}</td>
           </tr>
           <tr>
             <td>ISBN10</td>
             <td>{{#if bookISBN10}}{{bookISBN10}}{{else}}---{{/if}}</td>
-          </tr>
-          <tr>
-            <td>EAN</td>
-            <td>{{#if bookEAN}}{{bookEAN}}{{else}}---{{/if}}</td>
           </tr>
           <tr>
             <td>ArtNr. I3</td>
@@ -112,10 +111,6 @@
           <tr>
             <td>Gewicht</td>
             <td>{{#if bookWeight}}{{bookWeight}} g{{else}}---{{/if}}</td>
-          </tr> 
-          <tr>
-            <td>Erscheinungsdatum</td>
-            <td>{{#if bookPublished}}{{bookPublished}}{{else}}---{{/if}}</td>
           </tr>
           <tr>
             <td>Lieferbarkeit</td>
@@ -124,6 +119,30 @@
         </tbody>   
       </table>
     </div>
+    <div class="col-sm-6">
+      <table class="table table-condensed">
+        <caption>Auflagen</caption>
+        <thead>
+          <tr>
+            <th class="col-sm-8"></th>
+            <th class="col-sm-2">Ersch.Dtm.</th>
+            <th class="col-sm-2">Aufl.Höhe</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each editionData}}
+            <tr>
+              <td>{{editionNr}}. {{editionText}} </td> 
+              <td>{{#if releaseDate}}{{formatDate releaseDate}}{{else}}---{{/if}}</td> 
+              <td>{{#if editionCount}}{{editionCount}}{{else}}---{{/if}}</td>
+            </tr>
+          {{/each}}
+        </tbody>   
+      </table>      
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  <div class="row">
     <div class="col-sm-6">
       <table class="table table-condensed">
         <caption>Notizen</caption>
@@ -140,6 +159,8 @@
           </tr>
         </tbody>   
       </table>
+    </div>
+    <div class="col-sm-6">
       <table class="table table-condensed">
         <caption>Änderungslog</caption>
         <thead>
@@ -161,5 +182,4 @@
       </table>
     </div>
   </div>
-  <div class="spacer-20"></div>
 </template>

@@ -126,10 +126,11 @@ Meteor.methods({
   //@since v0.7.3
   insertAuthorsUpload: function(data) {   
     var author = {
-      title: data.Titel,
-      graduate: data.Untertitel,
-      firstName: bookPrice,      
-      lastName: data.ISBN13,
+      title: data.Anrede,
+      //graduate: data.Untertitel,
+      firstName: data.Vorname,      
+      lastName: data.Name,
+      /*
       company: data.ISBN10,
       street: data.EAN13,
       additional: data.BestNr,
@@ -139,18 +140,23 @@ Meteor.methods({
       telephone: data,
       telefax: data,
       mobil: data,
-      emailPriv: data,
+      */
+      emailPriv: data.Mail,
+      /*
       emailOff: data,
       url: data,
       salutation: data,
+      */
       vatBool: false,
+      /*
       vat: data,
       iban: data,
       bic: data,
       bank: data,
       notes: data,
+      */
       isAutor: true,      
-      changes: [{date: new Date().getTime(), content: 'Buch importiert'}],
+      changes: [{date: new Date().getTime(), content: 'Kontakt importiert'}],
       submitted: new Date().getTime(),
       updatedAt: new Date().getTime()
     };    
