@@ -12,15 +12,16 @@ Template.authorList.rendered = function(){
 
 //-- template helpers
 Template.authorList.helpers({
-  // list of all authors sorted by submit-date @since 0.1.0
+});
+
+//-- template helpers
+Template.authorsAllList.helpers({
+  // list of all books sorted by submit-date @since 0.1.0
   authors: function() {
-    return Authors.find({}, {sort: {submitted: -1}});
-  },
-  authorId: function() {
-    return this._id;
+    return Authors.find({}, {sort: {lastName: 1}});
   }
 });
 
 //-- template events
-Template.authorList.events({
+Template.authorList.events({  
 });

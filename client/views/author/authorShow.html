@@ -1,0 +1,42 @@
+<template name="authorShow">
+  <a class="btn btn-default pull-right" href="/author/edit/{{_id}}" role="button">bearbeiten</a>
+  <h1 class="page-header">Kontakt anzeigen</h1>
+  <div class="row">
+    <div class="col-sm-6">
+      <h4>Kontaktdaten</h4>
+      <div class="vcard">
+        <span class="fn"><strong>{{firstName}} {{lastName}}</strong></span><br>        
+        <hr>
+        <br>
+        <span class="n">
+          {{#if graduate}}<span class="honorific-prefix">{{graduate}}</span>{{/if}}
+          <span class="given-name">{{firstName}}</span>
+          <span class="family-name">{{lastName}}</span>
+        </span>
+        {{#if company}}<div class="org">{{company}}</div>{{/if}}
+        <div class="adr">
+          <div class="street-address">{{street}}</div>
+          <div class="extended-address">{{additional}}</div>
+          <span class="postal-code">{{plz}}</span>
+          <span class="locality">{{city}}</span>         
+          {{#if country}}<div class="country-name">{{country}}</div>{{/if}}
+        </div>
+        <br>
+        {{#if telephone}}<div class="tel">Tel.: {{telephone}}</div>{{/if}}
+        {{#if telefax}}<div class="tel">Fax: {{telefax}}</div>{{/if}}
+        {{#if mobil}}<div class="tel">Mobil: {{mobil}}</div>{{/if}}
+        {{#if emailPriv}}Privat: <a class="email" href="mailto:{{emailPriv}}">{{emailPriv}}</a><br>{{/if}}
+        {{#if emailOff}}Büro: <a class="email" href="mailto:{{emailOff}}">{{emailOff}}</a><br>{{/if}}
+        {{#if url}}<a class="url" href="{{url}}">{{url}}</a>{{/if}}
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h4>Weitere Daten</h4>
+      <p>
+        IBAN: {{iban}}<br>
+        BIC: {{bic}}<br>
+        Geldinstitut: {{bank}}
+      </p>
+    </div>
+  </div>
+</template>

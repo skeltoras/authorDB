@@ -1,25 +1,57 @@
 <template name="authorList">
-  <h1 class="page-header">Autorenliste</h1>
+  {{> searchAuthors}}  
+</template>
+
+<template name="searchAuthors">  
+  <h1 class="page-header">Kontaktliste</h1>
+  Suche: {{> esInput index="authors" placeholder="Vorname, Name, Mail" }}
+  <div class="spacer-20"></div>
   <table class="table table-striped table-condensed">
     <thead>
       <tr>
         <th>Name</th>
         <th>Tel.</th>
         <th>Mail</th>
-        <th>Aktiv</th>
+        <th>show</th>
         <th>edit</th>
       </tr>
     </thead>
     <tbody>
+      {{#ifEsInputIsEmpty index="authors"}}
+        {{> authorsAllList}}
+      {{/ifEsInputIsEmpty}}
+  
+      {{#esEach index="authors"}}
+        {{> authorsSearchList}}
+      {{/esEach}}
+      
+      {{> esLoadMoreButton index="authors"}}
+      
+      {{#ifEsHasNoResults index="authors"}}
+          <div class="no-results">No results found!</div>
+      {{/ifEsHasNoResults}}
+    </tbody>
+  </table>
+</template>
+
+<template name="authorsAllList">
       {{#each authors}}
         <tr>
           <td>{{firstName}} {{lastName}}</td>
           <td>{{telephone}}</td>
           <td>{{emailPriv}} {{emailOff}}</td>
-          <td>{{isActive}}</td>
-          <td><i><a href="/autor/{{authorId}}">edit</a></i></td>
+          <td><i><a href="/author/show/{{_id}}">show</a></i></td>
+          <td><i><a href="/author/edit/{{_id}}">edit</a></i></td>
         </tr>
       {{/each}}
-    </tbody>
-  </table>
+</template>
+
+<template name="authorsSearchList">
+      <tr>
+        <td>{{firstName}} {{lastName}}</td>
+        <td>{{telephone}}</td>
+        <td>{{emailPriv}} {{emailOff}}</td>
+        <td><i><a href="/author/show/{{_id}}">show</a></i></td>
+        <td><i><a href="/author/edit/{{_id}}">edit</a></i></td>
+      </tr>
 </template>
