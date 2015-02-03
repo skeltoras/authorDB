@@ -18,3 +18,8 @@ Meteor.publish('stock', function() {
 Meteor.publish('salesperyear', function() {
   return SalesPerYear.find();
 });
+
+//@since 0.7.8
+Meteor.publish('conditions', function() {
+  return Conditions.find();
+});

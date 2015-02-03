@@ -1,13 +1,14 @@
 <template name="authorShow">
+  {{setSessionData}}
+  <a class="btn btn-default" id="abrechnen" href="" role="button">abrechnen</a>
   <a class="btn btn-default pull-right" href="/author/edit/{{_id}}" role="button">bearbeiten</a>
   <h1 class="page-header">Kontakt anzeigen</h1>
   <div class="row">
-    <div class="col-sm-6">
-      <h4>Kontaktdaten</h4>
+    <div class="col-sm-4">
       <div class="vcard">
         <span class="fn"><strong>{{firstName}} {{lastName}}</strong></span><br>        
         <hr>
-        <br>
+        <h4>Kontaktdaten</h4>
         <span class="n">
           {{#if graduate}}<span class="honorific-prefix">{{graduate}}</span>{{/if}}
           <span class="given-name">{{firstName}}</span>
@@ -27,10 +28,9 @@
         {{#if mobil}}<div class="tel">Mobil: {{mobil}}</div>{{/if}}
         {{#if emailPriv}}Privat: <a class="email" href="mailto:{{emailPriv}}">{{emailPriv}}</a><br>{{/if}}
         {{#if emailOff}}Büro: <a class="email" href="mailto:{{emailOff}}">{{emailOff}}</a><br>{{/if}}
-        {{#if url}}<a class="url" href="{{url}}">{{url}}</a>{{/if}}
+        {{#if url}}<a class="url" href="http://{{url}}" target="_blank">{{url}}</a>{{/if}}
       </div>
-    </div>
-    <div class="col-sm-6">
+      <div class="spacer-20"></div>
       <h4>Weitere Daten</h4>
       <p>
         IBAN: {{iban}}<br>
@@ -38,5 +38,53 @@
         Geldinstitut: {{bank}}
       </p>
     </div>
+    <div class="col-sm-8">
+      {{#if getAffiliate}}
+        <table class="table table-condensed">
+          <caption>Vertragspartner bei:</caption>
+          <thead>
+            <tr>
+              <th class="col-sm-6">Titel</th>
+              <th class="col-sm-4">Typ</th>
+              <th class="col-sm-2" style="text-align:center">Konditionen</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each getAffiliate}}
+              <tr>
+                <td><a href="/book/show/{{_id}}">{{bookTitle}}</a></td>
+                <td>{{bookGroup}}</td>
+                {{#if hasCondition}}
+                <td style="text-align:center"><a href="" id="{{_id}}" class="editCondition"><i class="fa fa-pencil-square-o"></i></a></td>
+                {{else}}
+                <td style="text-align:center"><a href="" id="{{_id}}" class="addCondition"><i class="fa fa-plus"></i></a></td>
+                {{/if}}
+              </tr>
+            {{/each}}
+          </tbody>   
+        </table>
+      {{/if}} 
+      
+      {{#if getAuthor}}
+        <table class="table table-condensed">
+          <caption>Autor von:</caption>
+          <thead>
+            <tr>
+              <th class="col-sm-6">Titel</th>
+              <th class="col-sm-6">Typ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each getAffiliate}}
+              <tr>
+                <td><a href="/book/show/{{_id}}">{{bookTitle}}</a></td>
+                <td>{{bookGroup}}</td>
+              </tr>
+            {{/each}}
+          </tbody>   
+        </table>
+      {{/if}}
+    </div>
   </div>
+  {{> modalAddConditions}}
 </template>

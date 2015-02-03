@@ -4,7 +4,7 @@
   <h1 class="page-header">Buch anzeigen</h1>  
   <div class="row">
     <div class="col-sm-12">
-      <p>Vertragspartner: {{#each affiliateData}}<strong><a href="/author/edit/{{authorId}}" alt="{{authorName}}">{{authorName}}</a></strong> {{/each}}</p>
+      <p>Vertragspartner: {{#each affiliateData}}<strong><a href="/author/show/{{authorId}}" alt="{{authorName}}">{{authorName}}</a></strong> {{/each}}</p>
     </div>
   </div>
   <hr>
@@ -34,7 +34,7 @@
           </tr>
           <tr>
             <td>Autor(en)</td>
-            <td>{{#if authorData}}{{#each authorData}}<a href="/author/edit/{{authorId}}" alt="{{authorName}}">{{authorName}}</a> {{/each}}{{else}}---{{/if}}</td>
+            <td>{{#if authorData}}{{#each authorData}}<a href="/author/show/{{authorId}}" alt="{{authorName}}">{{authorName}}</a> {{/each}}{{else}}---{{/if}}</td>
           </tr>   
           <tr>
             <td>Preis</td>
