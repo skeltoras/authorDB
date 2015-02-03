@@ -38,6 +38,21 @@ Router.route('/author/show/:_id', function (){
   controller: 'AuthorsController'
 });
 
+Router.route('/author/billing/:_id', function (){ 
+  this.render('authorBilling', {
+    data: function () {
+      return Authors.findOne({_id: this.params._id});
+    },
+    action: function() {
+      if (this.ready())
+        this.render();
+    }
+  });
+}, {
+  name: 'author.billing',
+  controller: 'AuthorsController'
+});
+
 Router.route('/author/edit/:_id', function () {
   this.render('authorEdit', {
     data: function () {

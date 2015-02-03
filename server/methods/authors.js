@@ -9,5 +9,10 @@ Meteor.methods({
       isActive: false  
     });  
     Authors.insert(data);
+  },
+  'addBillingId': function() {
+    var billingNo = incrementCounter('billingNo');
+    console.log('done');
+    return billingNo;
   }
 })

@@ -9,6 +9,7 @@ Manage bookauthors - meteor.js based webapp
 ## Changelog
 
 ### v0.7
+- v0.7.9 - add rudimental billing function
 - v0.7.8 - expanded authors views, added conditions to author show
 - v0.7.7 - changed files structure
 - v0.7.6 - changed author views

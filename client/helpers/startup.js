@@ -3,7 +3,4 @@ Meteor.startup(function () {
     //@since v0.3
     SimpleSchema.debug = true
   }
-  
-  if(Meteor.isServer){
-  }
 });

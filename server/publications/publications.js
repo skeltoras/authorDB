@@ -23,3 +23,8 @@ Meteor.publish('salesperyear', function() {
 Meteor.publish('conditions', function() {
   return Conditions.find();
 });
+
+//@since 0.7.9
+Meteor.publish('billings', function() {
+  return Billings.find();
+});

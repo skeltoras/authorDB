@@ -52,5 +52,12 @@ Template.authorShow.events({
     var bookId = e.currentTarget.id;
     Session.set('bookId', bookId); 
     $('#addConditions').modal('toggle');
+  },
+  //@since v0.7.9
+  'click #abrechnen': function(e) {
+    e.preventDefault();
+    var bookId = e.currentTarget.id;
+    Session.set('bookId', bookId); 
+    $('#selectYear').modal('toggle');
   } 
 });
