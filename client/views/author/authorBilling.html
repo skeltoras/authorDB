@@ -1,8 +1,60 @@
 <template name="authorBilling">
   <h1 class="page-header">Abrechnung für {{getYear}}</h1>
   <div class="row">
+    <div class="col-sm-4">
+      {{#if getAuthorData}}
+        <strong>{{title}} {{#if graduate}}{{graduate}} {{/if}}{{firstName}} {{lastName}}</strong><br> 
+        {{#if company}}<i>{{company}}</i><br>{{/if}}
+        {{street}}<br>
+        {{#if additional}}{{additional}}<br>{{/if}} 
+        {{plz}} {{city}}<br>
+        {{#if country}}{{country}}<br>{{/if}}
+      {{/if}}    
+    </div>
+    <div class="col-sm-4 pull-right">
+      <table class="table borderless text-right">
+        <tbody>
+          <tr>
+            <td>Abrechnungs-Nr.</td>
+            <td><strong>Abr-{{formatBillingNo getBillingNo}}</strong></td>
+          </tr>          
+          <tr>
+            <td>Datum</td>
+            <td>{{getDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  <div class="row">
     <div class="col-sm-12">
-      {{getAuthorData}}    
+      <table class="table table-condensed">
+        <caption>Positionen</caption>
+        <thead>
+          <tr>
+            <th class="col-sm-6">Titel</th>
+            <th class="col-sm-3 text-right">Menge</th>
+            <th class="col-sm-3 text-right">Honorar</th>
+          </tr> 
+        </thead>
+        <tbody>
+          {{#each getBookData}}
+            <tr>
+              <td>{{bookTitle}} ({{bookGroup}}) <br> {{bookISBN}}</td>
+              <td class="text-right">{{units}} Ex.</td>
+              <td class="text-right">{{authorFee}} €</td>
+            </tr>
+          {{/each}}
+          {{#with getSum}}
+          <tr class="active">
+            <td><strong>Summen</strong></td>
+            <td class="text-right"><strong>{{sumUnits}} Ex.</strong></td>
+            <td class="text-right"><strong>{{sumFee}} €</strong></td>
+          </tr>
+          {{/with}}
+        </tbody>
+      </table>   
     </div>
   </div> 
 </template>

@@ -50,14 +50,21 @@ Template.authorShow.events({
   'click .addCondition': function(e) {
     e.preventDefault();
     var bookId = e.currentTarget.id;
-    Session.set('bookId', bookId); 
+    Session.set('bookId', bookId);
+    Session.set('modalAddConditions', true); 
     $('#addConditions').modal('toggle');
   },
   //@since v0.7.9
   'click #abrechnen': function(e) {
+    e.preventDefault(); 
+    $('#selectYear').modal('toggle');
+  },
+  //@since v0.8.0
+  'click .editCondition': function(e) {
     e.preventDefault();
     var bookId = e.currentTarget.id;
-    Session.set('bookId', bookId); 
-    $('#selectYear').modal('toggle');
-  } 
+    Session.set('bookId', bookId);
+    Session.set('modalEditConditions', true); 
+    $('#editConditions').modal('toggle');
+  }, 
 });

@@ -161,5 +161,31 @@ Meteor.methods({
       updatedAt: new Date().getTime()
     };    
     Authors.insert(author);
-  } 
+  },
+  //@since v0.8.0
+  insertSalesLibrekaUpload: function(data) {   
+    var checkId = data.ISBN;    
+    var bookId = Books.findOne({bookEAN: checkId})._id;
+    if(bookId){
+      var bookPrice = Books.findOne({bookEAN: checkId}).bookPrice;     
+      var year = Number(data.Jahr);
+      var month = Number(data.Monat);
+      var units = Number(data.Einheiten);
+      var volumesNet = Number(data.Erlös.replace( /,/,"." ));
+      var lp = Number(bookPrice.replace( /,/,"." ));
+      var salesVolumes = units * lp;          
+      var sale = {
+        bookId: bookId,
+        salesYear: year,
+        salesMonth: month,
+        salesUnits: units,
+        salesVolumesNet: volumesNet,
+        salesVolumes: salesVolumes,
+        salesSeller: 'Libreka',
+        salesType: 'Privat',
+        submitted:  new Date().getTime()
+      };      
+      Sales.insert(sale);
+    }
+  },
 })

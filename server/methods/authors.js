@@ -12,7 +12,6 @@ Meteor.methods({
   },
   'addBillingId': function() {
     var billingNo = incrementCounter('billingNo');
-    console.log('done');
     return billingNo;
   }
 })

@@ -55,9 +55,9 @@
                 <td><a href="/book/show/{{_id}}">{{bookTitle}}</a></td>
                 <td>{{bookGroup}}</td>
                 {{#if hasCondition}}
-                <td style="text-align:center"><a href="" id="{{_id}}" class="editCondition"><i class="fa fa-pencil-square-o"></i></a></td>
+                  <td style="text-align:center"><a href="" id="{{_id}}" class="editCondition"><i class="fa fa-pencil-square-o"></i></a></td>
                 {{else}}
-                <td style="text-align:center"><a href="" id="{{_id}}" class="addCondition"><i class="fa fa-plus"></i></a></td>
+                  <td style="text-align:center"><a href="" id="{{_id}}" class="addCondition"><i class="fa fa-plus"></i></a></td>
                 {{/if}}
               </tr>
             {{/each}}
@@ -75,7 +75,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each getAffiliate}}
+            {{#each getAuthor}}
               <tr>
                 <td><a href="/book/show/{{_id}}">{{bookTitle}}</a></td>
                 <td>{{bookGroup}}</td>
@@ -88,4 +88,5 @@
   </div>
   {{> modalSelectYear}}
   {{> modalAddConditions}}
+  {{> modalEditConditions}}
 </template>

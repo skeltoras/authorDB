@@ -1,5 +1,6 @@
 //-- template created functions
-Template.modalEditConditions.created = function(){ 
+Template.modalEditConditions.created = function(){
+  Session.set('modalEditConditions', false); 
 };
 
 //-- template destroyed functions
@@ -12,21 +13,22 @@ Template.modalEditConditions.rendered = function(){
 
 //-- template helpers
 Template.modalEditConditions.helpers({
-  checkType: function() {
-    var bookId = Session.get('bookId');
-    var bookType = Books.findOne({_id: bookId}).bookGroup;
-    var licence = false;
-    if(bookType == 'E-Book'){
-      licence = true;  
+  getConditionData: function() {
+    var visible = Session.get('modalEditConditions');
+    if(visible == true) {
+      var bookId = Session.get('bookId');
+      Meteor.call('getSingleConditionData', bookId, function(error, result) {
+        Session.set('getSingleConditionData', result);
+      });
     }
-    return licence;
+    return Session.get('getSingleConditionData'); 
   }
 });
 
 //-- template events
 Template.modalEditConditions.events({ 
   // save form on submit
-  'submit #formAddConditions': function(e) {
+  'submit #formEditConditions': function(e) {
     e.preventDefault();
         
     var authorId = Session.get('authorId');
@@ -89,13 +91,13 @@ Template.modalEditConditions.events({
       //if (error)
         //return throwError(error.reason);
     });
-    
+    Session.set('modalAddConditions', false);
     $('#addConditions').modal('toggle');
   },
   // close form on reset
-  'reset #formAddConditions': function(e) {
+  'reset #formEditConditions': function(e) {
     e.preventDefault();
-
-    $('#addConditions').modal('toggle');
+    Session.set('modalEditConditions', false);
+    $('#editConditions').modal('toggle');
   }
 });

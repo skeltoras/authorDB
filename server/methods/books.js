@@ -14,5 +14,8 @@ Meteor.methods({
   },
   removeBookEdition: function(bookId, editionId) {
     Books.update(bookId, {$pull: {editionData: {editionId: editionId}} });    
+  },
+  getSingleBookData: function(bookId) {
+    return Books.findOne({_id: bookId});  
   }
 })

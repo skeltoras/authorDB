@@ -3,13 +3,17 @@ Manage bookauthors - meteor.js based webapp
 
 ## Roadmap
 
-### v0.8
-- v0.8.0 - adding author billing
+### v0.9
+- v0.9.0 - add stats
+
 
 ## Changelog
 
+### v0.8
+- v0.8.0 - added more billing functions, added libreka upload, changed author billing view 
+
 ### v0.7
-- v0.7.9 - add rudimental billing function
+- v0.7.9 - added rudimental billing function
 - v0.7.8 - expanded authors views, added conditions to author show
 - v0.7.7 - changed files structure
 - v0.7.6 - changed author views

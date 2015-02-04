@@ -1,7 +1,6 @@
 Meteor.methods({
   salesPerYear: function(bookId) {    
     SalesPerYear.remove({});
-    //console.log('bookId: ' + bookId); //debug server
     
     var firstYear = '2013';
     var currYear = moment().year();
@@ -21,7 +20,7 @@ Meteor.methods({
       pipeline = [
         { $match : { bookId: bookId, salesYear: year } },
         { $group : { _id : { sale: { "salesMonth": "$salesMonth" } }, 
-            bookId: { $sum: "$bookId" },
+            bookId: { $first: "$bookId" },
             unit: { $sum: "$salesUnits" }, 
             volume: { $sum: "$salesVolumes" },
             volumeNet: { $sum: "$salesVolumesNet" }, 
@@ -30,16 +29,14 @@ Meteor.methods({
           }
         },
         { $sort : { month: 1 } }
-      ];
-      //console.log('--- Pipeline ---'); //debug server
-      //console.log(pipeline); //debug server      
+      ];     
       result = Sales.aggregate(pipeline);
       
       // Set data  
       pipeSum = [
         { $match : { bookId: bookId, salesYear: year } },
         { $group : { _id : { sale: { "salesYear": "$salesYear" } }, 
-            bookId: { $sum: "$bookId" },
+            bookId: { $first: "$bookId" },
             unit: { $sum: "$salesUnits" }, 
             volume: { $sum: "$salesVolumes" },
             volumeNet: { $sum: "$salesVolumesNet" }, 
@@ -47,28 +44,15 @@ Meteor.methods({
           }
         },
         { $sort : { month: 1 } }
-      ];
-      //console.log('--- Pipeline ---'); //debug server
-      //console.log(pipeline); //debug server      
+      ];    
       resultSum = Sales.aggregate(pipeSum);
-      
-      //console.log('--- ResultSum ---'); //debug server
-      //console.log(resultSum); //debug server
       
       if(result != ''){
         result.forEach(function(data){
-          //var month = data.month;
-          //for(cnt=0;cnt<month.length;cnt++){
         	 stats.push({month: data.month, units: data.unit, volumes: data.volume, volumesNet: data.volumeNet});
-        	//}
-          //console.log(stats);
         });
         resultSum.forEach(function(data){
-          //var month = data.month;
-          //for(cnt=0;cnt<month.length;cnt++){
         	 statsSum.push({units: data.unit, volumes: data.volume, volumesNet: data.volumeNet});
-        	//}
-          //console.log(stats);
         });
         sale = {
           bookId: bookId,
@@ -76,8 +60,41 @@ Meteor.methods({
           sum: statsSum, 
           year: year
         };      
-        SalesPerYear.insert(sale); 
+        var returnSale = SalesPerYear.insert(sale);
+        return returnSale;
       }
     }
+  },
+  salesOneYear: function(bookId, year) {
+    var pipeline = [];
+    var result = '';
+    var stats = [];
+    var statsSum = [];    
+    // Set data  
+    pipeline = [
+      { $match : { bookId: bookId, salesYear: year } },
+      { $group : { _id : { sale: { "salesYear": "$salesYear" } },
+          unit: { $sum: "$salesUnits" }, 
+          volume: { $sum: "$salesVolumes" },
+          volumeNet: { $sum: "$salesVolumesNet" },
+          bookId: { $first: "$bookId" } 
+        }
+      },
+      { $sort : { bookId: 1 } }
+    ];         
+    result = Sales.aggregate(pipeline);    
+    
+    if(result != ''){
+      stats.push({units: result.unit, volumes: result.volume, volumesNet: result.volumeNet});
+      sale = {
+        bookId: bookId,
+        values: stats
+      };      
+      SalesPerYear.insert(sale);
+    }
+    return SalesPerYear.find().fetch();
+  },
+  emptySales: function(){
+    SalesPerYear.remove({});
   }
 });
