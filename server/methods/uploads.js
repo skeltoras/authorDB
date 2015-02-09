@@ -21,7 +21,10 @@ Meteor.methods({
       bookWeight: data.Produktgewicht,
       bookStatus: data.Lieferbarkeit,
       bookPages: data.Seiten,
-      bookNotes: 'Autor: ' + data.Autoren + ', Hg: ' + data.Herausgeber + ', Auflage: ' + data.Auflagennr + ' ' + data.Auflagentyp + ' ' + data.Auflagentext + ', Erscheinungsdatum: ' + data.Erscheinungsdatum      
+      bookNotes: 'Autor: ' + data.Autoren + ', Hg: ' + data.Herausgeber + ', Auflage: ' + data.Auflagennr + ' ' + data.Auflagentyp + ' ' + data.Auflagentext + ', Erscheinungsdatum: ' + data.Erscheinungsdatum,
+      //@since 0.8.0
+      bookPriceMwSt: data.MwSt,
+      bookProductionPrice: data.Einzelpreis      
     };    
     Books.insert(book);
   },
@@ -127,7 +130,7 @@ Meteor.methods({
   insertAuthorsUpload: function(data) {   
     var author = {
       title: data.Anrede,
-      //graduate: data.Untertitel,
+      graduate: data.Titel,
       firstName: data.Vorname,      
       lastName: data.Name,
       /*

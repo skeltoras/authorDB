@@ -62,12 +62,10 @@ Template.modalEditConditions.events({
     
     changes = [{
       date: new Date().getTime(),
-      content: 'Neue Konditionen erstellt.'
+      content: 'Konditionen überarbeitet.'
     }];
     
     var condition = {
-      affiliateData: affiliateData,
-      bookData: bookData, 
       feeInPercent: $(e.target).find('[name=feeInPercent]').val(),
       feeIsGross: feeIsGross,
       feeIsNet: feeIsNet,
@@ -81,18 +79,16 @@ Template.modalEditConditions.events({
       freeCopiesNext: $(e.target).find('[name=freeCopiesNext]').val(),
       feeEbookPercent: $(e.target).find('[name=feeEbookPercent]').val(),
       feeLicencePercent: $(e.target).find('[name=feeLicencePercent]').val(),
-      changes: changes,
-      submitted: new Date().getTime(),
       updatedAt: new Date().getTime()
     };    
     
     //console.log(condition);
-    Meteor.call('newCondition', condition, function(error, result) {
+    Meteor.call('updateCondition', condition, bookId, changes, function(error, result) {
       //if (error)
         //return throwError(error.reason);
     });
-    Session.set('modalAddConditions', false);
-    $('#addConditions').modal('toggle');
+    Session.set('modalEditConditions', false);
+    $('#editConditions').modal('toggle');
   },
   // close form on reset
   'reset #formEditConditions': function(e) {

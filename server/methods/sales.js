@@ -7,14 +7,13 @@ Meteor.methods({
     var years = currYear - firstYear;
     var year = '';
     
-    var pipeline = [];
-    var result = '';
-    var pipeSum = [];
-    var resultSum = '';
-    var stats = [];
-    var statsSum = [];
-    
     for(i=0; i<=years; i++){
+      var pipeline = [];
+      var result = '';
+      var pipeSum = [];
+      var resultSum = '';
+      var stats = [];
+      var statsSum = [];
       year = currYear - i; 
       // Set data  
       pipeline = [
@@ -61,7 +60,6 @@ Meteor.methods({
           year: year
         };      
         var returnSale = SalesPerYear.insert(sale);
-        return returnSale;
       }
     }
   },

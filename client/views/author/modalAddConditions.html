@@ -11,31 +11,7 @@
             <div class="col-sm-12">
               <form class="form-horizontal" id="formAddConditions" role="form">
                 <fieldset>
-                  <legend>Konditionen</legend>
-                  {{#if checkType}}
-                  <!-- feeEbookPercent -->
-                  <div class="form-group">
-                    <label for="feeEbookPercent" class="col-sm-3 control-label">Honorar E-Book</label>
-                    <div class="col-sm-9">
-                      <div class="input-group">
-                        <input type="text" class="form-control" id="feeEbookPercent" name="feeEbookPercent" value="" placeholder="">
-                        <span class="input-group-addon"><i class="icon-percent"></i></span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- feeIs -->
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label">Von</label>
-                    <div class="col-sm-9">              
-                      <input type="checkbox" id="feeIsGross" name="feeIsGross" value="">
-                      <label for="feeIsGross" class="checkbox-inline">Brutto-LP</label>
-                      <input type="checkbox" id="feeIsNet" name="feeIsNet" value="">
-                      <label for="feeIsNet" class="checkbox-inline">Netto-LP</label>
-                      <input type="checkbox" id="feeIsOther" name="feeIsOther" value="">
-                      <label for="feeIsOther" class="checkbox-inline">Sonstiges, siehe Notizen</label>
-                    </div>           
-                  </div>
-                {{else}}                         
+                  <legend>Konditionen</legend>                         
                   <!-- feeInPercent -->
                   <div class="form-group">
                     <label for="feeInPercent" class="col-sm-3 control-label">Honorar</label>
@@ -99,6 +75,16 @@
                       </div>
                     </div>
                   </div>
+                  <!-- feeEbookPercent -->
+                  <div class="form-group">
+                    <label for="feeEbookPercent" class="col-sm-3 control-label">Honorar E-Book</label>
+                    <div class="col-sm-9">
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="feeEbookPercent" name="feeEbookPercent" value="" placeholder="">
+                        <span class="input-group-addon"><i class="icon-percent"></i></span>
+                      </div>
+                    </div>
+                  </div>
                   <!-- feeLicencePercent -->
                   <div class="form-group">
                     <label for="feeLicencePercent" class="col-sm-3 control-label">Honorar Lizenzerlöse</label>
@@ -109,7 +95,6 @@
                       </div>
                     </div>
                   </div>
-                {{/if}}
                 </fieldset>
                 <fieldset>
                   <!-- buttons -->
