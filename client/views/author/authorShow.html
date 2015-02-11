@@ -16,26 +16,38 @@
         </span>
         {{#if company}}<div class="org">{{company}}</div>{{/if}}
         <div class="adr">
-          <div class="street-address">{{street}}</div>
-          <div class="extended-address">{{additional}}</div>
-          <span class="postal-code">{{plz}}</span>
-          <span class="locality">{{city}}</span>         
+          {{#if street}}<div class="street-address">{{street}}</div>{{/if}}
+          {{#if additional}}<div class="extended-address">{{additional}}</div>{{/if}}
+          {{#if plz}}<span class="postal-code">{{plz}}</span>{{/if}}
+          {{#if city}}<span class="locality">{{city}}</span>{{/if}}         
           {{#if country}}<div class="country-name">{{country}}</div>{{/if}}
         </div>
         <br>
         {{#if telephone}}<div class="tel">Tel.: {{telephone}}</div>{{/if}}
         {{#if telefax}}<div class="tel">Fax: {{telefax}}</div>{{/if}}
         {{#if mobil}}<div class="tel">Mobil: {{mobil}}</div>{{/if}}
-        {{#if emailPriv}}Privat: <a class="email" href="mailto:{{emailPriv}}">{{emailPriv}}</a><br>{{/if}}
-        {{#if emailOff}}Büro: <a class="email" href="mailto:{{emailOff}}">{{emailOff}}</a><br>{{/if}}
+        {{#if emailPriv}}<i class="fa fa-envelope"></i> Privat: <a class="email" href="mailto:{{emailPriv}}">{{emailPriv}}</a><br>{{/if}}
+        {{#if emailOff}}<i class="fa fa-envelope"></i> Büro: <a class="email" href="mailto:{{emailOff}}">{{emailOff}}</a><br>{{/if}}
         {{#if url}}<a class="url" href="http://{{url}}" target="_blank">{{url}}</a>{{/if}}
       </div>
       <div class="spacer-20"></div>
       <h4>Weitere Daten</h4>
       <p>
-        IBAN: {{iban}}<br>
-        BIC: {{bic}}<br>
-        Geldinstitut: {{bank}}
+        {{#if iban}}IBAN: {{iban}}<br>{{else}}---{{/if}}
+        {{#if bic}}BIC: {{bic}}<br>{{/if}}
+        {{#if bank}}Geldinstitut: {{bank}}{{/if}}
+      </p> 
+      <div class="spacer-20"></div>
+      <h4>Notizen</h4>
+      <p>
+        {{notes}}
+      </p>
+      <div class="spacer-20"></div>
+      <h4>Änderungslog</h4>
+      <p>
+        {{#each changes}}
+          <li>{{formatDate date}} - {{{content}}}</li>
+        {{/each}}
       </p>
     </div>
     <div class="col-sm-8">

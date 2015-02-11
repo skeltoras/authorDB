@@ -23,11 +23,20 @@ Template.bookShowSidebar.events({
     Session.set('year', year);
     Router.go('sales.show', {_id: bookId});
   },
-  'click a.showStats': function(e){
+  //@since v0.8.3
+  'click a.showBook': function(e){
     e.preventDefault();
-    var year = moment().year();
     var bookId = Session.get('bookId');
-    Session.set('year', year);
-    Router.go('stats.show', {_id: bookId});
-  }
+    Router.go('book.show', {_id: bookId});
+  },
+  'click a.editBook': function(e){
+    e.preventDefault();
+    var bookId = Session.get('bookId');
+    Router.go('book.edit', {_id: bookId});
+  },
+  'click a.showStock': function(e){
+    e.preventDefault();
+    var bookId = Session.get('bookId');
+    Router.go('book.stock', {_id: bookId});
+  },
 });

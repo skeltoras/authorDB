@@ -18,7 +18,7 @@ Template.bookList.helpers({
 Template.booksAllList.helpers({
   // list of all books sorted by submit-date @since 0.1.0
   books: function() {
-    return Books.find({}, {sort: {submitted: -1}});
+    return Books.find({}, {sort: {bookTitle: 1}});
   }
 });
 

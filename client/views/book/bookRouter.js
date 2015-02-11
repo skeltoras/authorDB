@@ -53,3 +53,19 @@ Router.route('/book/edit/:_id', function () {
   name: 'book.edit',
   controller: 'BooksController'
 });
+
+Router.route('/book/stock/:_id', function () {
+  this.render('bookStock', {
+    data: function () {
+      return Books.findOne({_id: this.params._id});
+    },
+    action: function() {
+      if (this.ready())
+        this.render();
+    }
+  });
+  this.render('bookShowSidebar', {to: 'sidebar'});
+},{
+  name: 'book.stock',
+  controller: 'BooksController'
+});

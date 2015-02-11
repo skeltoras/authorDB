@@ -10,7 +10,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Tel.</th>
+        <th>Firma</th>
         <th>Mail</th>
         <th>show</th>
         <th>edit</th>
@@ -38,7 +38,7 @@
       {{#each authors}}
         <tr>
           <td>{{firstName}} {{lastName}}</td>
-          <td>{{telephone}}</td>
+          <td>{{company}}</td>
           <td>{{emailPriv}} {{emailOff}}</td>
           <td><i><a href="/author/show/{{_id}}">show</a></i></td>
           <td><i><a href="/author/edit/{{_id}}">edit</a></i></td>
@@ -49,7 +49,7 @@
 <template name="authorsSearchList">
       <tr>
         <td>{{firstName}} {{lastName}}</td>
-        <td>{{telephone}}</td>
+        <td>{{company}}</td>
         <td>{{emailPriv}} {{emailOff}}</td>
         <td><i><a href="/author/show/{{_id}}">show</a></i></td>
         <td><i><a href="/author/edit/{{_id}}">edit</a></i></td>

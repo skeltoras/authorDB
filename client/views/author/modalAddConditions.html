@@ -15,7 +15,7 @@
                   <!-- feeInPercent -->
                   <div class="form-group">
                     <label for="feeInPercent" class="col-sm-3 control-label">Honorar</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-3">
                       <div class="input-group">
                         <input type="text" class="form-control" id="feeInPercent" name="feeInPercent" value="" placeholder="">
                         <span class="input-group-addon"><i class="icon-percent"></i></span>
@@ -37,7 +37,7 @@
                   <!-- feeFixed -->
                   <div class="form-group">
                     <label for="feeFixed" class="col-sm-3 control-label">Festhonorar</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-3">
                       <div class="input-group">
                         <input type="text" class="form-control" id="feeFixed" name="feeFixed" value="" placeholder="">
                         <span class="input-group-addon"><i class="icon-euro"></i></span>
@@ -47,18 +47,20 @@
                   <!-- feeBegin -->
                   <div class="form-group">
                     <label for="feeBegin" class="col-sm-3 control-label">anzuwenden ab</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-3">
                       <div class="input-group">
                         <input type="text" class="form-control" id="feeBegin" name="feeBegin" value="" placeholder="x verkauften Exemplaren">
                         <span class="input-group-addon"><i class="icon-quantity"></i></span>
                       </div>
                     </div>
                   </div>
-                  <hr>
+                </fieldset>
+                <hr>
+                <fieldset>
                   <!-- freeCopiesFirst -->
                   <div class="form-group">
                     <label for="freeCopiesFirst" class="col-sm-3 control-label">Freiex. 1. Auflage</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-3">
                       <div class="input-group">
                         <input type="text" class="form-control" id="freeCopiesFirst" name="freeCopiesFirst" value="" placeholder="">
                         <span class="input-group-addon"><i class="icon-quantity"></i></span>
@@ -68,7 +70,7 @@
                   <!-- freeCopiesNext -->
                   <div class="form-group">
                     <label for="freeCopiesNext" class="col-sm-3 control-label">Freiex. weitere Auflagen</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-3">
                       <div class="input-group">
                         <input type="text" class="form-control" id="freeCopiesNext" name="freeCopiesNext" value="" placeholder="">
                         <span class="input-group-addon"><i class="icon-quantity"></i></span>
@@ -78,7 +80,7 @@
                   <!-- feeEbookPercent -->
                   <div class="form-group">
                     <label for="feeEbookPercent" class="col-sm-3 control-label">Honorar E-Book</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-3">
                       <div class="input-group">
                         <input type="text" class="form-control" id="feeEbookPercent" name="feeEbookPercent" value="" placeholder="">
                         <span class="input-group-addon"><i class="icon-percent"></i></span>
@@ -88,7 +90,7 @@
                   <!-- feeLicencePercent -->
                   <div class="form-group">
                     <label for="feeLicencePercent" class="col-sm-3 control-label">Honorar Lizenzerlöse</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-3">
                       <div class="input-group">
                         <input type="text" class="form-control" id="feeLicencePercent" name="feeLicencePercent" value="" placeholder="">
                         <span class="input-group-addon"><i class="icon-percent"></i></span>
@@ -96,6 +98,22 @@
                     </div>
                   </div>
                 </fieldset>
+                <hr>
+                <fieldset>
+                  <!-- billingOptions -->
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Abrechnung</label>
+                    <div class="col-sm-9">              
+                      <input type="checkbox" id="isBilling" name="isBilling">
+                      <label for="isBilling" class="checkbox-inline">wird berechnet</label>
+                      <input type="checkbox" id="isList" name="isList">
+                      <label for="isList" class="checkbox-inline">wird gelistet</label>
+                      <input type="checkbox" id="isIgnore" name="isIgnore">
+                      <label for="isIgnore" class="checkbox-inline">wird ignoriert</label>
+                    </div>           
+                  </div>
+                </fieldset>
+                <hr>
                 <fieldset>
                   <!-- buttons -->
                   <div class="control-group">

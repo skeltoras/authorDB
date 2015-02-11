@@ -22,10 +22,14 @@ Template.authorNew.events({
 
     var changes = [];
     var isAutor = false;
+    var isCompany = false;
     var vatBool = false;
     
     if($(e.target).find('[name=isAutor]').is(':checked')) {
       isAutor = true;   
+    }
+    if($(e.target).find('[name=isCompany]').is(':checked')) {
+      isCompany = true;   
     }
     if($(e.target).find('[name=vatBool]').is(':checked')) {
       vatBool = true;   
@@ -43,6 +47,7 @@ Template.authorNew.events({
       lastName: $(e.target).find('[name=lastName]').val(), 
       salutation: $(e.target).find('[name=salutation]').val(),
       isAutor: isAutor, 
+      isCompany: isCompany,
       company: $(e.target).find('[name=company]').val(),
       street: $(e.target).find('[name=street]').val(),
       additional: $(e.target).find('[name=additional]').val(),
@@ -67,8 +72,14 @@ Template.authorNew.events({
     };
     
     Meteor.call('newAuthor', author, function(error, result) {
-      //if (error)
-        //return throwError(error.reason);
+      if (result) {
+        var authorId = result;
+        Router.go('author.show', {_id: authorId});
+      } else {
+        Router.go('author.list');
+      }      
     });
+    
+    
   }  
 });

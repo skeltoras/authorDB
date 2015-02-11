@@ -39,7 +39,10 @@ Template.modalAddConditions.events({
     var bookId = Session.get('bookId');
     var feeIsGross = false;
     var feeIsNet = false;
-    var feeIsOther = false;  
+    var feeIsOther = false;
+    var isBilling = false;
+    var isList = false;
+    var isIgnore = false;  
     var author = Authors.findOne({_id: authorId});
     var authorName = author.firstName + ' ' + author.lastName;
     var bookTitle = Books.findOne({_id: bookId}).bookTitle;  
@@ -52,6 +55,15 @@ Template.modalAddConditions.events({
     }
     if($(e.target).find('[name=feeIsOther]').is(':checked')) {
       feeIsOther = true;   
+    }
+    if($(e.target).find('[name=isBilling]').is(':checked')) {
+      isBilling = true;   
+    }
+    if($(e.target).find('[name=isList]').is(':checked')) {
+      isList = true;   
+    }
+    if($(e.target).find('[name=isIgnore]').is(':checked')) {
+      isIgnore = true;   
     }
     
     affiliateData = [{
@@ -76,9 +88,9 @@ Template.modalAddConditions.events({
       feeIsGross: feeIsGross,
       feeIsNet: feeIsNet,
       feeIsOther: feeIsOther,
-      feeIsGross: feeIsGross,
-      feeIsNet: feeIsNet,
-      feeIsOther: feeIsOther,
+      isBilling: isBilling,
+      isList: isList,
+      isIgnore: isIgnore,
       feeFixed: $(e.target).find('[name=feeFixed]').val(),
       feeBegin: $(e.target).find('[name=feeBegin]').val(),
       freeCopiesFirst: $(e.target).find('[name=freeCopiesFirst]').val(),

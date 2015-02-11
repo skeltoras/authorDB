@@ -10,3 +10,5 @@ Meteor.subscribe('salesperyear');
 Meteor.subscribe('conditions');
 //@since v0.7.9
 Meteor.subscribe('billings');
+//@since v0.8.3
+Meteor.subscribe('entries');

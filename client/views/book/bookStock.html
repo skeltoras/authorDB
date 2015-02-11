@@ -1,0 +1,36 @@
+<template name="bookStock">
+  <h1 class="page-header">Lagerliste <small>{{bookTitle}}</small></h1>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <a href="" id="{{_id}}" class="addEntry"><i class="fa fa-plus"></i> Neu hinzufügen</a>
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  <div class="row">
+    <div class="col-sm-6">
+      <p><strong>Bestands-Summe: {{sumEntries}}</strong></p>
+      <table class="table table-condensed">
+        <caption>Lagerbewegungen</caption>
+        <thead>
+          <tr>
+            <th class="col-sm-2">Jahr</th>
+            <th class="col-sm-8">Buchungstext</th>
+            <th class="col-sm-2">Menge</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each listEntries}}
+            <tr>
+              <td>{{entryYear}}</td> 
+              <td>{{entryText}}</td> 
+              <td>{{entryVal}}</td>
+            </tr>
+          {{/each}}           
+        </tbody>   
+      </table> 
+    </div>
+  </div>
+  
+  {{> modalAddEntry}}
+</template>

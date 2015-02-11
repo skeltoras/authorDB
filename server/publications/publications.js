@@ -28,3 +28,8 @@ Meteor.publish('conditions', function() {
 Meteor.publish('billings', function() {
   return Billings.find();
 });
+
+//@since 0.8.3
+Meteor.publish('entries', function() {
+  return Entries.find();
+});
