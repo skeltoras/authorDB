@@ -61,6 +61,20 @@
                     <span class="input-group-addon"><i class="icon-euro"></i></span>                    
                   </div>
                 </div>
+                <label for="mwst" class="col-sm-3 control-label sr-only" aria-hidden="true">MwSt</label>
+                <div class="col-sm-4">
+                  {{> editMwSt}}
+                </div>
+              </div>
+              <!-- bookProductionPrice -->
+              <div class="form-group form-group-sm">
+                <label for="bookProductionPrice" class="col-sm-3 control-label">Einzelstückpreis</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <input type="text" pattern="\d+(,\d{2})?" class="form-control" id="bookProductionPrice" name="bookProductionPrice" placeholder="12,00 oder 12" value="{{bookProductionPrice}}">
+                    <span class="input-group-addon"><i class="icon-euro"></i></span>                    
+                  </div>
+                </div>
               </div>
             </fieldset>
           </div>

@@ -1,0 +1,29 @@
+<template name="modalDeleteEntry">
+  <div class="modal fade" id="deleteEntry" tabindex="-1" role="dialog" aria-labelledby="modalDeleteEntry" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Wirklich löschen?</h4>  
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <form class="form-horizontal" id="formDeleteEntry" role="form">                  
+                <fieldset>
+                  <!-- buttons -->
+                  <div class="control-group">
+                    <div class="controls">
+                      <input type="submit" id="deleteEntry" name="deleteEntry" value="Ja" class="btn btn-default"/>
+                      <input type="reset" value="Nein" class="btn btn-default"/>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

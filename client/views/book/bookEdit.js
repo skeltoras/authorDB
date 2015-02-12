@@ -18,6 +18,7 @@ Template.bookEdit.destroyed = function(){
 Template.bookEdit.rendered = function(){
   $(document).ready(function() { $("#affiliateData").select2(); });
   $(document).ready(function() { $("#authors").select2(); });
+  //$(document).ready(function() { $("#mwst").select2(); });
   var boxes = this.findAll('.form-control');
   boxes.forEach(function(box){
     Session.set(box.name, box.value);
@@ -85,8 +86,9 @@ Template.bookEdit.events({
       };
     });
     
+    var bookPriceMwSt = $('#mwst :selected').val();
     var bookGroup = $('#bookGroup :selected').text();
-
+    
     if(sessionChanges) {
       changes = {
         date: new Date().getTime(),
@@ -101,6 +103,8 @@ Template.bookEdit.events({
       bookSeries: $(e.target).find('[name=bookSeries]').val(),
       authorData: authorData,
       bookPrice: $(e.target).find('[name=bookPrice]').val(),
+      bookPriceMwSt: bookPriceMwSt,
+      bookProductionPrice: $(e.target).find('[name=bookProductionPrice]').val(),
       bookISBN: $(e.target).find('[name=bookISBN]').val(),
       bookEAN: $(e.target).find('[name=bookEAN]').val(),
       bookISBN10: $(e.target).find('[name=bookISBN10]').val(),

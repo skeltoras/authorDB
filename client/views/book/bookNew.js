@@ -40,6 +40,7 @@ Template.bookNew.events({
       };
     });
     
+    var bookPriceMwSt = $('#mwst :selected').val();
     var bookGroup = $('#bookGroup :selected').text();
 
     changes = [{
@@ -54,6 +55,8 @@ Template.bookNew.events({
       bookSeries: $(e.target).find('[name=bookSeries]').val(),
       authorData: authorData,
       bookPrice: $(e.target).find('[name=bookPrice]').val(),
+      bookPriceMwSt: bookPriceMwSt,
+      bookProductionPrice: $(e.target).find('[name=bookProductionPrice]').val(),
       bookISBN: $(e.target).find('[name=bookISBN]').val(),
       bookEAN: $(e.target).find('[name=bookEAN]').val(),
       bookISBN10: $(e.target).find('[name=bookISBN10]').val(),

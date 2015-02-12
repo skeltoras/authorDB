@@ -3,20 +3,21 @@
   
   <div class="row">
     <div class="col-sm-12">
-      <a href="" id="{{_id}}" class="addEntry"><i class="fa fa-plus"></i> Neu hinzufügen</a>
+      <a href="" id="{{_id}}" class="btn btn-default addEntry" role="button"><i class="fa fa-plus"></i> Neu hinzufügen</a>
     </div>
   </div>
   <div class="spacer-20"></div>
   <div class="row">
-    <div class="col-sm-6">
-      <p><strong>Bestands-Summe: {{sumEntries}}</strong></p>
+    <div class="col-sm-8">
+      <p>Bestands-Summe: <strong>{{sumEntries}} Ex.</strong> {{#if bookValue}}entspricht einem Warenwert von <strong>{{formatCurrency bookValue}} €</strong>{{/if}}</p>
       <table class="table table-condensed">
         <caption>Lagerbewegungen</caption>
         <thead>
           <tr>
             <th class="col-sm-2">Jahr</th>
-            <th class="col-sm-8">Buchungstext</th>
-            <th class="col-sm-2">Menge</th>
+            <th class="col-sm-6">Buchungstext</th>
+            <th class="col-sm-3">Menge</th>
+            <th class="col-sm-1"></th>
           </tr>
         </thead>
         <tbody>
@@ -25,6 +26,7 @@
               <td>{{entryYear}}</td> 
               <td>{{entryText}}</td> 
               <td>{{entryVal}}</td>
+              <td><a href="" id="{{_id}}" class="editEntry"><i class="fa fa-pencil-square-o"></i></a> | <a href="" id="{{_id}}" class="delete deleteEntry"><i class="fa fa-times"></i></a></td>
             </tr>
           {{/each}}           
         </tbody>   
@@ -33,4 +35,6 @@
   </div>
   
   {{> modalAddEntry}}
+  {{> modalEditEntry}}
+  {{> modalDeleteEntry}}
 </template>
