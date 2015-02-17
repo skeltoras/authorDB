@@ -49,7 +49,9 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Ausloggen</a></li>
+          {{#if currentUser}}
+            <li><a href="/logout">Ausloggen</a></li>  
+          {{/if}}        
         </ul>
       </div>
     </div>

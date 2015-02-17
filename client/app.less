@@ -19,11 +19,52 @@ body {
 }
 
 .auth {
-  background: rgba(97,193,233,1);
-  min-height: 100%;
-  min-width: 100%;
+  /*@since v0.8.6 */
+  background: url(img/app-blurred-bg-3.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
+.panel-login {
+  /*@since v0.8.6 */
+  background: rgba(255,255,255,0.5);
+  border: 0px;
+  -webkit-box-shadow: 4px 4px 3px 0px rgba(50, 50, 50, 0.5);
+  -moz-box-shadow:    4px 4px 3px 0px rgba(50, 50, 50, 0.5);
+  box-shadow:         4px 4px 3px 0px rgba(50, 50, 50, 0.5);
+  width: 100%;
+  margin: 10% auto;
+}
+
+.panel-login .panel-heading {
+  /*@since v0.8.6 */
+  background: rgba(245,245,245,0.5);
+  color: rgba(30,65,120,1);
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.panel-login .panel-body {
+  /*@since v0.8.6 */
+  color: rgba(30,65,120,1);
+  font-size: 1em;
+}
+
+.panel-login .btn {
+  /*@since v0.8.6 */
+  color: rgba(30,65,120,1);
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.panel-login .panel-footer {
+  /*@since v0.8.6 */
+  background: rgba(245,245,245,0.5);
+  color: rgba(85, 85, 85, 1);
+}
+/*
 .panel-login {
   background: transparent;
   background: rgba(255,255,255,1);
@@ -46,7 +87,7 @@ body {
   background: rgba(59,175,218,1);
   color: rgba(255,255,255,1);
 }
-
+*/
 #spinner { height: 300px }
 
 .spacer-10 {
