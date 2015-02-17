@@ -33,3 +33,8 @@ Meteor.publish('billings', function() {
 Meteor.publish('entries', function() {
   return Entries.find();
 });
+
+//@since 0.8.6
+Meteor.publish('billingstemp', function() {
+  return BillingsTemp.find();
+});

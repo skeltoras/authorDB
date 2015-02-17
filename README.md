@@ -10,7 +10,8 @@ Manage bookauthors - meteor.js based webapp
 ## Changelog
 
 ### v0.8
-- v0.8.5 - 
+- v0.8.6 - testing functions
+- v0.8.5 - fixed functions after first deploy
 - v0.8.4 - added new functions to books collection
 - v0.8.3 - expanded books
 - v0.8.2 - added new billing options

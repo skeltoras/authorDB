@@ -7,7 +7,7 @@ Template.authorBilling.created = function(){
   var year = Number(Session.get('billingYear'));
   Meteor.call('getSingleBillingData', authorId, year, function(error, result){
     Session.set('hasBillingData', result);
-    var getBillingData = Billings.find().fetch();
+    var getBillingData = BillingsTemp.find().fetch();
     Session.set('getBillingData', getBillingData);     
   });
 };
@@ -85,4 +85,12 @@ Template.authorBilling.events({
     Session.set('modalAddBilling', true); 
     $('#addBilling').modal('toggle');
   },
+  //@since v0.8.6
+  'click .addBillingText': function(e) {
+    e.preventDefault();
+    var authorId = e.currentTarget.id;
+    Session.set('authorId', authorId);
+    Session.set('modalAddBillingText', true); 
+    $('#addBillingText').modal('toggle');
+  }
 });

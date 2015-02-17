@@ -3,7 +3,6 @@
   <div class="row">
     <div class="col-sm-12">
       <a href="" id="{{_id}}" class="btn btn-default addBilling" role="button"><i class="fa fa-plus"></i> Beträge hinzufügen</a>
-      <a href="" id="{{_id}}" class="btn btn-default addBillingText" role="button"><i class="fa fa-plus"></i> Rechnungstext hinzufügen</a>
     </div>
   </div>
   <div class="spacer-20"></div>
@@ -11,7 +10,8 @@
     <div class="col-sm-4">
       {{#if getAuthorData}}
         <strong>{{title}} {{#if graduate}}{{graduate}} {{/if}}{{firstName}} {{lastName}}</strong><br> 
-        {{#if company}}<i>{{company}}</i><br>{{/if}}
+        {{#if company}}{{company}}<br>{{/if}}
+        {{#if co}}{{co}}<br>{{/if}}
         {{street}}<br>
         {{#if additional}}{{additional}}<br>{{/if}} 
         {{plz}} {{city}}<br>
@@ -32,6 +32,17 @@
         </tbody>
       </table>
     </div>
+  </div>
+  <div class="spacer-20"></div>
+  <div class="row">
+    <div class="col-sm-12">
+    {{#if getAuthorData}}
+      <p>{{salutation}},</p>
+    {{else}}
+      <p>Sehr geehrte Damen und Herren,</p>
+    {{/if}}  
+      <p>unten aufgeführt die Verkaufszahlen der aufgelisteten Bücher für das Jahr {{getYear}}.</p>
+    </div>        
   </div>
   <div class="spacer-20"></div>
   <div class="row">
@@ -69,7 +80,23 @@
   <div class="spacer-20"></div>
   <div class="row">
     <div class="col-sm-12">
-      Rechnungstexte
+      <form class="form-horizontal" id="formAddBillingText" role="form">
+        <fieldset>
+          <!-- bookList -->
+          <div class="form-group">
+            <textarea class="form-control" rows="3" placeholder="Rechnungstext"></textarea>
+          </div>
+        </fieldset>
+        <fieldset>
+          <!-- buttons -->
+          <div class="control-group">
+            <div class="controls">
+              <input type="submit" id="saveBilling" name="newBilling" value="Abrechnung speichern" class="btn btn-default"/>
+              <input type="submit" id="printBilling" name="printBilling" value="Abrechnung drucken" class="btn btn-primary"/>
+            </div>
+          </div>
+        </fieldset>
+      </form>
     </div>
   </div>  
   {{> modalAddBilling}}

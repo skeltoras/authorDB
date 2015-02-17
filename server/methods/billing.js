@@ -1,7 +1,7 @@
 Meteor.methods({
   getSingleBillingData: function(authorId, year) {
     var bookList = Conditions.find({'affiliateData.authorId': authorId}).fetch();
-    Billings.remove({});
+    BillingsTemp.remove({});
     var sum = {
       sumUnits: 0,
       sumFee: 0
@@ -141,7 +141,7 @@ Meteor.methods({
       if(book.isIgnore) {
         isIgnore = true;
       } else {
-        Billings.insert(billing);
+        BillingsTemp.insert(billing);
       }      
     });
     sumFee = sumFee.toFixed(2);
@@ -155,6 +155,6 @@ Meteor.methods({
     return sum;  
   },
   updateBillings: function(bookId, billingData) {
-    return Billings.update({bookId: bookId}, {$addToSet: {billingsData: billingData} });
+    return BillingsTemp.update({bookId: bookId}, {$addToSet: {billingsData: billingData} });
   }
 })

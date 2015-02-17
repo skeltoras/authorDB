@@ -12,3 +12,5 @@ Meteor.subscribe('conditions');
 Meteor.subscribe('billings');
 //@since v0.8.3
 Meteor.subscribe('entries');
+//@since v0.8.6
+Meteor.subscribe('billingstemp');
