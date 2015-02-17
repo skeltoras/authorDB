@@ -49,6 +49,7 @@ Template.authorNew.events({
       isAutor: isAutor, 
       isCompany: isCompany,
       company: $(e.target).find('[name=company]').val(),
+      co: $(e.target).find('[name=co]').val(),
       street: $(e.target).find('[name=street]').val(),
       additional: $(e.target).find('[name=additional]').val(),
       plz: $(e.target).find('[name=plz]').val(),

@@ -158,7 +158,8 @@ Meteor.methods({
       bank: data,
       notes: data,
       */
-      isAutor: true,      
+      isAutor: true,
+      isCompany: false,      
       changes: [{date: new Date().getTime(), content: 'Kontakt importiert'}],
       submitted: new Date().getTime(),
       updatedAt: new Date().getTime()

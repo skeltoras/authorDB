@@ -1,6 +1,13 @@
 <template name="authorBilling">
   <h1 class="page-header">Abrechnung für {{getYear}}</h1>
   <div class="row">
+    <div class="col-sm-12">
+      <a href="" id="{{_id}}" class="btn btn-default addBilling" role="button"><i class="fa fa-plus"></i> Beträge hinzufügen</a>
+      <a href="" id="{{_id}}" class="btn btn-default addBillingText" role="button"><i class="fa fa-plus"></i> Rechnungstext hinzufügen</a>
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  <div class="row">
     <div class="col-sm-4">
       {{#if getAuthorData}}
         <strong>{{title}} {{#if graduate}}{{graduate}} {{/if}}{{firstName}} {{lastName}}</strong><br> 
@@ -29,32 +36,41 @@
   <div class="spacer-20"></div>
   <div class="row">
     <div class="col-sm-12">
-      <table class="table table-condensed">
-        <caption>Positionen</caption>
-        <thead>
-          <tr>
-            <th class="col-sm-6">Titel</th>
-            <th class="col-sm-3 text-right">Menge</th>
-            <th class="col-sm-3 text-right">Honorar</th>
-          </tr> 
-        </thead>
-        <tbody>
-          {{#each getBookData}}
-            <tr>
-              <td>{{bookTitle}} ({{bookGroup}}) <br> {{bookISBN}}</td>
-              <td class="text-right">{{units}} Ex.</td>
-              <td class="text-right">{{authorFee}} €</td>
-            </tr>
-          {{/each}}
-          {{#with getSum}}
-          <tr class="active">
-            <td><strong>Summen</strong></td>
-            <td class="text-right"><strong>{{sumUnits}} Ex.</strong></td>
-            <td class="text-right"><strong>{{sumFee}} €</strong></td>
-          </tr>
-          {{/with}}
-        </tbody>
-      </table>   
+      <p style="color:rgba(119,119,119,1)">Positionen</p>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-5"><strong>Titel</strong></div>
+    <div class="col-sm-2 pull-right text-right"><strong>Honorar</strong></div>
+    <div class="col-sm-2 pull-right text-right"><strong>Menge</strong></div>
+    <div class="col-sm-3 pull-right"><strong></strong></div>
+  </div>    
+  <hr class="tabletop">
+  {{#each getBookData}}  
+    <div class="row">
+      <div class="col-sm-5">{{bookTitle}} ({{bookGroup}}) <br> {{bookISBN}}</div>
+      {{#each billingsData}}
+        <div class="col-sm-2 pull-right text-right">{{fee}} €</div>
+        <div class="col-sm-2 pull-right text-right">{{units}} Ex.</div>
+        <div class="col-sm-3 pull-right"><small><i>{{text}}</i></small></div>
+      {{/each}}    
+    </div>
+    <hr class="tablemid">
+  {{/each}}
+  <hr class="tablefoot">
+  <div class="row">
+    {{#with getSum}}  
+      <div class="col-sm-5"><strong>Summen</strong></div>    
+      <div class="col-sm-2 pull-right text-right">{{sumFee}} €</div>
+      <div class="col-sm-2 pull-right text-right">{{sumUnits}} Ex.</div>
+      <div class="col-sm-3 pull-right"></div>
+    {{/with}}    
   </div> 
+  <div class="spacer-20"></div>
+  <div class="row">
+    <div class="col-sm-12">
+      Rechnungstexte
+    </div>
+  </div>  
+  {{> modalAddBilling}}
 </template>

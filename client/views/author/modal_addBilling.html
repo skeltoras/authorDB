@@ -1,0 +1,58 @@
+<template name="modalAddBilling">
+  <div class="modal fade" id="addBilling" tabindex="-1" role="dialog" aria-labelledby="modalAddBilling" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Neue Buchung</h4>  
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <form class="form-horizontal" id="formAddBilling" role="form">
+                <fieldset>
+                  <!-- bookList -->
+                  <div class="form-group form-group-sm">
+                    <label for="bookList" class="col-sm-3 control-label">Buch</label>
+                    <div class="col-sm-9">
+                      {{> listBooksBilling}}
+                    </div>
+                  </div>
+                  <!-- text -->
+                  <div class="form-group form-group-sm">
+                    <label for="text" class="col-sm-3 control-label">Text</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="text" name="text">
+                    </div>
+                  </div>
+                  <!-- units -->
+                  <div class="form-group form-group-sm">
+                    <label for="units" class="col-sm-3 control-label">Menge</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="units" name="units">
+                    </div>
+                  </div>
+                  <!-- fee -->
+                  <div class="form-group form-group-sm">
+                    <label for="fee" class="col-sm-3 control-label">Betrag</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="fee" name="fee">
+                    </div>
+                  </div>
+                </fieldset>                  
+                <fieldset>
+                  <!-- buttons -->
+                  <div class="control-group">
+                    <div class="controls">
+                      <input type="submit" id="newBilling" name="newBilling" value="Hinzufügen" class="btn btn-default"/>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

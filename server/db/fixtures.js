@@ -1,13 +1,8 @@
-// default user entries
+//since 0.2.0
 if (Meteor.users.find().count() === 0) {
   userId = Accounts.createUser({
-    username: 'Schkeldi',
+    username: 'Skeltoras',
     email: 'dev@skeltoras.de',
-    password: 'test',
-    profile: {
-      first_name: 'John',
-      last_name: 'Doe',
-      company: 'ABC',
-    }
+    password: 'test'
   });
 };

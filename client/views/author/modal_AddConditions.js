@@ -1,44 +1,48 @@
 //-- template created functions
-Template.modalEditConditions.created = function(){
-  Session.set('modalEditConditions', false); 
+Template.modalAddConditions.created = function(){
+  Session.set('modalAddConditions', false); 
 };
 
 //-- template destroyed functions
-Template.modalEditConditions.destroyed = function(){
+Template.modalAddConditions.destroyed = function(){
 };
 
 //-- template rendered functions
-Template.modalEditConditions.rendered = function(){
+Template.modalAddConditions.rendered = function(){
 };
 
 //-- template helpers
-Template.modalEditConditions.helpers({
-  getConditionData: function() {
-    var visible = Session.get('modalEditConditions');
+Template.modalAddConditions.helpers({
+  checkType: function() {
+    var visible = Session.get('modalAddConditions');
     if(visible == true) {
       var bookId = Session.get('bookId');
-      Meteor.call('getSingleConditionData', bookId, function(error, result) {
-        Session.set('getSingleConditionData', result);
+      var licence = false;
+      Meteor.call('getSingleBookData', bookId, function(error, result) {
+        bookType = result.bookGroup;
+        if(bookType == 'E-Book'){
+          licence = true;  
+        }
+        return licence;  
       });
     }
-    return Session.get('getSingleConditionData'); 
   }
 });
 
 //-- template events
-Template.modalEditConditions.events({ 
+Template.modalAddConditions.events({ 
   // save form on submit
-  'submit #formEditConditions': function(e) {
+  'submit #formAddConditions': function(e) {
     e.preventDefault();
         
     var authorId = Session.get('authorId');
     var bookId = Session.get('bookId');
     var feeIsGross = false;
     var feeIsNet = false;
-    var feeIsOther = false; 
+    var feeIsOther = false;
     var isBilling = false;
     var isList = false;
-    var isIgnore = false; 
+    var isIgnore = false;  
     var author = Authors.findOne({_id: authorId});
     var authorName = author.firstName + ' ' + author.lastName;
     var bookTitle = Books.findOne({_id: bookId}).bookTitle;  
@@ -74,11 +78,14 @@ Template.modalEditConditions.events({
     
     changes = [{
       date: new Date().getTime(),
-      content: 'Konditionen überarbeitet.'
+      content: 'Neue Konditionen erstellt.'
     }];
     
     var condition = {
+      affiliateData: affiliateData,
+      bookData: bookData, 
       feeInPercent: $(e.target).find('[name=feeInPercent]').val(),
+      feePerEx: $(e.target).find('[name=feePerEx]').val(),
       feeIsGross: feeIsGross,
       feeIsNet: feeIsNet,
       feeIsOther: feeIsOther,
@@ -91,21 +98,23 @@ Template.modalEditConditions.events({
       freeCopiesNext: $(e.target).find('[name=freeCopiesNext]').val(),
       feeEbookPercent: $(e.target).find('[name=feeEbookPercent]').val(),
       feeLicencePercent: $(e.target).find('[name=feeLicencePercent]').val(),
+      changes: changes,
+      submitted: new Date().getTime(),
       updatedAt: new Date().getTime()
     };    
     
     //console.log(condition);
-    Meteor.call('updateCondition', condition, bookId, changes, function(error, result) {
+    Meteor.call('newCondition', condition, function(error, result) {
       //if (error)
         //return throwError(error.reason);
     });
-    Session.set('modalEditConditions', false);
-    $('#editConditions').modal('toggle');
+    Session.set('modalAddConditions', false);
+    $('#addConditions').modal('toggle');
   },
   // close form on reset
-  'reset #formEditConditions': function(e) {
+  'reset #formAddConditions': function(e) {
     e.preventDefault();
-    Session.set('modalEditConditions', false);
-    $('#editConditions').modal('toggle');
+    Session.set('modalAddConditions', false);
+    $('#addConditions').modal('toggle');
   }
 });

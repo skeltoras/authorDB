@@ -48,8 +48,41 @@ Template.authorBilling.helpers({
   getSum: function() {
     return Session.get('hasBillingData'); 
   }
+  /*
+  getBillingText: function() {
+    var billingsText = [];
+    var bookList = Session.get('getBillingData');
+    var bookUnits = 0;
+    var bookFee = 0;
+    bookList.forEach(function(book){
+      if(book.billingsSettings==1){
+        book.billingsData.forEach(function(data){
+          bookUnits = Number(bookUnits) + Number(data.units);
+          bookFee = Number(bookFee) + Number(data.fee.replace( /,/,"." ));  
+        });
+        bookFee = bookFee.toFixed(2);
+        bookFee = bookFee.toString();
+        bookFee = bookFee.replace(".", ",");         
+        billingsText.push({text: 'Der Betrag von ' + bookFee + ' € für ' + book.bookTitle + ' wird an ___ überwiesen'});          
+      } else if(book.billingsSettings==2) {
+        billingsText.push({text: 'Für ' + book.bookTitle + ' wird kein Honorar ausgezahlt.'});
+      }
+    });
+    Session.set('billingsText', billingsText);
+    console.log(billingsText);
+    return billingsText;  
+  }
+  */
 });
 
 //-- template events
 Template.authorBilling.events({
+  //@since v0.8.5
+  'click .addBilling': function(e) {
+    e.preventDefault();
+    var authorId = e.currentTarget.id;
+    Session.set('authorId', authorId);
+    Session.set('modalAddBilling', true); 
+    $('#addBilling').modal('toggle');
+  },
 });

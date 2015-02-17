@@ -9,8 +9,8 @@ underscore
 coffeescript
 sacha:spin
 iron:router
-nemo64:bootstrap
 less
+nemo64:bootstrap
 accounts-password
 chrismbeckett:fontawesome4
 accounts-ui
@@ -38,9 +38,9 @@ cfs:standard-packages
 cfs:ui
 cfs:filesystem
 mrt:pagination
+pfafman:filesaver
+mrt:mongo-counter
 meteorhacks:npm
 
 
 npm-container
-pfafman:filesaver
-mrt:mongo-counter

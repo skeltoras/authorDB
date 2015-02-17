@@ -2,5 +2,6 @@
   "jszip": "2.4.0",
   "xmlbuilder": "2.4.6",
   "fast-csv": "0.5.5",
-  "phantomjs": "1.9.15" 
+  "phantomjs": "1.9.15",
+  "html-pdf": "1.0.0" 
 }
