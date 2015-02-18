@@ -2,10 +2,25 @@
 body {
   background: rgba(255,255,255,1);
   padding: 50px 0;
+  /*@since v0.9.0 */
+  margin: 0 0 60px 0;
 }
 
 .sidebar {
   display: none;
+}
+
+.footer {
+  /*@since v0.9.0 */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  /*background-color: rgba(245, 245, 245, 1);*/
+  background: rgba(245,245,245,0.5);
+  color: rgba(30,65,120,1);
+  padding: 20px 0;
+  z-index: 3;
 }
 
 .nav-sidebar {
@@ -192,3 +207,171 @@ hr.tablefoot {
   border: 0;
   border-top: 2px solid rgba(0, 0, 0, 1);  
 }
+
+/** DASHBOARD INFOBOXES **/
+/* @since v0.9.0 */
+.infobox {
+  height: 66px;
+  color: rgba(85, 85, 85, 1); 
+  background: rgba(255, 255, 255, 1);
+  padding: 10px;
+}
+
+.infobox-green {
+  color: rgba(154, 188, 50, 1);
+}
+
+.infobox-blue {
+  color: rgba(111, 179, 224, 1);
+}
+
+.infobox > .infobox-icon > .stats-icon {
+  border-radius: 100%;
+  -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+  box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+}
+
+.infobox > .infobox-icon > .stats-icon:before {
+  font-size: 24px;
+  display: block;
+  padding: 6px 0 7px;
+  width: 40px;
+  text-align: center;
+  color: rgba(255,255,255,.9);
+  text-shadow: 1px 1px 1px rgba(0,0,0,.14);
+}
+
+.infobox-green > .infobox-icon > .stats-icon {
+  background: rgba(154, 188, 50, 1);
+}
+
+.infobox-blue > .infobox-icon > .stats-icon {
+  background: rgba(111, 179, 224, 1);
+}
+
+.infobox > .infobox-data {
+  display: inline-block;
+  border-width: 0;
+  border-top-width: 0;
+  font-size: 13px;
+  text-align: left;
+  line-height: 21px;
+  padding-left: 8px;
+  position: relative;
+  top: 0;
+}
+
+.infobox .infobox-content {
+  max-width: 140px;
+}
+
+.infobox > .infobox-data > .infobox-content > .infobox-data-number {
+  font-size: 1.2em;
+  text-shadow: 1px 1px 0 rgba(0,0,0,.15);
+  font-weight: bold;
+}
+
+
+
+
+/*
+
+.infobox {
+  display: inline-block;
+  height: 66px;
+  color: rgba(85, 85, 85, 1); 
+  background: rgba(255, 255, 255, 1);
+  box-shadow: none;
+  padding: 5px;
+  vertical-align: middle;
+  text-align: left;
+  position: relative;   
+  border-radius: 0;
+  margin: -1px 0 0 -1px;
+  padding: 8px 3px 6px 9px;
+  border: 1px dotted;
+  border-color: rgba(216, 216, 216, 1) !important;
+  vertical-align: middle;
+  text-align: left;
+  position: relative;
+}
+
+.infobox-container {
+text-align: center;
+font-size: 0;
+}
+
+.infobox-green {
+color: #9abc32;
+border-color: #9abc32;
+}
+
+.infobox-blue {
+color: #6fb3e0;
+border-color: #6fb3e0;
+}
+
+.infobox>.infobox-icon {
+display: inline-block;
+vertical-align: top;
+width: 44px;
+}
+
+.infobox>.infobox-icon>.ace-icon {
+display: inline-block;
+height: 42px;
+margin: 0;
+padding: 1px 1px 0 2px;
+background-color: transparent;
+border-width: 0;
+text-align: center;
+position: relative;
+border-radius: 100%;
+-webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+}
+
+.infobox>.infobox-icon>.ace-icon:before {
+font-size: 24px;
+display: block;
+padding: 6px 0 7px;
+width: 40px;
+text-align: center;
+border-radius: 100%;
+color: #FFF;
+color: rgba(255,255,255,.9);
+background-color: transparent;
+background-color: rgba(255,255,255,.2);
+text-shadow: 1px 1px 1px rgba(0,0,0,.14);
+}
+
+.infobox-green>.infobox-icon>.ace-icon {
+background-color: #9abc32;
+}
+
+.infobox>.infobox-data {
+display: inline-block;
+border-width: 0;
+border-top-width: 0;
+font-size: 13px;
+text-align: left;
+line-height: 21px;
+min-width: 130px;
+padding-left: 8px;
+position: relative;
+top: 0;
+}
+
+.infobox>.infobox-data>.infobox-data-number {
+display: block;
+font-size: 22px;
+margin: 2px 0 4px;
+position: relative;
+text-shadow: 1px 1px 0 rgba(0,0,0,.15);
+}
+
+.infobox .infobox-content {
+color: #555;
+max-width: 140px;
+}
+*/

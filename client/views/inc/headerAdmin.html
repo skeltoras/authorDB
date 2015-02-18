@@ -1,0 +1,61 @@
+<template name="headerAdmin">
+  {{#if isInRole 'admin'}}
+    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Datenbank Autoren Info3</a>
+        </div>
+        
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Adressen<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">             
+                <li><a href="/author/new">Neuen Kontakt anlegen</a></li>
+                <li><a href="/authors">Alle Kontakte / Suche</a></li>             
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Titel<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">             
+                <li><a href="/book/new">Neuen Titel anlegen</a></li>
+                <li><a href="/books">Alle Titel / Suche</a></li>              
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Zwischenlager<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">#</a></li>
+                <li><a href="#">#</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Uploads<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/uploads">Datenuploads</a></li>
+                <li><a href="#">#</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {{#if currentUser}}
+              <li><a href="/logout">Ausloggen</a></li>  
+            {{/if}}        
+          </ul>
+        </div>
+      </div>
+    </nav>
+  {{/if}}      
+</template>

@@ -1,15 +1,60 @@
 <template name="global">  
-  {{> header}}       
-  <div class="container-fluid">    
-    <div class="row">      
-      <div class="col-sm-3 col-md-2 sidebar">
-        {{> yield region="sidebar"}}        
-      </div>           
-      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        {{> yield}}            
-      </div>    
-    </div>     
-  </div>
+  {{#if currentUser}}
+    {{#if isInRole 'admin'}}
+      {{> headerAdmin}}       
+      <div class="container">    
+        <div class="row">      
+          <div class="col-sm-3 sidebar">
+            {{> yield region="sidebar"}}        
+          </div>           
+          <div class="col-sm-9 main">
+            {{> yield}}            
+          </div>    
+        </div>     
+      </div>
+      {{> footerAdmin}} 
+    {{else}}
+      {{> header}}       
+      <div class="container-fluid">    
+        <div class="row">          
+          <div class="col-sm-12 main">
+            {{> yield}}            
+          </div>    
+        </div>     
+      </div>
+      {{> footer}}
+    {{/if}}  
+  {{else}}  
+    {{> loading}}
+  {{/if}}
+</template>
+
+<template name="globalDashboard">       
+  {{#if currentUser}}
+    {{#if isInRole 'admin'}}
+      {{> headerAdmin}}       
+      <div class="container">    
+        <div class="row">               
+          <div class="col-sm-12 main">
+            {{> yield}}            
+          </div>    
+        </div>     
+      </div>
+      {{> footerAdmin}} 
+    {{else}}
+      {{> header}}       
+      <div class="container-fluid">    
+        <div class="row">          
+          <div class="col-sm-12 main">
+            {{> yield}}            
+          </div>    
+        </div>     
+      </div>
+      {{> footer}}
+    {{/if}}  
+  {{else}}  
+    {{> loading}}
+  {{/if}}
 </template>
 
 <template name="globalAuth">       

@@ -1,8 +1,58 @@
 <template name="dashboard">      
-  <div class="jumbotron">
-      <div class="container">
-        <h1 class="page-header">Dashboard</h1>
-        <p>Das hier ist die Willkommensseite. Hier folgt noch Inhalt</p>
+  <h1 class="page-header">
+    Willkommen 
+    {{#with currentUser}}
+      {{#with profile}}
+        {{first_name}} {{last_name}}
+      {{/with}}
+    {{/with}}
+  </h1>  
+  
+  {{#if isInRole 'admin'}}
+    {{> dashboardAdmin}}
+  {{else}}
+    {{#if isInRole 'author'}}
+      {{> dashboardAuthor}}
+    {{else}}
+      {{> not_found}}  
+    {{/if}}
+  {{/if}}
+</template> 
+
+<template name="dashboardAdmin">      
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">Statistiken</div>
+        <div class="panel-body">
+          <div class="row">
+            
+            <div class="col-sm-6 infobox infobox-green">
+  						<span class="infobox-icon">
+  								<i class="stats-icon fa fa-book"></i>
+  						</span>
+              <div class="infobox-data">  							
+  							<div class="infobox-content"><span class="infobox-data-number">{{getBooks}}</span> Bücher</div>
+  						</div>
+  					</div>
+            
+            <div class="col-sm-6 infobox infobox-blue">
+  						<span class="infobox-icon">
+  								<i class="stats-icon fa fa-user"></i>
+  						</span>
+              <div class="infobox-data">  							
+  							<div class="infobox-content"><span class="infobox-data-number">{{getAuthors}}</span> Adressen</div>
+  						</div>
+  					</div>
+              
+          </div>
+        </div>
+        <div class="panel-footer"></div>  
       </div>
+    </div>
   </div>
+</template>  
+
+<template name="dashboardAuthor">      
+  Autorzeugs
 </template>       
