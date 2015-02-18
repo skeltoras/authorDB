@@ -38,3 +38,12 @@ Meteor.publish('entries', function() {
 Meteor.publish('billingstemp', function() {
   return BillingsTemp.find();
 });
+
+//@since 0.9.2
+Meteor.publish('userlist', function () {
+  return Meteor.users.find({}, {fields: {emails: 1, profile: 1}});
+});
+
+Meteor.publish(null, function (){ 
+  return Meteor.roles.find({});
+})

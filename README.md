@@ -4,6 +4,7 @@ Manage bookauthors - meteor.js based webapp
 ## Roadmap
 
 ### v0.9
+- v0.9.1 - design
 - v0.9.0 - added roles and permission management 
 
 

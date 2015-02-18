@@ -1,0 +1,62 @@
+/** DASHBOARD INFOBOXES **/
+/* @since v0.9.0 */
+.infobox {
+  height: 66px;
+  color: rgba(85, 85, 85, 1); 
+  background: rgba(255, 255, 255, 1);
+  padding: 10px;
+}
+
+.infobox-green {
+  color: rgba(154, 188, 50, 1);
+}
+
+.infobox-blue {
+  color: rgba(111, 179, 224, 1);
+}
+
+.infobox > .infobox-icon > .stats-icon {
+  border-radius: 100%;
+  -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+  box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+}
+
+.infobox > .infobox-icon > .stats-icon:before {
+  font-size: 24px;
+  display: block;
+  padding: 6px 0 7px;
+  width: 40px;
+  text-align: center;
+  color: rgba(255,255,255,.9);
+  text-shadow: 1px 1px 1px rgba(0,0,0,.14);
+}
+
+.infobox-green > .infobox-icon > .stats-icon {
+  background: rgba(154, 188, 50, 1);
+}
+
+.infobox-blue > .infobox-icon > .stats-icon {
+  background: rgba(111, 179, 224, 1);
+}
+
+.infobox > .infobox-data {
+  display: inline-block;
+  border-width: 0;
+  border-top-width: 0;
+  font-size: 13px;
+  text-align: left;
+  line-height: 21px;
+  padding-left: 8px;
+  position: relative;
+  top: 0;
+}
+
+.infobox .infobox-content {
+  max-width: 140px;
+}
+
+.infobox > .infobox-data > .infobox-content > .infobox-data-number {
+  font-size: 1.2em;
+  text-shadow: 1px 1px 0 rgba(0,0,0,.15);
+  font-weight: bold;
+}

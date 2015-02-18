@@ -1,0 +1,180 @@
+/**
+ * Less file for all sizes / standard
+ * @since 0.9.1
+ */  
+
+html {
+  /* @since 0.9.1 */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  /* @since 0.3.0 */
+  background: rgba(255,255,255,1);
+  padding: 0;
+  /* @since 0.9.0 */
+  margin: 0;
+}
+
+body.auth {
+  /* @since 0.9.1 */
+  background: rgba(30,60,120,1);
+}
+
+/** generall classes **/
+.debug {
+  /* @since 0.9.1 */
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 100px;
+  height: 20px;
+  border-radius: 5px rgba(100,100,100,1);
+  background: rgba(100,100,100,0.5);
+  z-index: 1031;
+  color: rgba(255,255,255,1);
+  text-shadow: 1px 1px 1px rgba(0,0,0,.14);
+}
+
+.spacer-10 {
+  padding: 5px 0;
+}
+
+.spacer-20 {
+  padding: 10px 0;
+}
+
+.spacer-50 {
+  padding: 25px 0;
+}
+
+
+/** Login-Screen **/
+.panel-login {
+  /* @since 0.8.6 */
+  background: rgba(255,255,255,0.5);
+  border: 0px;
+  -webkit-box-shadow: 4px 4px 3px 0px rgba(50, 50, 50, 0.5);
+  -moz-box-shadow:    4px 4px 3px 0px rgba(50, 50, 50, 0.5);
+  box-shadow:         4px 4px 3px 0px rgba(50, 50, 50, 0.5);
+  font-size: 1em;
+  margin: 10% auto;
+  width: 300px;
+}
+
+.panel-login .panel-heading {
+  /*@since v0.8.6 */
+  background: rgba(245,245,245,0.5);
+  color: rgba(30,65,120,1);
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.panel-login .panel-body {
+  /*@since v0.8.6 */
+  color: rgba(30,65,120,1);
+  font-size: 1em;
+}
+
+.panel-login .btn {
+  /*@since v0.8.6 */
+  color: rgba(30,65,120,1);
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.panel-login .panel-footer {
+  /*@since v0.8.6 */
+  background: rgba(245,245,245,0.5);
+  color: rgba(85, 85, 85, 1);
+}
+
+/** global **/
+/* @since 0.9.0 */
+.container.wrap {
+  margin: 60px auto 80px auto;  
+}
+
+.sidebar {
+  margin: 0px -20px 20px -20px;
+  padding: 0 20px; 
+}
+
+/** Dashboard **/
+.infobox {
+  height: 66px;
+  color: rgba(85, 85, 85, 1); 
+  background: rgba(255, 255, 255, 1);
+  padding: 10px;
+}
+
+.infobox-green {
+  color: rgba(154, 188, 50, 1);
+}
+
+.infobox-blue {
+  color: rgba(111, 179, 224, 1);
+}
+
+.infobox > .infobox-icon > .stats-icon {
+  border-radius: 100%;
+  -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+  box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+}
+
+.infobox > .infobox-icon > .stats-icon:before {
+  font-size: 24px;
+  display: block;
+  padding: 6px 0 7px;
+  width: 40px;
+  text-align: center;
+  color: rgba(255,255,255,.9);
+  text-shadow: 1px 1px 1px rgba(0,0,0,.14);
+}
+
+.infobox-green > .infobox-icon > .stats-icon {
+  background: rgba(154, 188, 50, 1);
+}
+
+.infobox-blue > .infobox-icon > .stats-icon {
+  background: rgba(111, 179, 224, 1);
+}
+
+.infobox > .infobox-data {
+  display: inline-block;
+  border-width: 0;
+  border-top-width: 0;
+  font-size: 13px;
+  text-align: left;
+  line-height: 21px;
+  padding-left: 8px;
+  position: relative;
+  top: 0;
+}
+
+.infobox .infobox-content {
+  max-width: 140px;
+}
+
+.infobox > .infobox-data > .infobox-content > .infobox-data-number {
+  font-size: 1.2em;
+  text-shadow: 1px 1px 0 rgba(0,0,0,.15);
+  font-weight: bold;
+}
+
+/** Footer **/
+.footer {
+  /*@since v0.9.0 */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(245,245,245,0.5);
+  color: rgba(30,65,120,1);
+  margin: 0;
+  padding: 5px 0;
+  z-index: 1;
+}
