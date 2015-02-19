@@ -22,7 +22,40 @@ Template.dashboardAdmin.helpers({
   },
   getAuthors: function() {
     return Authors.find().count();
-  }
+  },
+  //@since 0.9.2
+  getSalesI3: function(){
+    var sum = 0;
+    Sales.find({salesSeller: 'Info3', salesYear: 2014}).map(function(doc){
+      sum += doc.salesUnits;
+    });
+    console.log(sum);
+    return sum;
+  },
+  getSalesLibreka: function(){
+    var sum = 0;
+    Sales.find({salesSeller: 'Libreka', salesYear: 2014}).map(function(doc){
+      sum += doc.salesUnits;
+    });
+    console.log(sum);
+    return sum;
+  },
+  getSalesBH: function(){
+    var sum = 0;
+    Sales.find({salesSeller: 'Brockhaus', salesYear: 2014}).map(function(doc){
+      sum += doc.salesUnits;
+    });
+    console.log(sum);
+    return sum;
+  },
+  getSalesAVA: function(){
+    var sum = 0;
+    Sales.find({salesSeller: 'AVA', salesYear: 2014}).map(function(doc){
+      sum += doc.salesUnits;
+    });
+    console.log(sum);
+    return sum;
+  },
 });
 
 //-- template events
