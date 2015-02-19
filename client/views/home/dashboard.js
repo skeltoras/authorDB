@@ -29,7 +29,6 @@ Template.dashboardAdmin.helpers({
     Sales.find({salesSeller: 'Info3', salesYear: 2014}).map(function(doc){
       sum += doc.salesUnits;
     });
-    console.log(sum);
     return sum;
   },
   getSalesLibreka: function(){
@@ -37,7 +36,6 @@ Template.dashboardAdmin.helpers({
     Sales.find({salesSeller: 'Libreka', salesYear: 2014}).map(function(doc){
       sum += doc.salesUnits;
     });
-    console.log(sum);
     return sum;
   },
   getSalesBH: function(){
@@ -45,7 +43,6 @@ Template.dashboardAdmin.helpers({
     Sales.find({salesSeller: 'Brockhaus', salesYear: 2014}).map(function(doc){
       sum += doc.salesUnits;
     });
-    console.log(sum);
     return sum;
   },
   getSalesAVA: function(){
@@ -53,7 +50,6 @@ Template.dashboardAdmin.helpers({
     Sales.find({salesSeller: 'AVA', salesYear: 2014}).map(function(doc){
       sum += doc.salesUnits;
     });
-    console.log(sum);
     return sum;
   },
 });

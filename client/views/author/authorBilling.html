@@ -1,103 +1,131 @@
 <template name="authorBilling">
-  <h1 class="page-header">Abrechnung für {{getYear}}</h1>
-  <div class="row">
-    <div class="col-sm-12">
-      <a href="" id="{{_id}}" class="btn btn-default addBilling" role="button"><i class="fa fa-plus"></i> Beträge hinzufügen</a>
+  {{debugThis}}
+  <div class="page-a4">
+    <!-- address, billingNo, date -->
+    <div class="row ">
+      <div class="col-sm-4">
+        {{#with addressData}}
+          {{firstName}} {{lastName}}<br>
+          {{#if company}}{{company}}<br>{{/if}}
+          {{#if co}}{{co}}<br>{{/if}}
+          {{street}}<br>
+          {{#if additional}}{{additional}}<br>{{/if}} 
+          {{plz}} {{city}}<br>
+          {{#if country}}{{country}}<br>{{/if}}  
+        {{/with}}
+      </div>      
+      <div class="col-sm-4 pull-right">
+        <table class="table borderless text-right">
+          <tbody>
+            <tr>
+              <td>Belegnummer:</td>
+              <td><strong>{{formatBillingNo billingNo}}</strong></td>
+            </tr>          
+            <tr>
+              <td>Datum:</td>
+              <td>{{billingDate}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>    
+    <div class="spacer-50"></div>
+    
+    <!-- salutation -->
+    <div class="row ">
+      <div class="col-sm-12">
+        {{#with addressData}}
+          {{#if salutation}}{{salutation}}{{else}}Sehr geehrte Damen und Herren{{/if}},<br> 
+        {{/with}}
+        unten aufgeführt die Verkaufszahlen der aufgelisteten Bücher für das Jahr {{year}}.
+      </div>      
     </div>
-  </div>
-  <div class="spacer-20"></div>
-  <div class="row">
-    <div class="col-sm-4">
-      {{#if getAuthorData}}
-        <strong>{{title}} {{#if graduate}}{{graduate}} {{/if}}{{firstName}} {{lastName}}</strong><br> 
-        {{#if company}}{{company}}<br>{{/if}}
-        {{#if co}}{{co}}<br>{{/if}}
-        {{street}}<br>
-        {{#if additional}}{{additional}}<br>{{/if}} 
-        {{plz}} {{city}}<br>
-        {{#if country}}{{country}}<br>{{/if}}
-      {{/if}}    
+    <div class="spacer-20"></div>
+    
+    <!-- books -->
+    <div class="row ">
+      <div class="col-sm-12">
+        <p style="color:rgba(119,119,119,1)">Positionen</p>
+      </div>
     </div>
-    <div class="col-sm-4 pull-right">
-      <table class="table borderless text-right">
-        <tbody>
-          <tr>
-            <td>Abrechnungs-Nr.</td>
-            <td><strong>Abr-{{formatBillingNo getBillingNo}}</strong></td>
-          </tr>          
-          <tr>
-            <td>Datum</td>
-            <td>{{getDate}}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="row ">
+      <div class="col-sm-5"><strong>Titel</strong></div>
+      <div class="col-sm-2 pull-right text-right"><strong>Honorar</strong></div>
+      <div class="col-sm-2 pull-right text-right"><strong>Menge</strong></div>
+      <div class="col-sm-3 pull-right"><strong></strong></div>
     </div>
-  </div>
-  <div class="spacer-20"></div>
-  <div class="row">
-    <div class="col-sm-12">
-    {{#if getAuthorData}}
-      <p>{{salutation}},</p>
-    {{else}}
-      <p>Sehr geehrte Damen und Herren,</p>
-    {{/if}}  
-      <p>unten aufgeführt die Verkaufszahlen der aufgelisteten Bücher für das Jahr {{getYear}}.</p>
-    </div>        
-  </div>
-  <div class="spacer-20"></div>
-  <div class="row">
-    <div class="col-sm-12">
-      <p style="color:rgba(119,119,119,1)">Positionen</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-5"><strong>Titel</strong></div>
-    <div class="col-sm-2 pull-right text-right"><strong>Honorar</strong></div>
-    <div class="col-sm-2 pull-right text-right"><strong>Menge</strong></div>
-    <div class="col-sm-3 pull-right"><strong></strong></div>
-  </div>    
-  <hr class="tabletop">
-  {{#each getBookData}}  
-    <div class="row">
-      <div class="col-sm-5">{{bookTitle}} ({{bookGroup}}) <br> {{bookISBN}}</div>
-      {{#each billingsData}}
-        <div class="col-sm-2 pull-right text-right">{{fee}} €</div>
-        <div class="col-sm-2 pull-right text-right">{{units}} Ex.</div>
-        <div class="col-sm-3 pull-right"><small><i>{{text}}</i></small></div>
-      {{/each}}    
-    </div>
-    <hr class="tablemid">
-  {{/each}}
-  <hr class="tablefoot">
-  <div class="row">
-    {{#with getSum}}  
+    <hr class="tabletop">
+    {{#each billingData}}
+      <div class="row ">
+        <div class="col-sm-5">{{bookTitle}} ({{bookGroup}}) <br> {{bookISBN}}</div>
+        {{#each billingsData}}
+          <div class="col-sm-2 pull-right text-right">{{fee}} €</div>
+          <div class="col-sm-2 pull-right text-right">{{units}} Ex.</div>
+          <div class="col-sm-3 pull-right"><small><i>{{text}}</i></small></div>
+        {{/each}}    
+      </div>
+      <hr class="tablemid">     
+    {{/each}}
+    <hr class="tablefoot">
+    <div class="row ">
       <div class="col-sm-5"><strong>Summen</strong></div>    
       <div class="col-sm-2 pull-right text-right">{{sumFee}} €</div>
       <div class="col-sm-2 pull-right text-right">{{sumUnits}} Ex.</div>
-      <div class="col-sm-3 pull-right"></div>
-    {{/with}}    
-  </div> 
-  <div class="spacer-20"></div>
-  <div class="row">
-    <div class="col-sm-12">
-      <form class="form-horizontal" id="formAddBillingText" role="form">
-        <fieldset>
-          <!-- bookList -->
-          <div class="form-group">
-            <textarea class="form-control" rows="3" placeholder="Rechnungstext"></textarea>
-          </div>
-        </fieldset>
-        <fieldset>
-          <!-- buttons -->
-          <div class="control-group">
-            <div class="controls">
-              <input type="submit" id="saveBilling" name="newBilling" value="Abrechnung speichern" class="btn btn-default"/>
-              <input type="submit" id="printBilling" name="printBilling" value="Abrechnung drucken" class="btn btn-primary"/>
-            </div>
-          </div>
-        </fieldset>
-      </form>
+      <div class="col-sm-3 pull-right "></div>   
+    </div> 
+    <div class="spacer-50"></div>
+    
+    <!-- payment -->
+    {{#if bankTransferText}}
+    <div class="row ">
+      <div class="col-sm-12">
+        {{{bankTransferText}}}
+      </div>     
     </div>
-  </div>  
-  {{> modalAddBilling}}
+    <div class="spacer-20"></div>
+    {{/if}}
+    
+    <!-- billingText -->
+    {{#if billingText}}
+    <div class="row ">
+      <div class="col-sm-12">
+        {{{billingText}}}
+      </div>     
+    </div>
+    <div class="spacer-20"></div>
+    {{/if}}
+    
+    <!-- vatNotice -->
+    {{#if vatNotice}}
+    <div class="row ">
+      <div class="col-sm-12">
+        {{{vatNotice}}}
+      </div>     
+    </div>
+    <div class="spacer-20"></div>
+    {{/if}}
+    
+    <!-- greetings -->
+    <div class="spacer-20"></div>
+    <div class="row ">
+      <div class="col-sm-12">
+        <p>
+          Mit freundlichen Grüßen,<br><br>
+          Simon Knipping<br>
+          Info3 Verlag
+        </p>
+      </div>     
+    </div>
+    <div class="spacer-20"></div>
+    
+    <div class="printfooter">
+      <p>
+        Info3 Verlagsgesellschaft Brüll & Heisterkamp KG &bull; Kirchgartenstr. 1 &bull; 60439 Frankfurt<br>
+        Tel (069) 5700 1531 &bull; Fax (069) 58 46 16 &bull; E-Mail: simon.knipping@info3.de<br>
+        Sitz: Frankfurt am Main &bull; Handelsregister: Frankfurt am Main HRA 28503<br>
+        Persönlich haftende Gesellschafter: Ramon Brüll, Dr. Jens Heisterkamp &bull; UST-IDNr. DE 111 999 318
+      </p>
+    </div>
+    
+  </div>
 </template>

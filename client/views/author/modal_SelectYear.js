@@ -24,7 +24,7 @@ Template.modalSelectYear.events({
     Session.set('billingYear', year);
     var authorId = Session.get('authorId');    
     $('#selectYear').modal('toggle');
-    Router.go('author.billing', {_id: authorId});
+    Router.go('author.billings', {_id: authorId});
   },
   // close form on reset
   'reset #formSelectYear': function(e) {

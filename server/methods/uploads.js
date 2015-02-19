@@ -69,6 +69,36 @@ Meteor.methods({
     }
   },  
   //@since v0.6.2
+  insertSalesInfo3Upload: function(data) {   
+    var checkId = data.ARTNR;    
+    var bookId = false;
+    bookId = Books.findOne({bookArtNrI3: checkId})._id;
+    
+    if(bookId){
+      var bookPrice = Books.findOne({bookArtNrI3: checkId}).bookPrice;     
+      var year = Number(data.Jahr);
+      var month = Number(data.Monat);
+      var units = Number(data.Absatz);
+      var volumesNet = Number(data.Umsatz.replace( /,/,"." ));
+      var lp = Number(bookPrice.replace( /,/,"." ));
+      var salesVolumes = units * lp;          
+      var sale = {
+        bookId: bookId,
+        salesYear: year,
+        salesMonth: month,
+        salesUnits: units,
+        salesVolumesNet: volumesNet,
+        salesVolumes: salesVolumes,
+        salesSeller: 'Info3',
+        salesType: 'Privat',
+        submitted:  new Date().getTime()
+      };      
+      Sales.insert(sale);
+    } else {
+      console.log('Buch mit ARTNR ' + checkId + ' nicht vorhanden'); // server console
+    }
+  },
+  //@since v0.6.2
   insertSalesBrockhausUpload: function(data) {    
     var checkId = data.BestNr;    
     var bookId = Books.findOne({bookArtNrBH: checkId})._id;    
@@ -135,32 +165,6 @@ Meteor.methods({
         salesVolumes: salesVolumes,
         salesSeller: 'AVA',
         salesType: 'Handel',
-        submitted:  new Date().getTime()
-      };      
-      Sales.insert(sale);
-    }
-  },
-  //@since v0.6.2
-  insertSalesInfo3Upload: function(data) {   
-    var checkId = data.ARTNR;    
-    var bookId = Books.findOne({bookArtNrI3: checkId})._id;
-    if(bookId){
-      var bookPrice = Books.findOne({bookArtNrI3: checkId}).bookPrice;     
-      var year = Number(data.Jahr);
-      var month = Number(data.Monat);
-      var units = Number(data.Absatz);
-      var volumesNet = Number(data.Umsatz.replace( /,/,"." ));
-      var lp = Number(bookPrice.replace( /,/,"." ));
-      var salesVolumes = units * lp;          
-      var sale = {
-        bookId: bookId,
-        salesYear: year,
-        salesMonth: month,
-        salesUnits: units,
-        salesVolumesNet: volumesNet,
-        salesVolumes: salesVolumes,
-        salesSeller: 'Info3',
-        salesType: 'Privat',
         submitted:  new Date().getTime()
       };      
       Sales.insert(sale);

@@ -156,5 +156,15 @@ Meteor.methods({
   },
   updateBillings: function(bookId, billingData) {
     return BillingsTemp.update({bookId: bookId}, {$addToSet: {billingsData: billingData} });
+  },
+  saveBilling: function(billing) {
+    var checkAuthor = billing.authorId;
+    var checkYear = billing.year;
+    
+    if(Billings.find({authorId: checkAuthor, year: checkYear}).count()>0) {
+      return 'schon vorhanden';  
+    } else {
+      return Billings.insert(billing);
+    } 
   }
 })
