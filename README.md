@@ -4,8 +4,9 @@ Manage bookauthors - meteor.js based webapp
 ## Roadmap
 
 ### v0.9
-- v0.9.2 - additional design fixures
-- v0.9.1 - design fixures
+- v0.9.3 - changed billing functions
+- v0.9.2 - additional design fixtures
+- v0.9.1 - design fixtures
 - v0.9.0 - added roles and permission management 
 
 

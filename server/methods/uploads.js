@@ -1,33 +1,73 @@
 Meteor.methods({
-  //@since v0.6.1
+  //@since v0.9.3
   insertBookUpload: function(data) {
-    var bookPrice = Number(data.EUR.replace( /,/,"." ));      
-    var book = {
-      bookTitle: data.Titel,
-      bookSubtitle: data.Untertitel,
-      bookPrice: bookPrice,      
-      bookISBN: data.ISBN13,
-      bookISBN10: data.ISBN10,
-      bookEAN: data.EAN13,
-      bookArtNrI3: data.BestNr,
-      bookArtNrBH: data.BestNrBrockhaus,
-      changes: [{date: new Date().getTime(), content: 'Buch importiert'}],
-      submitted: new Date().getTime(),
-      updatedAt: new Date().getTime(),
-      bookType: data.Produktform + ' | ' + data.Einband,
-      bookGroup: data.Produktgruppe,
-      bookHeigh: data.Produkthöhe,
-      bookWidth: data.Produktbreite,
-      bookWeight: data.Produktgewicht,
-      bookStatus: data.Lieferbarkeit,
-      bookPages: data.Seiten,
-      bookNotes: 'Autor: ' + data.Autoren + ', Hg: ' + data.Herausgeber + ', Auflage: ' + data.Auflagennr + ' ' + data.Auflagentyp + ' ' + data.Auflagentext + ', Erscheinungsdatum: ' + data.Erscheinungsdatum,
-      //@since 0.8.0
-      bookPriceMwSt: data.MwSt,
-      bookProductionPrice: data.Einzelpreis      
-    };    
-    Books.insert(book);
+    var bookTitle = data.Titel;     
+    var bookISBN = data.ISBN13;
+    
+    var bookPrice = data.EUR;
+    bookPrice = bookPrice.replace(",", ".");
+    bookPrice = Number(bookPrice);
+    bookPrice = bookPrice.toFixed(2);
+    bookPrice = bookPrice.toString();
+    bookPrice = bookPrice.replace(".", ",");
+    
+    var check = Books.find({bookTitle: bookTitle, bookISBN: bookISBN}).count();
+    
+    if(check > 0) {
+      console.log('Buch ' + bookTitle + ' schon vorhanden'); // server console
+    } else {
+      var book = {
+        bookTitle: bookTitle,
+        bookSubtitle: data.Untertitel,
+        bookPrice: bookPrice,      
+        bookISBN: bookISBN,
+        bookISBN10: data.ISBN10,
+        bookEAN: data.EAN13,
+        bookArtNrI3: data.BestNr,
+        bookArtNrBH: data.BestNrBrockhaus,
+        changes: [{date: new Date().getTime(), content: 'Buch importiert'}],        
+        bookType: data.Produktform + ' | ' + data.Einband,
+        bookGroup: data.Produktgruppe,
+        bookHeigh: data.Produkthöhe,
+        bookWidth: data.Produktbreite,
+        bookWeight: data.Produktgewicht,
+        bookStatus: data.Lieferbarkeit,
+        bookPages: data.Seiten,
+        bookNotes: 'Autor: ' + data.Autoren + ', Hg: ' + data.Herausgeber + ', Auflage: ' + data.Auflagennr + ' ' + data.Auflagentyp + ' ' + data.Auflagentext + ', Erscheinungsdatum: ' + data.Erscheinungsdatum,
+        bookPriceMwSt: data.MwSt,
+        bookProductionPrice: data.Einzelpreis,
+        submitted: new Date().getTime(),
+        updatedAt: new Date().getTime()      
+      };    
+      Books.insert(book);
+    }
   },
+  //@since v0.7.3
+  insertAuthorsUpload: function(data) {   
+    var firstName = data.Vorname;
+    var lastName = data.Name;
+    
+    var check = Authors.find({firstName: firstName, lastName: lastName}).count();
+    
+    if(check > 0) {
+      console.log('Autor ' + firstName * ' ' + lastName + ' schon vorhanden'); // server console
+    } else {    
+      var author = {
+        title: data.Anrede,
+        graduate: data.Titel,
+        firstName: data.Vorname,      
+        lastName: data.Name,
+        emailPriv: data.Mail,
+        vatBool: false,
+        isAutor: true,
+        isCompany: false,      
+        changes: [{date: new Date().getTime(), content: 'Kontakt importiert'}],
+        submitted: new Date().getTime(),
+        updatedAt: new Date().getTime()
+      };    
+      Authors.insert(author);
+    }
+  },  
   //@since v0.6.2
   insertSalesBrockhausUpload: function(data) {    
     var checkId = data.BestNr;    
@@ -125,46 +165,6 @@ Meteor.methods({
       };      
       Sales.insert(sale);
     }
-  },
-  //@since v0.7.3
-  insertAuthorsUpload: function(data) {   
-    var author = {
-      title: data.Anrede,
-      graduate: data.Titel,
-      firstName: data.Vorname,      
-      lastName: data.Name,
-      /*
-      company: data.ISBN10,
-      street: data.EAN13,
-      additional: data.BestNr,
-      plz: data.BestNrBrockhaus,
-      city: data,
-      country: data,
-      telephone: data,
-      telefax: data,
-      mobil: data,
-      */
-      emailPriv: data.Mail,
-      /*
-      emailOff: data,
-      url: data,
-      salutation: data,
-      */
-      vatBool: false,
-      /*
-      vat: data,
-      iban: data,
-      bic: data,
-      bank: data,
-      notes: data,
-      */
-      isAutor: true,
-      isCompany: false,      
-      changes: [{date: new Date().getTime(), content: 'Kontakt importiert'}],
-      submitted: new Date().getTime(),
-      updatedAt: new Date().getTime()
-    };    
-    Authors.insert(author);
   },
   //@since v0.8.0
   insertSalesLibrekaUpload: function(data) {   

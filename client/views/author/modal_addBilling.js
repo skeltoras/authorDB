@@ -55,7 +55,7 @@ Template.modalAddBilling.events({
     
     Meteor.call('updateBillings', bookId, billingData, function(error, result) {
       if(result){
-        var getBillingData = Billings.find().fetch();
+        var getBillingData = BillingsTemp.find().fetch();
         Session.set('getBillingData', getBillingData);
       }
     });
