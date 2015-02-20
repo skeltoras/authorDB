@@ -11,10 +11,6 @@ Meteor.methods({
     });  
     Authors.insert(data);
   },
-  'addBillingId': function() {
-    var billingNo = incrementCounter('billingNo');
-    return billingNo;
-  },
   //@since v0.8.2
   updateAuthor: function(author, authorId, changes) {
     if(changes){

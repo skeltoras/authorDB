@@ -1,16 +1,15 @@
 <template name="authorBilling">
-  {{debugThis}}
   <div class="page-a4">
     <!-- address, billingNo, date -->
     <div class="row ">
       <div class="col-sm-4">
         {{#with addressData}}
-          {{firstName}} {{lastName}}<br>
+          {{name}}<br>
           {{#if company}}{{company}}<br>{{/if}}
           {{#if co}}{{co}}<br>{{/if}}
           {{street}}<br>
           {{#if additional}}{{additional}}<br>{{/if}} 
-          {{plz}} {{city}}<br>
+          {{city}}<br>
           {{#if country}}{{country}}<br>{{/if}}  
         {{/with}}
       </div>      
@@ -19,7 +18,7 @@
           <tbody>
             <tr>
               <td>Belegnummer:</td>
-              <td><strong>{{formatBillingNo billingNo}}</strong></td>
+              <td><strong>{{billingNo}}</strong></td>
             </tr>          
             <tr>
               <td>Datum:</td>
@@ -34,9 +33,7 @@
     <!-- salutation -->
     <div class="row ">
       <div class="col-sm-12">
-        {{#with addressData}}
-          {{#if salutation}}{{salutation}}{{else}}Sehr geehrte Damen und Herren{{/if}},<br> 
-        {{/with}}
+        {{#if salutation}}{{salutation}}{{else}}Sehr geehrte Damen und Herren{{/if}},<br> 
         unten aufgeführt die Verkaufszahlen der aufgelisteten Bücher für das Jahr {{year}}.
       </div>      
     </div>
@@ -67,12 +64,32 @@
       <hr class="tablemid">     
     {{/each}}
     <hr class="tablefoot">
-    <div class="row ">
-      <div class="col-sm-5"><strong>Summen</strong></div>    
-      <div class="col-sm-2 pull-right text-right">{{sumFee}} €</div>
-      <div class="col-sm-2 pull-right text-right">{{sumUnits}} Ex.</div>
-      <div class="col-sm-3 pull-right "></div>   
-    </div> 
+    {{#if vatBool}}
+        <div class="row">      
+          <div class="col-sm-5"><strong>Summen</strong></div>    
+          <div class="col-sm-2 pull-right text-right">{{sumFeeGross}} €</div>
+          <div class="col-sm-2 pull-right text-right">{{sumUnits}} Ex.</div>
+          <div class="col-sm-3 pull-right"></div>
+        </div>
+        <div class="spacer-10"></div>
+        <div class="row">      
+          <div class="col-sm-5"></div>    
+          <div class="col-sm-4 pull-right text-right"><small>(Entspricht {{sumFee}} € Netto)</small></div>
+          <div class="col-sm-3 pull-right"></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <p>{{{vatInfo}}}</p>
+          </div>
+        </div>
+    {{else}}
+      <div class="row ">
+        <div class="col-sm-5"><strong>Summen</strong></div>    
+        <div class="col-sm-2 pull-right text-right">{{sumFee}} €</div>
+        <div class="col-sm-2 pull-right text-right">{{sumUnits}} Ex.</div>
+        <div class="col-sm-3 pull-right "></div>   
+      </div>
+    {{/if}} 
     <div class="spacer-50"></div>
     
     <!-- payment -->

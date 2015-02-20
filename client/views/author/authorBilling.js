@@ -17,11 +17,6 @@ Template.authorBilling.helpers({
   getYear: function() {
     var year = Session.get('billingYear');
     return year;
-  },
-  debugThis: function() {
-    var debug = Billings.findOne({_id: this._id});
-    console.log('Debug:');
-    console.log(debug);    
   }
 });
 

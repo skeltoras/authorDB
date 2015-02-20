@@ -66,6 +66,7 @@ Template.authorNew.events({
       bank: $(e.target).find('[name=bank]').val(),
       vatBool: vatBool,
       vat: $(e.target).find('[name=vat]').val(),
+      vatNo: $(e.target).find('[name=vatNo]').val(),
       notes: $(e.target).find('[name=notes]').val(),
       changes: changes,
       submitted: new Date().getTime(),

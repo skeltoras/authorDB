@@ -98,7 +98,7 @@ Meteor.methods({
       }
       
       if(bookGroup=='E-Book'){
-        authorFee = ((volumes * units) * feeEbookPercent) / 100;  
+        authorFee = (volumes * feeEbookPercent) / 100;  
       } else if(feeHasFixedEx){
         feePerEx = Number(feePerEx.replace( /,/,"." ));        
         authorFee = units * feePerEx; 
@@ -150,7 +150,8 @@ Meteor.methods({
     
     sum = {
       sumUnits: sumUnits,
-      sumFee: sumFee
+      sumFee: sumFee,
+      sumFeeGross: ''
     }
     return sum;  
   },
