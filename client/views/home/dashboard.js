@@ -52,6 +52,29 @@ Template.dashboardAdmin.helpers({
     });
     return sum;
   },
+  //@since v0.9.6
+  getBillings: function(){
+    return Billings.find().count();
+  },
+  getBillingData: function(){
+    var sum = 0;
+    Billings.find({}).map(function(doc){
+      sumFee = doc.sumFee;
+      sumFee = sumFee.replace(',','.');
+      sumFee = Number(sumFee);     
+      sum += sumFee;
+    });
+    /*
+    var billings = Billings.find().fetch();
+    billings.forEach(function(billing){
+      sum += billing.sumFee;  
+    });
+    */
+    sum = sum.toFixed(2);
+    sum = sum.toString();
+    sum = sum.replace('.',',');
+    return sum;
+  }
 });
 
 //-- template events
