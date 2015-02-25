@@ -4,6 +4,7 @@ Manage bookauthors - meteor.js based webapp
 ## Roadmap
 
 ### v0.9
+- v0.9.7 - added list views
 - v0.9.6 - enhanced print functions
 - v0.9.5 - fixed print functions
 - v0.9.4 - added print layout and functions
