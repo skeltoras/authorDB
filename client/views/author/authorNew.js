@@ -8,9 +8,12 @@ Template.authorNew.destroyed = function(){
 
 //-- template rendered functions
 Template.authorNew.rendered = function(){
+  $("[name='isAutor']").bootstrapSwitch();
+  $("[name='isCompany']").bootstrapSwitch();
+  $("[name='vatBool']").bootstrapSwitch();
 };
 
-//-- template helpers
+//-- template helpers                            
 Template.authorNew.helpers({
 });
 
@@ -44,7 +47,8 @@ Template.authorNew.events({
       title: $(e.target).find('[name=title]').val(),
       graduate: $(e.target).find('[name=graduate]').val(),
       firstName: $(e.target).find('[name=firstName]').val(), 
-      lastName: $(e.target).find('[name=lastName]').val(), 
+      lastName: $(e.target).find('[name=lastName]').val(),
+      displayName: $(e.target).find('[name=displayName]').val(),  
       salutation: $(e.target).find('[name=salutation]').val(),
       isAutor: isAutor, 
       isCompany: isCompany,

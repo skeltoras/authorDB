@@ -1,6 +1,6 @@
 AuthorsController = RouteController.extend({
   yieldRegions: {
-    'bookShowSidebar': {to: 'sidebar'}
+    'authorSidebar': {to: 'sidebar'}
   }
 });
 
@@ -39,6 +39,7 @@ Router.route('/author/show/:_id', function (){
         this.render();
     }
   });
+  this.render('authorSidebar', {to: 'sidebar'});
 }, {
   name: 'author.show',
   controller: 'AuthorsController'

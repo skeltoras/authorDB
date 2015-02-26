@@ -18,7 +18,7 @@ Template.authorList.helpers({
 Template.authorsAllList.helpers({
   // list of all books sorted by submit-date @since 0.1.0
   authors: function() {
-    return Authors.find({}, {sort: {lastName: 1}});
+    return Authors.find({}, {sort: {lastName: 1, displayName: 1}});
   }
 });
 

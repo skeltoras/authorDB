@@ -34,6 +34,13 @@
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="lastName" name="lastName" value="{{lastName}}">
                 </div>
+              </div>
+              <!-- displayName -->
+              <div class="form-group form-group-sm has-success">
+                <label for="displayName" class="col-sm-3 control-label">Anzeigename</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="displayName" name="displayName" value="{{displayName}}">
+                </div>
               </div>              
             </fieldset>
             <div class="spacer-20"></div>
@@ -47,26 +54,24 @@
               </div>
               <!-- isAutor -->
               <div class="form-group form-group-sm">
-                <label for="vatBool" class="col-sm-3 control-label">Ist Autor</label>
+                <label for="isAutor" class="col-sm-3 control-label">Ist Autor</label>
                 <div class="col-sm-9">
                   {{#if isAutor}}
                     <input type="checkbox" id="isAutor" name="isAutor" checked="checked">
                   {{else}}
                     <input type="checkbox" id="isAutor" name="isAutor">
                   {{/if}}              
-                  <label for="isAutor" class="checkbox-inline">Ja</label>
                 </div>           
               </div>
               <!-- isCompany -->
               <div class="form-group form-group-sm">
-                <label for="vatBool" class="col-sm-3 control-label">Ist Firma</label>
+                <label for="isCompany" class="col-sm-3 control-label">Ist Firma</label>
                 <div class="col-sm-9">
                   {{#if isCompany}}
                     <input type="checkbox" id="isCompany" name="isCompany" checked="checked">
                   {{else}}
                     <input type="checkbox" id="isCompany" name="isCompany">
                   {{/if}}              
-                  <label for="isCompany" class="checkbox-inline">Ja</label>
                 </div>           
               </div>              
             </fieldset>            
@@ -201,19 +206,7 @@
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="bank" name="bank" value="{{bank}}">
                 </div>
-              </div>
-              <!-- vatBool -->
-              <div class="form-group">
-                <label for="vatBool" class="col-sm-3 control-label">Steuerpfl.</label>
-                <div class="col-sm-9">  
-                  {{#if vatBool}}
-                    <input type="checkbox" id="vatBool" name="vatBool" checked="checked">
-                  {{else}}
-                    <input type="checkbox" id="vatBool" name="vatBool">
-                  {{/if}}            
-                  <label for="vatBool" class="checkbox-inline">Ja</label>
-                </div>           
-              </div>
+              </div>              
               <!-- vat -->
               <div class="form-group form-group-sm">
                 <label for="vat" class="col-sm-3 control-label">Steuersatz</label>
@@ -227,6 +220,17 @@
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="vatNo" name="vatNo" value="{{vatNo}}">
                 </div>
+              </div>
+              <!-- vatBool -->
+              <div class="form-group">
+                <label for="vatBool" class="col-sm-3 control-label">Steuerpfl.</label>
+                <div class="col-sm-9">  
+                  {{#if vatBool}}
+                    <input type="checkbox" id="vatBool" name="vatBool" checked="checked">
+                  {{else}}
+                    <input type="checkbox" id="vatBool" name="vatBool">
+                  {{/if}}            
+                </div>           
               </div>
             </fieldset>
             <fieldset>

@@ -20,10 +20,7 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Firma</th>
             <th>Mail</th>
-            <th>show</th>
-            <th>edit</th>
           </tr>
         </thead>
         <tbody>
@@ -49,21 +46,45 @@
 <template name="authorsAllList">
       {{#each authors}}
         <tr>
-          <td>{{firstName}} {{lastName}}</td>
-          <td>{{company}}</td>
-          <td>{{emailPriv}} {{emailOff}}</td>
-          <td><i><a href="/author/show/{{_id}}">show</a></i></td>
-          <td><i><a href="/author/edit/{{_id}}">edit</a></i></td>
+          <td>
+            {{#if displayName}}
+              <a href="/author/show/{{_id}}">{{displayName}}</a>
+              {{#if isCompany}}
+                | {{firstName}} {{lastName}}  
+              {{else}}
+                | {{company}}
+              {{/if}}
+            {{else}}
+              {{#if isCompany}}
+                <a href="/author/show/{{_id}}">{{company}}</a>  
+              {{else}}
+                <a href="/author/show/{{_id}}">{{firstName}} {{lastName}}</a>
+              {{/if}}              
+            {{/if}}
+          </td>
+          <td>{{#if emailPriv}}{{emailPriv}}{{else}}{{emailOff}}{{/if}}</td>
         </tr>
       {{/each}}
 </template>
 
 <template name="authorsSearchList">
       <tr>
-        <td>{{firstName}} {{lastName}}</td>
-        <td>{{company}}</td>
-        <td>{{emailPriv}} {{emailOff}}</td>
-        <td><i><a href="/author/show/{{_id}}">show</a></i></td>
-        <td><i><a href="/author/edit/{{_id}}">edit</a></i></td>
+        <td>
+          {{#if displayName}}
+            <a href="/author/show/{{_id}}">{{displayName}}</a>
+            {{#if isCompany}}
+              | {{firstName}} {{lastName}}  
+            {{else}}
+              | {{company}}
+            {{/if}}
+          {{else}}
+            {{#if isCompany}}
+              <a href="/author/show/{{_id}}">{{company}}</a>  
+            {{else}}
+              <a href="/author/show/{{_id}}">{{firstName}} {{lastName}}</a>
+            {{/if}}              
+          {{/if}}
+        </td>
+        <td>{{#if emailPriv}}{{emailPriv}}{{else}}{{emailOff}}{{/if}}</td>
       </tr>
 </template>

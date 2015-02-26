@@ -11,10 +11,7 @@ Template.authorShow.rendered = function(){
 };
 
 //-- template helpers
-Template.authorShow.helpers({ 
-  setSessionData: function() {
-    Session.set('authorId', this._id);
-  },
+Template.authorShow.helpers({
   getAffiliate: function() {
     var authorId = this._id;
     var bookList = Books.find({'affiliateData.authorId': authorId}).fetch();

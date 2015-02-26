@@ -1,67 +1,71 @@
 <template name="authorShow">
-  {{setSessionData}}
-  <a class="btn btn-default" id="abrechnen" href="" role="button">abrechnen</a>
-  <a class="btn btn-default pull-right" href="/author/edit/{{_id}}" role="button">bearbeiten</a>
-  <h1 class="page-header">Kontakt anzeigen</h1>
+  <h1 class="page-header">Adressdaten <small>{{displayName}}</small></h1>
   <div class="row">
-    <div class="col-sm-4">
-      <div class="vcard">
-        <span class="fn"><strong>{{firstName}} {{lastName}}</strong></span><br>        
+    <div class="col-sm-5">
+      <div class="addressData">
+        <h4>Postanschrift</h4>
         <hr>
-        <h4>Kontaktdaten</h4>
-        <span class="n">
-          {{#if graduate}}<span class="honorific-prefix">{{graduate}}</span>{{/if}}
-          {{#if company}}
-            <div class="org">{{company}}</div>
-          {{else}}  
-            <span class="given-name">{{firstName}}</span>
-            <span class="family-name">{{lastName}}</span>
+        <p>
+          {{#if isCompany}}
+            {{#if company}}<strong>{{company}}</strong><br>{{/if}}
+            {{#if lastName}}{{#if graduate}}{{graduate}}{{/if}} {{firstName}} {{lastName}}<br>{{/if}}
+          {{else}}
+            {{#if lastName}}<strong>{{#if graduate}}{{graduate}}{{/if}} {{firstName}} {{lastName}}<br></strong>{{/if}}
+            {{#if company}}{{company}}<br>{{/if}}
           {{/if}}
-        </span>
-        <div class="adr">
-          {{#if co}}<div class="extended-address">{{co}}</div>{{/if}}
-          {{#if street}}<div class="street-address">{{street}}</div>{{/if}}
-          {{#if additional}}<div class="extended-address">{{additional}}</div>{{/if}}          
-          {{#if plz}}<span class="postal-code">{{plz}}</span>{{/if}}
-          {{#if city}}<span class="locality">{{city}}</span>{{/if}}         
-          {{#if country}}<div class="country-name">{{country}}</div>{{/if}}
-        </div>
-        <br>
-        {{#if telephone}}<div class="tel">Tel.: {{telephone}}</div>{{/if}}
-        {{#if telefax}}<div class="tel">Fax: {{telefax}}</div>{{/if}}
-        {{#if mobil}}<div class="tel">Mobil: {{mobil}}</div>{{/if}}
-        {{#if emailPriv}}<i class="fa fa-envelope"></i> Privat: <a class="email" href="mailto:{{emailPriv}}">{{emailPriv}}</a><br>{{/if}}
-        {{#if emailOff}}<i class="fa fa-envelope"></i> Büro: <a class="email" href="mailto:{{emailOff}}">{{emailOff}}</a><br>{{/if}}
-        {{#if url}}<a class="url" href="{{url}}" target="_blank">{{url}}</a>{{/if}}
+          {{#if co}}{{co}}<br>{{/if}}
+          {{#if street}}{{street}}<br>{{/if}}
+          {{#if additional}}{{additional}}<br>{{/if}}
+          {{plz}} {{#if city}}{{city}}<br>{{/if}}
+          {{#if country}}{{country}}{{/if}}         
+        </p>
+      </div> 
+      <div class="spacer-20"></div>    
+      <div class="contactData">
+        <h4>Kontaktdaten</h4>
+        <hr>
+        <p>
+          {{#if telephone}}Tel.: {{telephone}}<br>{{/if}}
+          {{#if telefax}}Fax: {{telefax}}<br>{{/if}}
+          {{#if mobil}}Mobil: {{mobil}}<br>{{/if}}
+          {{#if emailPriv}}<i class="fa fa-envelope"></i> Privat: <a class="email" href="mailto:{{emailPriv}}">{{emailPriv}}</a><br>{{/if}}
+          {{#if emailOff}}<i class="fa fa-envelope"></i> Büro: <a class="email" href="mailto:{{emailOff}}">{{emailOff}}</a><br>{{/if}}
+          {{#if url}}<a class="url" href="{{url}}" target="_blank">{{url}}</a>{{/if}}       
+        </p>
       </div>
-      <div class="spacer-20"></div>
-      <h4>Weitere Daten</h4>
-      <p>
-        {{#if iban}}IBAN: {{iban}}<br>{{else}}---{{/if}}
-        {{#if bic}}BIC: {{bic}}<br>{{/if}}
-        {{#if bank}}Geldinstitut: {{bank}}{{/if}}
-      </p> 
-      <div class="spacer-20"></div>
-      <h4>Notizen</h4>
-      <p>
-        {{notes}}
-      </p>
-      <div class="spacer-20"></div>
-      <h4>Änderungslog</h4>
-      <p>
-        {{#each changes}}
-          <li>{{formatDate date}} - {{{content}}}</li>
-        {{/each}}
-      </p>
-    </div>
-    <div class="col-sm-8">
+      <div class="spacer-20"></div>    
+      <div class="billingData">
+        <h4>Zahlungsdaten</h4>
+        <hr>
+        <p>
+          IBAN: {{#if iban}}{{iban}}{{else}}---{{/if}}<br>
+          BIC: {{#if bic}}{{bic}}{{else}}---{{/if}}<br>
+          Bank: {{#if bank}}{{bank}}{{else}}---{{/if}}<br>
+          <hr>
+          Steuernummer: {{#if vatNo}}{{vatNo}}{{else}}---{{/if}}<br>
+          Steuersatz: {{#if vat}}{{vat}} %{{else}}---{{/if}}<br>
+          Steuerpflichtig: {{#if vatBool}}Ja{{else}}Nein{{/if}}<br>
+        </p>
+      </div>
+      <div class="spacer-20"></div>    
+      <div class="notes">
+        <h4>Notizen</h4>
+        <hr>
+        <p>
+          {{notes}}
+        </p>
+      </div>    
+    </div>    
+    <div class="col-sm-7">
+      <h4>Zugehörigkeit</h4>
+      <hr>
       {{#if getAffiliate}}
         <table class="table table-condensed">
           <caption>Vertragspartner bei:</caption>
           <thead>
             <tr>
-              <th class="col-sm-6">Titel</th>
-              <th class="col-sm-4">Typ</th>
+              <th class="col-sm-8">Titel</th>
+              <th class="col-sm-2">Typ</th>
               <th class="col-sm-2" style="text-align:center">Konditionen</th>
             </tr>
           </thead>
@@ -79,15 +83,15 @@
             {{/each}}
           </tbody>   
         </table>
-      {{/if}} 
-      
+      {{/if}}       
       {{#if getAuthor}}
         <table class="table table-condensed">
           <caption>Autor von:</caption>
           <thead>
             <tr>
-              <th class="col-sm-6">Titel</th>
-              <th class="col-sm-6">Typ</th>
+              <th class="col-sm-8">Titel</th>
+              <th class="col-sm-2">Typ</th>
+              <th class="col-sm-2"></th>
             </tr>
           </thead>
           <tbody>
@@ -95,6 +99,7 @@
               <tr>
                 <td><a href="/book/show/{{_id}}">{{bookTitle}}</a></td>
                 <td>{{bookGroup}}</td>
+                <td></td>
               </tr>
             {{/each}}
           </tbody>   
@@ -102,6 +107,7 @@
       {{/if}}
     </div>
   </div>
+
   {{> modalSelectYear}}
   {{> modalAddConditions}}
   {{> modalEditConditions}}

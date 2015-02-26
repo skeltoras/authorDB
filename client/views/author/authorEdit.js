@@ -20,6 +20,9 @@ Template.authorEdit.rendered = function(){
   boxes.forEach(function(box){
     Session.set(box.name, box.value);
   });
+  $("[name='isAutor']").bootstrapSwitch();
+  $("[name='isCompany']").bootstrapSwitch();
+  $("[name='vatBool']").bootstrapSwitch();
 };
 
 //-- template helpers
@@ -92,6 +95,7 @@ Template.authorEdit.events({
       graduate: $(e.target).find('[name=graduate]').val(),
       firstName: $(e.target).find('[name=firstName]').val(), 
       lastName: $(e.target).find('[name=lastName]').val(), 
+      displayName: $(e.target).find('[name=displayName]').val(),
       salutation: $(e.target).find('[name=salutation]').val(),
       isAutor: isAutor, 
       isCompany: isCompany,
