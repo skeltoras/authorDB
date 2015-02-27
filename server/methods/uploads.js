@@ -47,6 +47,7 @@ Meteor.methods({
     var firstName = data.Vorname;
     var lastName = data.Name;
     
+    var user = Meteor.users.findOne(this.userId);
     var check = Authors.find({firstName: firstName, lastName: lastName}).count();
     
     if(check > 0) {
@@ -60,11 +61,15 @@ Meteor.methods({
         emailPriv: data.Mail,
         vatBool: false,
         isAutor: true,
-        isCompany: false,      
-        changes: [{date: new Date().getTime(), content: 'Kontakt importiert'}],
+        isCompany: false,
+        inFeeList: false,
+        inAddressList: true,
+        inMarketingList: true,
+        inLicenseList: false,      
+        changes: [{date: new Date().getTime(), content: 'Kontakt importiert', user: user.profile.nickname}],
         submitted: new Date().getTime(),
         updatedAt: new Date().getTime()
-      };    
+      };  
       Authors.insert(author);
     }
   },  

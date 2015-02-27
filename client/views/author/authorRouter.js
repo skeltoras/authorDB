@@ -1,16 +1,14 @@
 AuthorsController = RouteController.extend({
-  yieldRegions: {
-    'authorSidebar': {to: 'sidebar'}
-  }
 });
 
 // Autoren    
 Router.route('/authors', function () {
   this.render('authorList', {
     data: function() {                                                                             
-      Session.set('sidebar', false);                                                                
+      Session.set('sidebar', true);                                                                
     }  
   });
+  this.render('authorsSidebar', {to: 'sidebar'});
 },{
   name: 'authors.list',
   controller: 'AuthorsController'
@@ -106,5 +104,24 @@ Router.route('/author/edit/:_id', function () {
   this.render('authorSidebar', {to: 'sidebar'});
 },{
   name: 'author.edit',
+  controller: 'AuthorsController'
+});
+
+//@since v0.10.3
+Router.route('/author/changes/:_id', function (){ 
+  this.render('authorChangelog', {
+    data: function () {
+      Session.set('sidebar', true);
+      Session.set('authorId', this.params._id);
+      return Authors.findOne({_id: this.params._id});
+    },
+    action: function() {
+      if (this.ready())
+        this.render();
+    }
+  });
+  this.render('authorSidebar', {to: 'sidebar'});
+}, {
+  name: 'author.changes',
   controller: 'AuthorsController'
 });

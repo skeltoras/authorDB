@@ -4,6 +4,7 @@ Manage bookauthors - meteor.js based webapp
 ## Roadmap
 
 ### v0.10
+- v0.10.3 - improved author data, added changelog view
 - v0.10.2 - improved author data
 - v0.10.1 - improved author views, added displayName, improved search
 - v0.10.0 - updated to meteor v1.0.3.2 

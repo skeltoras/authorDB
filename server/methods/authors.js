@@ -14,6 +14,8 @@ Meteor.methods({
   //@since v0.8.2
   updateAuthor: function(author, authorId, changes) {
     if(changes){
+      var user = Meteor.users.findOne(this.userId);
+      changes.user = user.profile.nickname;
       Authors.update(authorId, {$set: author, $addToSet: {changes: changes} });
     } else {
       Authors.update(authorId, {$set: author});

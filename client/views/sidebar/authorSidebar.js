@@ -29,8 +29,8 @@ Template.authorSidebar.events({
   },
   'click a.changelogAuthor': function(e){
     e.preventDefault();
-    //ToDo: show author changelog
-    console.log('ToDo: show author changelog'); //debug  
+    var authorId = Session.get('authorId');
+    Router.go('author.changes', {_id: authorId});  
   },
   //@since v0.10.2
   'click a.showAuthor': function(e){
