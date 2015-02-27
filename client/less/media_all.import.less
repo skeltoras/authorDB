@@ -235,3 +235,30 @@ hr.tablefoot {
   position: absolute;
   bottom: 0;
 }
+
+/** ToDos **/
+.todos input.toggleFinished { 
+  display:none; 
+} /* to hide the checkbox itself */
+
+.todos input.toggleFinished + label:before {
+  font-family: FontAwesome;
+  font-size: 1.5em; 
+  display: inline-block;
+}
+
+.todos input.toggleFinished + label:before { 
+  content: "\f096"; 
+  letter-spacing: 10px;
+} /* unchecked icon */
+
+.todos input.toggleFinished:checked + label:before { 
+  color: rgba(0,255,0,1);
+  content: "\f046"; 
+  letter-spacing: 8px;
+} /* checked icon */
+
+.todos a.deleteTodo {
+  color: rgba(255,0,0,1);
+  font-size: 1.5em; 
+}

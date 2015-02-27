@@ -1,0 +1,9 @@
+<template name="todosSidebar">
+  <ul class="nav nav-sidebar">
+    <li><a href="" class="showAuthor"><i class="fa fa-arrow-right"></i> Version hinzufügen</a></li> 
+    <h4>Versionen:</h4>
+    {{#each listVersions}}
+      <li><a href="" id="{{v}}" class="getVersionData">{{versionName}}</a></li>
+    {{/each}}
+  </ul>
+</template>

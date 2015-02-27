@@ -47,3 +47,12 @@ Meteor.publish('userlist', function () {
 Meteor.publish(null, function (){ 
   return Meteor.roles.find({});
 })
+
+//@since v0.10.4
+Meteor.publish('todos', function () {
+  return Todos.find();
+});
+
+Meteor.publish('versions', function () {
+  return Versions.find();
+});
