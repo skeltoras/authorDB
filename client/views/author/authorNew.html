@@ -51,20 +51,6 @@
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="salutation" name="salutation">
                 </div>
-              </div>
-              <!-- isAutor -->
-              <div class="form-group form-group-sm">
-                <label for="isAutor" class="col-sm-3 control-label">Ist Autor</label>
-                <div class="col-sm-9">              
-                  <input type="checkbox" id="isAutor" name="isAutor">
-                </div>           
-              </div>
-              <!-- isCompany -->
-              <div class="form-group form-group-sm">
-                <label for="isCompany" class="col-sm-3 control-label">Ist Firma</label>
-                <div class="col-sm-9">              
-                  <input type="checkbox" id="isCompany" name="isCompany">
-                </div>           
               </div>              
             </fieldset>            
           </div>          
@@ -125,7 +111,62 @@
         </div>
         
         <div class="spacer-20"></div>
+        
+        <div class="row">
+          <fieldset>
+            <div class="col-sm-3">
+              <!-- isAutor -->
+              <div class="form-group form-group-sm">
+                <label for="isAutor" class="col-sm-6 control-label">Ist Autor</label>
+                <div class="col-sm-6">              
+                  <input type="checkbox" id="isAutor" name="isAutor">
+                </div>           
+              </div>
+              <!-- isCompany -->
+              <div class="form-group form-group-sm">
+                <label for="isCompany" class="col-sm-6 control-label">Ist Firma</label>
+                <div class="col-sm-6">              
+                  <input type="checkbox" id="isCompany" name="isCompany">
+                </div>           
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <!-- inFeeList -->
+              <div class="form-group form-group-sm">
+                <label for="inFeeList" class="col-sm-6 control-label">In Honorarliste</label>
+                <div class="col-sm-6">              
+                  <input type="checkbox" id="inFeeList" name="inFeeList">
+                </div>           
+              </div>
+              <!-- inLicenseList -->
+              <div class="form-group form-group-sm">
+                <label for="inLicenseList" class="col-sm-6 control-label">In Lizenzliste</label>
+                <div class="col-sm-6">              
+                  <input type="checkbox" id="inLicenseList" name="inLicenseList">
+                </div>           
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <!-- inAddressList -->
+              <div class="form-group form-group-sm">
+                <label for="inAddressList" class="col-sm-6 control-label">Für Adressliste</label>
+                <div class="col-sm-6">              
+                  <input type="checkbox" id="inAddressList" name="inAddressList">
+                </div>           
+              </div>
+              <!-- inMarketingList -->
+              <div class="form-group form-group-sm">
+                <label for="inMarketingList" class="col-sm-6 control-label">Für Marketing</label>
+                <div class="col-sm-6">              
+                  <input type="checkbox" id="inMarketingList" name="inMarketingList">
+                </div>           
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
+        <div class="spacer-20"></div>
+        
         <div class="row">
           <div class="col-sm-6">
             <fieldset>
@@ -171,6 +212,15 @@
                 <div class="col-sm-9">
                   <input type="url" class="form-control" id="url" name="url">
                 </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Notizen</legend>
+              <!-- notes -->
+              <div class="form-group">
+                <div class="col-sm-12">              
+                  <textarea rows="3" name="notes" data-schema-key="notes" maxlength="1000" class="form-control"></textarea>
+                </div>           
               </div>
             </fieldset>           
           </div>
@@ -218,15 +268,6 @@
                 <label for="vatBool" class="col-sm-3 control-label">Steuerpfl.</label>
                 <div class="col-sm-9">              
                   <input type="checkbox" id="vatBool" name="vatBool">
-                </div>           
-              </div>
-            </fieldset>
-            <fieldset>
-              <legend>Notizen</legend>
-              <!-- notes -->
-              <div class="form-group">
-                <div class="col-sm-12">              
-                  <textarea rows="3" name="notes" data-schema-key="notes" maxlength="1000" class="form-control"></textarea>
                 </div>           
               </div>
             </fieldset>           

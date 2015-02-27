@@ -31,5 +31,33 @@ Template.authorSidebar.events({
     e.preventDefault();
     //ToDo: show author changelog
     console.log('ToDo: show author changelog'); //debug  
+  },
+  //@since v0.10.2
+  'click a.showAuthor': function(e){
+    e.preventDefault();
+    var authorId = Session.get('authorId');
+    Router.go('author.show', {_id: authorId});  
+  },
+  'click a.deleteAuthor': function(e){
+    e.preventDefault();
+    $('#confirmDelete').modal('toggle');  
+  }
+});
+
+//-- template events
+Template.modalConfirmDelete.events({
+  // save form on submit
+  'submit #formConfirmDelete': function(e) {
+    e.preventDefault();
+    
+    var authorId = Session.get('authorId');    
+    Authors.remove({_id: authorId});
+    $('#confirmDelete').modal('toggle');
+    Router.go('authors.list');
+  },
+  // close form on reset
+  'reset #formConfirmDelete': function(e) {
+    e.preventDefault();
+    $('#confirmDelete').modal('toggle');
   }
 });

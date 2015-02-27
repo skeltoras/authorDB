@@ -103,6 +103,7 @@ Router.route('/author/edit/:_id', function () {
         this.render();
     }
   });
+  this.render('authorSidebar', {to: 'sidebar'});
 },{
   name: 'author.edit',
   controller: 'AuthorsController'

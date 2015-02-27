@@ -23,6 +23,10 @@ Template.authorEdit.rendered = function(){
   $("[name='isAutor']").bootstrapSwitch();
   $("[name='isCompany']").bootstrapSwitch();
   $("[name='vatBool']").bootstrapSwitch();
+  $("[name='inFeeList']").bootstrapSwitch();
+  $("[name='inLicenseList']").bootstrapSwitch();
+  $("[name='inAddressList']").bootstrapSwitch();
+  $("[name='inMarketingList']").bootstrapSwitch();
 };
 
 //-- template helpers
@@ -71,6 +75,10 @@ Template.authorEdit.events({
     var changes = [];
     var isAutor = false;
     var isCompany = false;
+    var inFeeList = false;
+    var inLicenseList = false;
+    var inAddressList = false;
+    var inMarketingList = false;
     var vatBool = false;
     
     if($(e.target).find('[name=isAutor]').is(':checked')) {
@@ -79,6 +87,19 @@ Template.authorEdit.events({
     if($(e.target).find('[name=isCompany]').is(':checked')) {
       isCompany = true;   
     }
+    if($(e.target).find('[name=inFeeList]').is(':checked')) {
+      inFeeList = true;   
+    }
+    if($(e.target).find('[name=inLicenseList]').is(':checked')) {
+      inLicenseList = true;   
+    }
+    if($(e.target).find('[name=inAddressList]').is(':checked')) {
+      inAddressList = true;   
+    }
+    if($(e.target).find('[name=inMarketingList]').is(':checked')) {
+      inMarketingList = true;   
+    }
+    
     if($(e.target).find('[name=vatBool]').is(':checked')) {
       vatBool = true;   
     }
@@ -87,6 +108,11 @@ Template.authorEdit.events({
       changes = {
         date: new Date().getTime(),
         content: 'Kontakt geändert. <br>' + sessionChanges
+      };
+    } else {
+      changes = {
+        date: new Date().getTime(),
+        content: 'Kontakt geändert.'
       };
     }
     
@@ -99,6 +125,10 @@ Template.authorEdit.events({
       salutation: $(e.target).find('[name=salutation]').val(),
       isAutor: isAutor, 
       isCompany: isCompany,
+      inFeeList: inFeeList,
+      inLicenseList: inLicenseList,
+      inAddressList: inAddressList,
+      inMarketingList: inMarketingList,
       company: $(e.target).find('[name=company]').val(),
       co: $(e.target).find('[name=co]').val(),
       street: $(e.target).find('[name=street]').val(),
