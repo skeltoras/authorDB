@@ -1,0 +1,26 @@
+<template name="acpLayout">
+  {{#if currentUser}}
+    {{#if isInRole 'admin'}}
+      <div class="page acp">
+        {{> acpHeader}}
+        {{> yield}}
+        {{> acpFooter}}
+      </div>
+    {{/if}}
+  {{else}}
+    <!-- DEBUG -->
+    <div class="page acp">
+      {{> acpHeader}}
+      {{> yield}}
+      {{> acpFooter}}
+    </div>
+  {{/if}}
+</template>
+
+<template name="adminDEBUG">
+    <div class="page auth">
+      {{> authHeader}}
+      {{> yield}}
+      {{> authFooter}}
+    </div>
+</template>

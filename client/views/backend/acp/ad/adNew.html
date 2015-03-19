@@ -1,0 +1,318 @@
+<template name="adNew">
+  <div class="container acp">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1 class="page-header">Neuen Kontakt anlegen</h1>
+      </div>
+    </div> 
+    <div class="spacer-20"></div>
+    <form class="form-horizontal" role="form">
+      <div class="row">
+        <div class="col-sm-12">
+          <fieldset>
+            <!-- buttons -->
+            <div class="control-group">
+              <div class="controls">
+                <input type="submit" value="Kontakt anlegen" class="btn btn-default"/>
+                <input type="reset" value="Abbrechen" class="btn btn-default"/>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <div class="spacer-20"></div>
+      <hr>
+      <div class="spacer-20"></div>     
+      <div class="row">
+        <div class="col-sm-12">               
+          <div class="row">          
+            <div class="col-sm-6">
+              <fieldset>
+                <legend>Grunddaten</legend>
+                <!-- title -->
+                <div class="form-group form-group-sm">
+                  <label for="title" class="col-sm-3 control-label">Anrede</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="title" name="title">
+                  </div>
+                </div>
+                <!-- graduate -->
+                <div class="form-group form-group-sm">
+                  <label for="graduate" class="col-sm-3 control-label">Titel</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="graduate" name="graduate">
+                  </div>
+                </div>              
+                <!-- firstName -->
+                <div class="form-group form-group-sm">
+                  <label for="firstName" class="col-sm-3 control-label">Vorname(n)</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="firstName" name="firstName">
+                  </div>
+                </div>
+                <!-- lastName -->
+                <div class="form-group form-group-sm">
+                  <label for="lastName" class="col-sm-3 control-label">Nachname</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="lastName" name="lastName">
+                  </div>
+                </div>
+                <!-- displayName -->
+                <div class="form-group form-group-sm has-success">
+                  <label for="displayName" class="col-sm-3 control-label">Anzeigename</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="displayName" name="displayName">
+                  </div>
+                </div>              
+              </fieldset>
+              <div class="spacer-20"></div>
+              <fieldset>
+                <!-- salutation -->
+                <div class="form-group form-group-sm">
+                  <label for="salutation" class="col-sm-3 control-label">Briefanrede</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="salutation" name="salutation">
+                  </div>
+                </div>              
+              </fieldset>            
+            </div>          
+            <div class="col-sm-6">
+              <fieldset>
+                <legend>Anschrift</legend>
+                <!-- company -->
+                <div class="form-group form-group-sm">
+                  <label for="graduate" class="col-sm-3 control-label">Firma</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="company" name="company">
+                  </div>
+                </div>
+                <!-- co -->
+                <div class="form-group form-group-sm">
+                  <label for="co" class="col-sm-3 control-label">c/o</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="co" name="co">
+                  </div>
+                </div>
+                <!-- street -->
+                <div class="form-group form-group-sm">
+                  <label for="graduate" class="col-sm-3 control-label">Strasse</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="street" name="street">
+                  </div>
+                </div>
+                <!-- additional -->
+                <div class="form-group form-group-sm">
+                  <label for="additional" class="col-sm-3 control-label">Zusatz</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="additional" name="additional">
+                  </div>
+                </div>
+                <!-- plz -->
+                <div class="form-group form-group-sm">
+                  <label for="plz" class="col-sm-3 control-label">PLZ</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" id="plz" name="plz">
+                  </div>
+                </div>
+                <!-- city -->
+                <div class="form-group form-group-sm">
+                  <label for="city" class="col-sm-3 control-label">Ort</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="city" name="city">
+                  </div>
+                </div>
+                <!-- country -->
+                <div class="form-group form-group-sm">
+                  <label for="country" class="col-sm-3 control-label">Land</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="country" name="country">
+                  </div>
+                </div>
+              </fieldset>            
+            </div>
+          </div>
+          
+          <div class="spacer-20"></div>
+          
+          <div class="row">
+            <fieldset>
+              <div class="col-sm-3">
+                <!-- isAutor -->
+                <div class="form-group form-group-sm">
+                  <label for="isAutor" class="col-sm-6 control-label">Ist Autor</label>
+                  <div class="col-sm-6">              
+                    <input type="checkbox" id="isAutor" name="isAutor">
+                  </div>           
+                </div>
+                <!-- isCompany -->
+                <div class="form-group form-group-sm">
+                  <label for="isCompany" class="col-sm-6 control-label">Ist Firma</label>
+                  <div class="col-sm-6">              
+                    <input type="checkbox" id="isCompany" name="isCompany">
+                  </div>           
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <!-- inFeeList -->
+                <div class="form-group form-group-sm">
+                  <label for="inFeeList" class="col-sm-6 control-label">In Honorarliste</label>
+                  <div class="col-sm-6">              
+                    <input type="checkbox" id="inFeeList" name="inFeeList">
+                  </div>           
+                </div>
+                <!-- inLicenseList -->
+                <div class="form-group form-group-sm">
+                  <label for="inLicenseList" class="col-sm-6 control-label">In Lizenzliste</label>
+                  <div class="col-sm-6">              
+                    <input type="checkbox" id="inLicenseList" name="inLicenseList">
+                  </div>           
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <!-- inAddressList -->
+                <div class="form-group form-group-sm">
+                  <label for="inAddressList" class="col-sm-6 control-label">Für Adressliste</label>
+                  <div class="col-sm-6">              
+                    <input type="checkbox" id="inAddressList" name="inAddressList">
+                  </div>           
+                </div>
+                <!-- inMarketingList -->
+                <div class="form-group form-group-sm">
+                  <label for="inMarketingList" class="col-sm-6 control-label">Für Marketing</label>
+                  <div class="col-sm-6">              
+                    <input type="checkbox" id="inMarketingList" name="inMarketingList">
+                  </div>           
+                </div>
+              </div>
+            </fieldset>
+          </div>
+  
+          <div class="spacer-20"></div>
+          
+          <div class="row">
+            <div class="col-sm-6">
+              <fieldset>
+                <legend>Kontaktdaten</legend>
+                <!-- telephone -->
+                <div class="form-group form-group-sm">
+                  <label for="telephone" class="col-sm-3 control-label">Telefon</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="telephone" name="telephone">
+                  </div>
+                </div>
+                <!-- telefax -->
+                <div class="form-group form-group-sm">
+                  <label for="telefax" class="col-sm-3 control-label">Fax</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="telefax" name="telefax">
+                  </div>
+                </div>
+                <!-- mobil -->
+                <div class="form-group form-group-sm">
+                  <label for="mobil" class="col-sm-3 control-label">Mobil</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="mobil" name="mobil">
+                  </div>
+                </div>
+                <!-- emailPriv -->
+                <div class="form-group form-group-sm">
+                  <label for="emailPriv" class="col-sm-3 control-label">Email Priv.</label>
+                  <div class="col-sm-9">
+                    <input type="email" class="form-control" id="emailPriv" name="emailPriv">
+                  </div>
+                </div>
+                <!-- emailOff -->
+                <div class="form-group form-group-sm">
+                  <label for="emailOff" class="col-sm-3 control-label">Email Büro</label>
+                  <div class="col-sm-9">
+                    <input type="email" class="form-control" id="emailOff" name="emailOff">
+                  </div>
+                </div>
+                <!-- url -->
+                <div class="form-group form-group-sm">
+                  <label for="url" class="col-sm-3 control-label">Website</label>
+                  <div class="col-sm-9">
+                    <input type="url" class="form-control" id="url" name="url">
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset>
+                <legend>Notizen</legend>
+                <!-- notes -->
+                <div class="form-group">
+                  <div class="col-sm-12">              
+                    <textarea rows="3" name="notes" data-schema-key="notes" maxlength="1000" class="form-control"></textarea>
+                  </div>           
+                </div>
+              </fieldset>           
+            </div>
+            
+            <div class="col-sm-6">
+              <fieldset>
+                <legend>Bankdaten</legend>
+                <!-- iban -->
+                <div class="form-group form-group-sm">
+                  <label for="iban" class="col-sm-3 control-label">IBAN</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="iban" name="iban">
+                  </div>
+                </div>
+                <!-- bic -->
+                <div class="form-group form-group-sm">
+                  <label for="bic" class="col-sm-3 control-label">BIC</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="bic" name="bic">
+                  </div>
+                </div>
+                <!-- bank -->
+                <div class="form-group form-group-sm">
+                  <label for="bank" class="col-sm-3 control-label">Geldinstitut</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="bank" name="bank">
+                  </div>
+                </div>
+                <!-- vat -->
+                <div class="form-group form-group-sm">
+                  <label for="vat" class="col-sm-3 control-label">Steuersatz.</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="vat" name="vat">
+                  </div>
+                </div>
+                <!-- vatNo -->
+                <div class="form-group form-group-sm">
+                  <label for="vatNo" class="col-sm-3 control-label">SteuerNr.</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="vatNo" name="vatNo">
+                  </div>
+                </div>
+                <!-- vatBool -->
+                <div class="form-group">
+                  <label for="vatBool" class="col-sm-3 control-label">Steuerpfl.</label>
+                  <div class="col-sm-9">              
+                    <input type="checkbox" id="vatBool" name="vatBool">
+                  </div>           
+                </div>
+              </fieldset>           
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-20"></div>
+      <hr>
+      <div class="spacer-20"></div>
+      <div class="row">
+        <div class="col-sm-12">
+          <fieldset>
+            <!-- buttons -->
+            <div class="control-group">
+              <div class="controls">
+                <input type="submit" value="Kontakt anlegen" class="btn btn-default"/>
+                <input type="reset" value="Abbrechen" class="btn btn-default"/>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </form>
+  </div>
+</template>

@@ -1,0 +1,88 @@
+<template name="adList">  
+  <div class="container acp">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1 class="page-header">Kontaktliste</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        Suche: {{> esInput index="authors" placeholder="Name, Mail" }}
+      </div>
+    </div>  
+    <div class="spacer-20"></div>
+    <div class="row">      
+      <div class="col-sm-12">
+        <table class="table table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Mail</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#ifEsInputIsEmpty index="authors"}}
+              {{> adAllList}}
+            {{/ifEsInputIsEmpty}}
+        
+            {{#esEach index="authors"}}
+              {{> adSearchList}}
+            {{/esEach}}
+            
+            {{> esLoadMoreButton index="authors"}}
+            
+            {{#ifEsHasNoResults index="authors"}}
+                <div class="no-results">No results found!</div>
+            {{/ifEsHasNoResults}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div> 
+</template>
+
+<template name="adAllList">
+  {{#each authors}}
+    <tr>
+      <td>
+        {{#if displayName}}
+          <a href="/acp/ad/show/{{_id}}">{{displayName}}</a>
+          {{#if isCompany}}
+            | {{firstName}} {{lastName}}  
+          {{else}}
+            | {{company}}
+          {{/if}}
+        {{else}}
+          {{#if isCompany}}
+            <a href="/acp/ad/show/{{_id}}">{{company}}</a>  
+          {{else}}
+            <a href="/acp/ad/show/{{_id}}">{{firstName}} {{lastName}}</a>
+          {{/if}}              
+        {{/if}}
+      </td>
+      <td>{{#if emailPriv}}{{emailPriv}}{{else}}{{emailOff}}{{/if}}</td>
+    </tr>
+  {{/each}}
+</template>
+
+<template name="adSearchList">
+  <tr>
+    <td>
+      {{#if displayName}}
+        <a href="/acp/ad/show/{{_id}}">{{displayName}}</a>
+        {{#if isCompany}}
+          | {{firstName}} {{lastName}}  
+        {{else}}
+          | {{company}}
+        {{/if}}
+      {{else}}
+        {{#if isCompany}}
+          <a href="/acp/ad/show/{{_id}}">{{company}}</a>  
+        {{else}}
+          <a href="/acp/ad/show/{{_id}}">{{firstName}} {{lastName}}</a>
+        {{/if}}              
+      {{/if}}
+    </td>
+    <td>{{#if emailPriv}}{{emailPriv}}{{else}}{{emailOff}}{{/if}}</td>
+  </tr>
+</template>
