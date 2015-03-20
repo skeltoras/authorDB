@@ -1,5 +1,7 @@
-//-- template created functions
-Template.authorEdit.created = function(){
+//@since v0.11.1
+
+//-- template onCreated functions
+Template.adEdit.onCreated(function () {
   Session.set('changesContent', '');
   sessionChanges = [];
   $(document).ready(function() {
@@ -8,33 +10,31 @@ Template.authorEdit.created = function(){
       $(this).data("value", theValue);
     });        
   });
-};
+  var self = this;
+  self.autorun(function () {
+    var authorId = Session.get('authorId');
+    self.subscribe('singleAddress', authorId);
+  });  
+});
 
-//-- template destroyed functions
-Template.authorEdit.destroyed = function(){
-};
+//-- template onDestroyed functions
+Template.adEdit.onDestroyed(function () {
+});
 
-//-- template rendered functions
-Template.authorEdit.rendered = function(){
+//-- template onRendered functions
+Template.adEdit.onRendered(function () {
   var boxes = this.findAll('.form-control');
   boxes.forEach(function(box){
     Session.set(box.name, box.value);
   });
-  $("[name='isAutor']").bootstrapSwitch();
-  $("[name='isCompany']").bootstrapSwitch();
-  $("[name='vatBool']").bootstrapSwitch();
-  $("[name='inFeeList']").bootstrapSwitch();
-  $("[name='inLicenseList']").bootstrapSwitch();
-  $("[name='inAddressList']").bootstrapSwitch();
-  $("[name='inMarketingList']").bootstrapSwitch();
-};
+});
 
 //-- template helpers
-Template.authorEdit.helpers({
+Template.adEdit.helpers({
 });
 
 //-- template events
-Template.authorEdit.events({
+Template.adEdit.events({
   // set logdata
   'change .form-control': function(e) {   
     var sessionChangesAdd = [];
@@ -159,11 +159,11 @@ Template.authorEdit.events({
     
     Session.set('changesContent', '');
     
-    Router.go('author.show', {_id: authorId});
+    Router.go('acp.ad.show', {_id: authorId});
   },
   'click #back': function(e) {
     e.preventDefault();
     var authorId = this._id;    
-    Router.go('author.show', {_id: authorId});
+    Router.go('acp.ad.show', {_id: authorId});
   }  
 });

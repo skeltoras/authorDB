@@ -28,6 +28,54 @@ Router.route('/acp/ad/new', function (){
   controller: 'AcpController'
 });
 
+Router.route('/acp/ad/show/:_id', function (){ 
+  this.render('adShow', { 
+    data: function () {
+      Session.set('authorId', this.params._id);
+      return Authors.findOne({_id: this.params._id});
+    },
+    action: function() {
+      if (this.ready())
+        this.render();
+    }
+  });
+}, {
+  name: 'acp.ad.show',
+  controller: 'AcpController'
+});
+
+Router.route('/acp/ad/edit/:_id', function () {
+  this.render('adEdit', {
+    data: function () {
+      Session.set('authorId', this.params._id);
+      return Authors.findOne({_id: this.params._id});
+    },
+    action: function() {
+      if (this.ready())
+        this.render();
+    }
+  });
+},{
+  name: 'acp.ad.edit',
+  controller: 'AcpController'
+});
+
+Router.route('/acp/ad/bill/new/:_id', function (){ 
+  this.render('adBillNew', {
+    data: function () {
+      Session.set('authorId', this.params._id);
+      return Authors.findOne({_id: this.params._id});
+    },
+    action: function() {
+      if (this.ready())
+        this.render();
+    }
+  });
+}, {
+  name: 'acp.ad.bill.new',
+  controller: 'AcpController'
+});
+
 /** Books **/
 Router.route('/acp/bo/list', function (){ 
   this.render('boList');

@@ -3,7 +3,13 @@ Manage bookauthors - meteor.js based webapp
 
 ## Roadmap
 
+### v1.0
+
+## Changelog
+
 ### v0.11
+- v0.11.2 - bugfixing and improvements addressdata
+- v0.11.1 - redesign and restructure 
 - v0.11.0 - redesign and restructure 
 
 ### v0.10
@@ -24,10 +30,7 @@ Manage bookauthors - meteor.js based webapp
 - v0.9.3 - changed billing functions
 - v0.9.2 - additional design fixtures
 - v0.9.1 - design fixtures
-- v0.9.0 - added roles and permission management 
-
-
-## Changelog
+- v0.9.0 - added roles and permission management
 
 ### v0.8
 - v0.8.7 - fixed login/logout, changed login view

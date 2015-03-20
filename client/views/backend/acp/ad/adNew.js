@@ -1,15 +1,15 @@
-//@since v0.11.0
+//@since v0.11.1
 
-//-- template created functions
-Template.adNew.created = function(){
-};
+//-- template onCreated functions
+Template.adNew.onCreated(function () { 
+});
 
-//-- template destroyed functions
-Template.adNew.destroyed = function(){
-};
+//-- template onDestroyed functions
+Template.adNew.onDestroyed(function () {
+});
 
-//-- template rendered functions
-Template.adNew.rendered = function(){
+//-- template onRendered functions
+Template.adNew.onRendered(function () {
   $("[name='isAutor']").bootstrapSwitch();
   $("[name='isCompany']").bootstrapSwitch();
   $("[name='vatBool']").bootstrapSwitch();
@@ -17,7 +17,7 @@ Template.adNew.rendered = function(){
   $("[name='inLicenseList']").bootstrapSwitch();
   $("[name='inAddressList']").bootstrapSwitch();
   $("[name='inMarketingList']").bootstrapSwitch();
-};
+});
 
 //-- template helpers                            
 Template.adNew.helpers({
@@ -106,9 +106,9 @@ Template.adNew.events({
     Meteor.call('newAuthor', author, function(error, result) {
       if (result) {
         var authorId = result;
-        Router.go('author.show', {_id: authorId});
+        Router.go('acp.ad.show', {_id: authorId});
       } else {
-        Router.go('author.list');
+        Router.go('acp.ad.list');
       }      
     });
     

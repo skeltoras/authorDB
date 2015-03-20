@@ -1,14 +1,16 @@
-//-- template created functions
-Template.modalSelectYear.created = function(){
-};
+//@since v0.11.0
 
-//-- template destroyed functions
-Template.modalSelectYear.destroyed = function(){
-};
+//-- template onCreated functions
+Template.modalSelectYear.onCreated(function () { 
+});
 
-//-- template rendered functions
-Template.modalSelectYear.rendered = function(){
-};
+//-- template onDestroyed functions
+Template.modalSelectYear.onDestroyed(function () {
+});
+
+//-- template onRendered functions
+Template.modalSelectYear.onRendered(function () {
+});
 
 //-- template helpers
 Template.modalSelectYear.helpers({ 
@@ -18,18 +20,16 @@ Template.modalSelectYear.helpers({
 Template.modalSelectYear.events({
 // save form on submit
   'submit #formSelectYear': function(e) {
-    e.preventDefault();
-    
+    e.preventDefault();    
     var year = $('#years :selected').text();
     Session.set('billingYear', year);
     var authorId = Session.get('authorId');    
     $('#selectYear').modal('toggle');
-    Router.go('author.billings', {_id: authorId});
+    Router.go('acp.ad.bill.new', {_id: authorId});
   },
   // close form on reset
   'reset #formSelectYear': function(e) {
     e.preventDefault();
-
     $('#selectYear').modal('toggle');
   }
 });

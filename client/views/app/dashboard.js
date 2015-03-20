@@ -1,26 +1,21 @@
-//@since v0.11.0
+//-- template created functions
+Template.dashboard.created = function(){
+};
 
-//-- template onCreated functions
-Template.acpHome.onCreated(function () {
-  var self = this;
-  self.autorun(function () {
-    self.subscribe('countBooks');
-    self.subscribe('countAuthors');
-    self.subscribe('getSales');
-    self.subscribe('getBillings');
-  }); 
+//-- template destroyed functions
+Template.dashboard.destroyed = function(){
+};
+
+//-- template rendered functions
+Template.dashboard.rendered = function(){ 
+};
+
+//-- template helpers
+Template.dashboard.helpers({
 });
 
-//-- template onDestroyed functions
-Template.acpHome.onDestroyed(function () {
-});
-
-//-- template onRendered functions
-Template.acpHome.onRendered(function () {
-});
-
-//-- template helpers                            
-Template.acpHome.helpers({
+//-- template helpers
+Template.dashboardAdmin.helpers({
   //@since 0.9.0
   getBooks: function(){
     return Books.find().count();
@@ -83,5 +78,5 @@ Template.acpHome.helpers({
 });
 
 //-- template events
-Template.acpHome.events({ 
+Template.dashboard.events({
 });

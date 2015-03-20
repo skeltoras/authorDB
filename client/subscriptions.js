@@ -9,11 +9,11 @@
 //@since v0.7.8
 Meteor.subscribe('conditions');
 //@since v0.7.9
-Meteor.subscribe('billings');
+//Meteor.subscribe('billings');
 //@since v0.8.3
 //Meteor.subscribe('entries');
 //@since v0.8.6
-Meteor.subscribe('billingstemp');
+//Meteor.subscribe('billingstemp');
 //@since v0.10.4
 Meteor.subscribe('todos');
 Meteor.subscribe('versions');

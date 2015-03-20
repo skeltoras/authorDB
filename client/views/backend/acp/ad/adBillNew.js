@@ -1,68 +1,81 @@
-//-- template created functions
-Template.authorBillings.created = function(){
-  Session.set('billingNo', false);
-  Session.set('hasBillingData', false);
-  Session.set('getBillingData', false);
+//@since v0.11.0
+
+//-- template onCreated functions
+Template.adBillNew.onCreated(function () {
+  var self = this;
+  var authorId = Session.get('authorId');
+  var year = Number(Session.get('billingYear'));         
+  
+  self.autorun(function () {
+    self.subscribe('checkBillingsExist', authorId, year);
+    self.subscribe('singleAddress', authorId);
+    self.subscribe('getLastBillingsNo');
+    self.subscribe('getBillData');
+    self.subscribe('getBillingBookList', authorId);
+  });
+  
+  Session.set('getSum', false);
+  Session.set('getBillData', false);
   Session.set('setBillingBank', true);
   Session.set('setVatNotice', true);
   Session.set('vatBool', false);
+  Session.set('modalAddBilling', false);
   Session.set('getBillingTextTemp', 'Noch kein Text vorhanden');
-  var authorId = Session.get('authorId');
-  var year = Number(Session.get('billingYear'));
+
   Meteor.call('getSingleBillingData', authorId, year, function(error, result){
-    Session.set('hasBillingData', result);
-    var getBillingData = BillingsTemp.find().fetch();
-    Session.set('getBillingData', getBillingData);     
-  });
-};
+    Session.set('getSum', result);
+    var getBillData = BillingsTemp.find().fetch();
+    Session.set('getBillData', getBillData);     
+  });  
+});
 
-//-- template destroyed functions
-Template.authorBillings.destroyed = function(){
-};
+//-- template onDestroyed functions
+Template.adBillNew.onDestroyed(function () {
+});
 
-//-- template rendered functions
-Template.authorBillings.rendered = function(){ 
-  Session.get('billingNo');
-  Session.get('hasBillingData');
-  Session.get('getBillingData'); 
-  Meteor.call('addBillingId', function(error, result){
-    Session.set('billingNo', result);    
-  });
-};
+//-- template onRendered functions
+Template.adBillNew.onRendered(function () {
+  Session.get('getSum');
+  Session.get('getBillData');
+});
 
 //-- template helpers
-Template.authorBillings.helpers({
+Template.adBillNew.helpers({
   checkBilling: function() {
-    var year = Session.get('billingYear');
-    var authorId = Session.get('authorId');
-    if(Billings.find({authorId: authorId, year: year}).count()>0) {
-      Router.go('author.billing', {_id: authorId, year: year});  
+    if(Counts.get('checkBillingsCount')>0) {
+      authorId = this._id;
+      var year = Session.get('billingYear');
+      Router.go('acp.ad.bill.show', {_id: authorId, year: year});  
     }  
   },
   getYear: function() {
     var year = Session.get('billingYear');
     return year;
   },
-  getAuthorData: function() {
-    var authorId = this._id;    
-    return Authors.findOne({_id: authorId});   
-  },
-  getBillingNo: function() {      
-    var billingNo = Session.get('billingNo');
-    var year = Session.get('billingYear');
-    var base = "000";
-    billingNo = billingNo ? base.substr(0, 3 - Math.ceil(billingNo / 10)) + billingNo : base;
-    billingNo = year + '-' + billingNo;
+  getBillingNo: function() {
+    var billingNo = Billings.findOne().billingNo;
+    //var billingNo = "0000"; // debug
+    var base = "0000";
+    if(billingNo){      
+    } else {
+      billingNo = "0000"; 
+    }
+    //var billingNo = Session.get('billingNo');
+    billingNo = Number(billingNo) + 1;
+    console.log(billingNo);
+    //billingNo = billingNo.toString();   
+    billingNo = billingNo ? base.substr(0, 4 - Math.ceil(billingNo / 10)) + billingNo : base;
+    console.log(billingNo);
     return billingNo;
   },
   getDate: function() {      
     return moment().format('DD.MM.YYYY');
   },
   getBookData: function() {
-    return Session.get('getBillingData'); 
+    return Session.get('getBillData'); 
   },
   getSum: function() {
-    return Session.get('hasBillingData'); 
+    return Session.get('getSum'); 
   },
   getBillingTextTemp: function() {
     return Session.get('getBillingTextTemp');   
@@ -77,9 +90,10 @@ Template.authorBillings.helpers({
   getVat: function() {
     var vatBool = this.vatBool;
     if(vatBool){
-      var sum = Session.get('hasBillingData');
+      var sum = Session.get('getSum');
       var vat = this.vat;
-      var sumFee = sum.sumFee;    
+      var vatVal = this.vat + '%';
+      var sumFee = sum.sumFee;  
       sumFee = sumFee.replace(',','.');
       sumFee = Number(sumFee);      
       vat = vat.replace(',','.');
@@ -94,16 +108,22 @@ Template.authorBillings.helpers({
       }
             
       var sumFeeNew = sumFee * vat;
+      var sumVat = sumFeeNew - sumFee;
       sumFeeNew = sumFeeNew.toFixed(2);
       sumFeeNew = sumFeeNew.toString();
       sumFeeNew = sumFeeNew.replace('.',',');
+      sumVat = sumVat.toFixed(2);
+      sumVat = sumVat.toString();
+      sumVat = sumVat.replace('.',',');
       
       var sumNew = {
         sumUnits: sum.sumUnits,
         sumFee: sum.sumFee,
+        vatVal: vatVal,
+        sumVat: sumVat,
         sumFeeGross: sumFeeNew
       }
-      Session.set('hasBillingData', sumNew);
+      Session.set('getSum', sumNew);
       Session.set('vatBool', true);
       Session.set('setVatNotice', false);
     }
@@ -114,7 +134,7 @@ Template.authorBillings.helpers({
 });
 
 //-- template events
-Template.authorBillings.events({
+Template.adBillNew.events({
   //@since v0.8.5
   'click .addBilling': function(e) {
     e.preventDefault();
@@ -168,7 +188,7 @@ Template.authorBillings.events({
     
     // books
     var billingData = BillingsTemp.find().fetch();
-    var sum = Session.get('hasBillingData');
+    var sum = Session.get('getSum');
     var sumUnits = sum.sumUnits;
     var sumFee = sum.sumFee;
     var sumFeeGross = sum.sumFeeGross;

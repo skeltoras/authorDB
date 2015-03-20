@@ -1,0 +1,251 @@
+<template name="adShow">
+{{#if Template.subscriptionsReady}}   
+  <div class="container acp bo">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="page-header">Kontakt <small>{{displayName}}</small></h1>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <!-- sidebar xs sm -->
+    <div class="row hidden-md hidden-lg">     
+      <div class="col-sm-12">
+        {{> adSidebar}}    
+      </div>  
+    </div>
+    <!-- END sidebar xs sm -->
+    <!-- content xs sm -->
+    <div class="row hidden-md hidden-lg">     
+      <div class="col-xs-12 col-sm-6">
+        <div class="addressData">
+          <h4>Postanschrift</h4>
+          <hr>
+          <p>
+            {{#if isCompany}}
+              {{#if company}}<strong>{{company}}</strong><br>{{/if}}
+              {{#if lastName}}{{#if graduate}}{{graduate}}{{/if}} {{firstName}} {{lastName}}<br>{{/if}}
+            {{else}}
+              {{#if lastName}}<strong>{{#if graduate}}{{graduate}}{{/if}} {{firstName}} {{lastName}}<br></strong>{{/if}}
+              {{#if company}}{{company}}<br>{{/if}}
+            {{/if}}
+            {{#if co}}{{co}}<br>{{/if}}
+            {{#if street}}{{street}}<br>{{/if}}
+            {{#if additional}}{{additional}}<br>{{/if}}
+            {{plz}} {{#if city}}{{city}}<br>{{/if}}
+            {{#if country}}{{country}}{{/if}}         
+          </p>
+        </div> 
+        <div class="spacer-20"></div>    
+        <div class="contactData">
+          <h4>Kontaktdaten</h4>
+          <hr>
+          <p>
+            {{#if telephone}}Tel.: {{telephone}}<br>{{/if}}
+            {{#if telefax}}Fax: {{telefax}}<br>{{/if}}
+            {{#if mobil}}Mobil: {{mobil}}<br>{{/if}}
+            {{#if emailPriv}}<i class="fa fa-envelope"></i> Privat: <a class="email" href="mailto:{{emailPriv}}">{{emailPriv}}</a><br>{{/if}}
+            {{#if emailOff}}<i class="fa fa-envelope"></i> Büro: <a class="email" href="mailto:{{emailOff}}">{{emailOff}}</a><br>{{/if}}
+            {{#if url}}<a class="url" href="{{url}}" target="_blank">{{url}}</a>{{/if}}       
+          </p>
+        </div>
+        <div class="spacer-20"></div>    
+        <div class="billingData">
+          <h4>Zahlungsdaten</h4>
+          <hr>
+          <p>
+            IBAN: {{#if iban}}{{iban}}{{else}}---{{/if}}<br>
+            BIC: {{#if bic}}{{bic}}{{else}}---{{/if}}<br>
+            Bank: {{#if bank}}{{bank}}{{else}}---{{/if}}<br>
+            <hr>
+            Steuernummer: {{#if vatNo}}{{vatNo}}{{else}}---{{/if}}<br>
+            Steuersatz: {{#if vat}}{{vat}} %{{else}}---{{/if}}<br>
+            Steuerpflichtig: {{#if vatBool}}Ja{{else}}Nein{{/if}}<br>
+          </p>
+        </div>
+        <div class="spacer-20"></div>    
+        <div class="notes">
+          <h4>Notizen</h4>
+          <hr>
+          <p>
+            {{notes}}
+          </p>
+        </div> 
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <h4>Zugehörigkeit</h4>
+        <hr>
+        {{#if getAffiliate}}
+          <table class="table table-condensed">
+            <caption>Vertragspartner bei:</caption>
+            <thead>
+              <tr>
+                <th class="col-sm-8">Titel</th>
+                <th class="col-sm-2">Typ</th>
+                <th class="col-sm-2" style="text-align:center">Konditionen</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each getAffiliate}}
+                <tr>
+                  <td><a href="/book/show/{{_id}}">{{bookTitle}}</a></td>
+                  <td>{{bookGroup}}</td>
+                  {{#if hasCondition}}
+                    <td style="text-align:center"><a href="" id="{{_id}}" class="editCondition"><i class="fa fa-pencil-square-o"></i></a></td>
+                  {{else}}
+                    <td style="text-align:center"><a href="" id="{{_id}}" class="addCondition"><i class="fa fa-plus"></i></a></td>
+                  {{/if}}
+                </tr>
+              {{/each}}
+            </tbody>   
+          </table>
+        {{/if}}       
+        {{#if getAuthor}}
+          <table class="table table-condensed">
+            <caption>Autor von:</caption>
+            <thead>
+              <tr>
+                <th class="col-sm-8">Titel</th>
+                <th class="col-sm-2">Typ</th>
+                <th class="col-sm-2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each getAuthor}}
+                <tr>
+                  <td><a href="/book/show/{{_id}}">{{bookTitle}}</a></td>
+                  <td>{{bookGroup}}</td>
+                  <td></td>
+                </tr>
+              {{/each}}
+            </tbody>   
+          </table>
+        {{/if}}  
+      </div>
+    </div>
+    <!-- END content xs sm -->
+
+    <!-- content md lg -->
+    <div class="row hidden-xs hidden-sm">
+      <!-- sidebar -->
+      <div class="col-md-3 col-lg-3">
+        {{> adSidebar}}
+      </div>
+      <!-- content -->
+      <div class="col-md-9 col-lg-9">
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            <div class="addressData">
+              <h4>Postanschrift</h4>
+              <hr>
+              <p>
+                {{#if isCompany}}
+                  {{#if company}}<strong>{{company}}</strong><br>{{/if}}
+                  {{#if lastName}}{{#if graduate}}{{graduate}}{{/if}} {{firstName}} {{lastName}}<br>{{/if}}
+                {{else}}
+                  {{#if lastName}}<strong>{{#if graduate}}{{graduate}}{{/if}} {{firstName}} {{lastName}}<br></strong>{{/if}}
+                  {{#if company}}{{company}}<br>{{/if}}
+                {{/if}}
+                {{#if co}}{{co}}<br>{{/if}}
+                {{#if street}}{{street}}<br>{{/if}}
+                {{#if additional}}{{additional}}<br>{{/if}}
+                {{plz}} {{#if city}}{{city}}<br>{{/if}}
+                {{#if country}}{{country}}{{/if}}         
+              </p>
+            </div> 
+            <div class="spacer-20"></div>    
+            <div class="contactData">
+              <h4>Kontaktdaten</h4>
+              <hr>
+              <p>
+                {{#if telephone}}Tel.: {{telephone}}<br>{{/if}}
+                {{#if telefax}}Fax: {{telefax}}<br>{{/if}}
+                {{#if mobil}}Mobil: {{mobil}}<br>{{/if}}
+                {{#if emailPriv}}<i class="fa fa-envelope"></i> Privat: <a class="email" href="mailto:{{emailPriv}}">{{emailPriv}}</a><br>{{/if}}
+                {{#if emailOff}}<i class="fa fa-envelope"></i> Büro: <a class="email" href="mailto:{{emailOff}}">{{emailOff}}</a><br>{{/if}}
+                {{#if url}}<a class="url" href="{{url}}" target="_blank">{{url}}</a>{{/if}}       
+              </p>
+            </div>
+            <div class="spacer-20"></div>    
+            <div class="billingData">
+              <h4>Zahlungsdaten</h4>
+              <hr>
+              <p>
+                IBAN: {{#if iban}}{{iban}}{{else}}---{{/if}}<br>
+                BIC: {{#if bic}}{{bic}}{{else}}---{{/if}}<br>
+                Bank: {{#if bank}}{{bank}}{{else}}---{{/if}}<br>
+                <hr>
+                Steuernummer: {{#if vatNo}}{{vatNo}}{{else}}---{{/if}}<br>
+                Steuersatz: {{#if vat}}{{vat}} %{{else}}---{{/if}}<br>
+                Steuerpflichtig: {{#if vatBool}}Ja{{else}}Nein{{/if}}<br>
+              </p>
+            </div>
+            <div class="spacer-20"></div>    
+            <div class="notes">
+              <h4>Notizen</h4>
+              <hr>
+              <p>
+                {{notes}}
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <h4>Zugehörigkeit</h4>
+            <hr>
+            {{#if getAffiliate}}
+              <table class="table table-condensed">
+                <caption>Vertragspartner bei:</caption>
+                <thead>
+                  <tr>
+                    <th class="col-sm-8">Titel</th>
+                    <th class="col-sm-2">Typ</th>
+                    <th class="col-sm-2" style="text-align:center">Konditionen</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each getAffiliate}}
+                    <tr>
+                      <td><a href="/acp/bo/show/{{_id}}">{{bookTitle}}</a></td>
+                      <td>{{bookGroup}}</td>
+                      {{#if hasCondition}}
+                        <td style="text-align:center"><a href="" id="{{_id}}" class="editCondition"><i class="fa fa-pencil-square-o"></i></a></td>
+                      {{else}}
+                        <td style="text-align:center"><a href="" id="{{_id}}" class="addCondition"><i class="fa fa-plus"></i></a></td>
+                      {{/if}}
+                    </tr>
+                  {{/each}}
+                </tbody>   
+              </table>
+            {{/if}}       
+            {{#if getAuthor}}
+              <table class="table table-condensed">
+                <caption>Autor von:</caption>
+                <thead>
+                  <tr>
+                    <th class="col-sm-8">Titel</th>
+                    <th class="col-sm-2">Typ</th>
+                    <th class="col-sm-2"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each getAuthor}}
+                    <tr>
+                      <td><a href="/acp/bo/show/{{_id}}">{{bookTitle}}</a></td>
+                      <td>{{bookGroup}}</td>
+                      <td></td>
+                    </tr>
+                  {{/each}}
+                </tbody>   
+              </table>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{> modalSelectYear}}
+  {{> modalAddConditions}}
+  {{> modalEditConditions}}
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>

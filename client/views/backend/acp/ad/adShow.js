@@ -1,17 +1,26 @@
-//-- template created functions
-Template.authorShow.created = function(){
-};
+//@since v0.11.0
 
-//-- template destroyed functions
-Template.authorShow.destroyed = function(){
-};
+//-- template onCreated functions
+Template.adShow.onCreated(function () {
+  var self = this;
+  self.autorun(function () {
+    var authorId = Session.get('authorId');
+    self.subscribe('singleAddress', authorId);
+    self.subscribe('singleAddressAffiliate', authorId);
+    self.subscribe('singleAddressAuthor', authorId);
+  });  
+});
 
-//-- template rendered functions
-Template.authorShow.rendered = function(){
-};
+//-- template onDestroyed functions
+Template.adShow.onDestroyed(function () {
+});
+
+//-- template onRendered functions
+Template.adShow.onRendered(function () {
+});
 
 //-- template helpers
-Template.authorShow.helpers({
+Template.adShow.helpers({
   getAffiliate: function() {
     var authorId = this._id;
     var bookList = Books.find({'affiliateData.authorId': authorId}).fetch();
@@ -37,13 +46,13 @@ Template.authorShow.helpers({
     }  
   },
   getAuthor: function() {
-    var authorName = this.firstName + ' ' + this.lastName;
-    return Books.find({'authorData.authorName': authorName}).fetch();
+    var authorId = this._id;
+    return Books.find({'authorData.authorId': authorId}).fetch();
   }
 });
 
 //-- template events
-Template.authorShow.events({ 
+Template.adShow.events({ 
   'click .addCondition': function(e) {
     e.preventDefault();
     var bookId = e.currentTarget.id;

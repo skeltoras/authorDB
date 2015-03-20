@@ -24,13 +24,13 @@ Template.modalAddBilling.events({
     var authorId = this._id;
     var billingData = [];
     var billing = [];
-    var hasBillingData = Session.get('hasBillingData');
+    var sum = Session.get('getSum');
     var text = $(e.target).find('[name=text]').val();
     var units = $(e.target).find('[name=units]').val();
     var fee = $(e.target).find('[name=fee]').val();
     fee = Number(fee.replace( /,/,"." ));
-    var sumUnits = Number(hasBillingData['sumUnits']) + Number(units);
-    var sumFee = Number(hasBillingData['sumFee'].replace( /,/,"." )) + fee;
+    var sumUnits = Number(sum['sumUnits']) + Number(units);
+    var sumFee = Number(sum['sumFee'].replace( /,/,"." )) + fee;
     fee = fee.toFixed(2);
     fee = fee.toString();
     fee = fee.replace(".", ",");
@@ -51,12 +51,12 @@ Template.modalAddBilling.events({
       fee: fee
     };
     
-    Session.set('hasBillingData', hasBillingData);
+    Session.set('getSum', hasBillingData);
     
     Meteor.call('updateBillings', bookId, billingData, function(error, result) {
       if(result){
         var getBillingData = BillingsTemp.find().fetch();
-        Session.set('getBillingData', getBillingData);
+        Session.set('getBillData', getBillingData);
       }
     });
     
