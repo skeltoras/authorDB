@@ -74,6 +74,7 @@ Template.boNew.events({
       bookHeigh: $(e.target).find('[name=bookHeigh]').val(),
       bookWidth: $(e.target).find('[name=bookWidth]').val(),
       bookWeight: $(e.target).find('[name=bookWeight]').val(),
+      bookImage: $(e.target).find('[name=bookImage]').val(),
       bookNotes: $(e.target).find('[name=bookNotes]').val(),
       changes: changes,
       submitted: new Date().getTime(),

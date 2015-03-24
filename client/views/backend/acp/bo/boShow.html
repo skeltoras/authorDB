@@ -345,6 +345,23 @@
         <div class="row">
           <div class="col-md-6 col-lg-6">
             <table class="table table-condensed">
+              <caption>Buchcover</caption>
+              <thead>
+                <tr>
+                  <th class="col-sm-12"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {{#if bookImage}}<img src="{{bookImage}}" alt="Cover {{bookTitle}}" class="bookImage" />{{/if}}
+                  </td>
+                </tr>
+              </tbody>   
+            </table>
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <table class="table table-condensed">
               <caption>Notizen</caption>
               <thead>
                 <tr>
@@ -355,27 +372,6 @@
                 <tr>
                   <td>
                     <i>{{#if bookNotes}}{{bookNotes}}{{else}}---{{/if}}</i>
-                  </td>
-                </tr>
-              </tbody>   
-            </table>
-          </div>
-          <div class="col-md-6 col-lg-6">
-            <table class="table table-condensed">
-              <caption>Änderungslog</caption>
-              <thead>
-                <tr>
-                  <th class="col-sm-12"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <ul>
-                      {{#each changes}}
-                        <li>{{formatDate date}} - {{{content}}}</li>
-                      {{/each}}
-                    </ul>  
                   </td>
                 </tr>
               </tbody>   

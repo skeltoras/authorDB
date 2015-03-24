@@ -8,6 +8,7 @@ Manage bookauthors - meteor.js based webapp
 ## Changelog
 
 ### v0.11
+- v0.11.6 - added field bookImage and improved bookShow template
 - v0.11.5 - improved authorShow template
 - v0.11.4 - added fields authorImg and authorBio to the author collection
 - v0.11.3 - updated to meteor v1.0.4.2, bugfixing
