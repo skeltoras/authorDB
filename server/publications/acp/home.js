@@ -11,5 +11,5 @@ Meteor.publish('getSales', function() {
 });
 
 Meteor.publish('getBillings', function() {
-  return Billings.find().count();
+  return Billings.find();
 });

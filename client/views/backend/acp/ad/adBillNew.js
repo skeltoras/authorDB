@@ -4,7 +4,7 @@
 Template.adBillNew.onCreated(function () {
   var self = this;
   var authorId = Session.get('authorId');
-  var year = Number(Session.get('billingYear'));         
+  var year = Session.get('billingYear');         
   
   self.autorun(function () {
     self.subscribe('checkBillingsExist', authorId, year);
@@ -22,6 +22,7 @@ Template.adBillNew.onCreated(function () {
   Session.set('modalAddBilling', false);
   Session.set('getBillingTextTemp', 'Noch kein Text vorhanden');
 
+  year = Number(year);
   Meteor.call('getSingleBillingData', authorId, year, function(error, result){
     Session.set('getSum', result);
     var getBillData = BillingsTemp.find().fetch();
@@ -42,6 +43,7 @@ Template.adBillNew.onRendered(function () {
 //-- template helpers
 Template.adBillNew.helpers({
   checkBilling: function() {
+    console.log(Counts.get('checkBillingsCount')); //debug
     if(Counts.get('checkBillingsCount')>0) {
       authorId = this._id;
       var year = Session.get('billingYear');
@@ -53,19 +55,16 @@ Template.adBillNew.helpers({
     return year;
   },
   getBillingNo: function() {
-    var billingNo = Billings.findOne().billingNo;
-    //var billingNo = "0000"; // debug
+    var billingNo = Billings.findOne({});
     var base = "0000";
-    if(billingNo){      
+    if(billingNo){ 
+      billingNo = billingNo.billingNo;     
     } else {
       billingNo = "0000"; 
     }
-    //var billingNo = Session.get('billingNo');
     billingNo = Number(billingNo) + 1;
-    console.log(billingNo);
-    //billingNo = billingNo.toString();   
     billingNo = billingNo ? base.substr(0, 4 - Math.ceil(billingNo / 10)) + billingNo : base;
-    console.log(billingNo);
+    Session.set('billingNo', billingNo);
     return billingNo;
   },
   getDate: function() {      
@@ -163,46 +162,55 @@ Template.adBillNew.events({
     var vatNotice = '';
     var billing = [];
     var year = Session.get('billingYear');
-    
     // address
     var author = tpl.data;
     
+    
     var authorId = author._id;
     addressData = {
-      name: author.firstName + ' ' + author.lastName,
+      isCompany: author.isCompany,
+      graduate: author.graduate,
+      firstName: author.firstName,
+      lastName: author.lastName,
       company: author.company,
       co: author.co,
       street: author.street,
       additional: author.additional,
       city: author.plz + ' ' + author.city,
-      country: author.country 
+      country: author.country,
+       
+    }     
+    var salutation = 'Sehr geehrte Damen und Herren';
+    if(author.salutation){
+      salutation = author.salutation;
     }
-    var salutation = author.salutation; 
     
     // date / No 
     var billingNo = Session.get('billingNo');    
-    var base = "000";
-    billingNo = billingNo ? base.substr(0, 3 - Math.ceil(billingNo / 10)) + billingNo : base;
-    billingNo = year + '-' + billingNo;
     var billingDate = moment().format('DD.MM.YYYY');
     
     // books
     var billingData = BillingsTemp.find().fetch();
     var sum = Session.get('getSum');
+    
     var sumUnits = sum.sumUnits;
     var sumFee = sum.sumFee;
+    var vatVal = sum.vatVal;
+    var sumVat = sum.sumVat;
     var sumFeeGross = sum.sumFeeGross;
-    
+
     // payment terms 
     var vatBool = author.vatBool;
     var vatNo = author.vatNo;
-    if(vatBool) {
+    if(vatBool && vatNo) {
       vatInfo = 'Da Sie umsatzsteuerpflichtig sind, weisen wir den Betrag inklusive USt. aus.<br> Ihre Steuernummer: <strong>' + vatNo + '</strong>';
+    } else if(vatBool) {
+      vatInfo = 'Da Sie umsatzsteuerpflichtig sind, weisen wir den Betrag inklusive USt. aus.';
     }
     
     if($(e.target).find('[name=bankTransfer]').is(':checked')) {
       if(author.iban){
-        bankTransferText = '[x] Wir überweisen die oben genannte Summe auf:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IBAN: <strong>' + author.iban + '</strong> / BIC: <strong>' + author.bic + '</strong> / Bank: <strong>' + author.bank + '</strong>';
+        bankTransferText = 'Wir überweisen die oben genannte Summe auf:<br>IBAN: <strong>' + author.iban + '</strong> / BIC: <strong>' + author.bic + '</strong> / Bank: <strong>' + author.bank + '</strong>';
       } else{
         bankTransferText = 'Bitte teilen Sie uns Ihre Bankverbindung für die Überweisung mit:<br>Info3 Verlag, Autorenverwaltung, Simon Knipping<br>simon.knipping@info3.de, Fax: 069-58 46 16, Postadresse: Kirchgartenstr. 1, 60439 Frankfurt.';
       }        
@@ -213,7 +221,7 @@ Template.adBillNew.events({
 
     // vat notice
     if($(e.target).find('[name=vatNotice]').is(':checked')) {
-      vatNotice = 'Falls Sie umsatzsteuerpflichtig sind, teilen Sie uns bitte ihre Steuernummer und den MwSt.-Satz mit, dann können wir die Steuer berücksichtigen.';   
+      vatNotice = 'Falls Sie umsatzsteuerpflichtig sind, teilen Sie uns bitte ihre Steuernummer und den Steuersatz mit,<br> dann können wir die Steuer bei der nächsten Abrechnung berücksichtigen.';   
     }
     
     billing = {
@@ -231,13 +239,16 @@ Template.adBillNew.events({
       bankTransferText: bankTransferText,
       billingText: billingText,
       vatNotice: vatNotice,
-      year: year
+      year: year,
+      submitted: new Date().getTime()
     }
 
     Meteor.call('saveBilling', billing, function(error, result) {     
       console.log('result:');
       console.log(result);
     });
+    
+    Router.go('acp.ad.bill.show', {_id: authorId, year: year});
   },
   'change #addBillingText': function(e) {
     var text = e.currentTarget.value;

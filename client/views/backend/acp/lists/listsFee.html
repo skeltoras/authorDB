@@ -1,0 +1,46 @@
+<template name="listsFee">
+{{#if Template.subscriptionsReady}}
+  <div class="container acp lists">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="page-header">Honorarliste <small>({{billingsCount}})</small></h1>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">      
+      <div class="col-sm-12">
+        <table class="table table-hover table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>BelegNr.</th>
+              <th class="text-right">Nettohonorar</th>
+              <th class="text-right">Gesamthonorar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each billings}}
+              <tr>
+                {{#with addressData}}
+                  <td>{{firstName}} {{lastName}}</td>
+                {{/with}}
+                <td>{{year}}-{{billingNo}}</td>                
+                <td class="text-right">{{#if sumFeeGross}}{{sumFee}} €{{else}}---{{/if}}</td>
+                <td class="text-right">{{#if sumFeeGross}}{{sumFeeGross}}{{else}}{{sumFee}}{{/if}} €</td>
+              </tr>
+            {{/each}}
+              <tr class="active">
+                <td><strong>Summe</strong></td>
+                <td></td>
+                <td class="text-right">{{billingsSumNet}} €</td>
+                <td class="text-right"><strong>{{billingsSum}} €</strong></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div> 
+{{else}}
+  {{> loading}}
+{{/if}}  
+</template>

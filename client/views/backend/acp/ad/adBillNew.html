@@ -73,9 +73,13 @@
       <div class="row">
         <div class="col-sm-5">{{bookTitle}} ({{bookGroup}}) <br> {{bookISBN}}</div>
         {{#each billingsData}}
-          <div class="col-sm-2 pull-right text-right">{{fee}} €</div>
-          <div class="col-sm-2 pull-right text-right">{{units}} Ex.</div>
-          <div class="col-sm-3 pull-right"><small><i>{{text}}</i></small></div>
+          <div class="col-sm-7 pull-right">
+            <div class="row">
+              <div class="col-sm-3 pull-right text-right">{{fee}} €</div>
+              <div class="col-sm-3 pull-right text-right">{{units}} Ex.</div>
+              <div class="col-sm-6 pull-right"><small><i>{{text}}</i></small></div>
+            </div>
+          </div>
         {{/each}}    
       </div>
       <hr class="tablemid">
@@ -107,7 +111,7 @@
         <div class="row">      
           <div class="col-sm-5"><strong>Summe Honorar</strong></div>    
           <div class="col-sm-2 pull-right text-right"><strong>{{sumFee}} €</strong></div>
-          <div class="col-sm-2 pull-right text-right"><strong>{{sumUnits}} Ex.</strong></div>
+          <div class="col-sm-2 pull-right text-right">{{sumUnits}} Ex.</div>
           <div class="col-sm-3 pull-right"></div>
         </div>  
       {{/if}}   
@@ -125,7 +129,7 @@
       <div class="row">
         <div class="col-sm-12">
           <p style="color:rgba(119,119,119,1)">Zusatztext</p>
-          <i>{{getBillingTextTemp}}</i>   
+          <i>{{{getBillingTextTemp}}}</i>   
         </div>
       </div>
       <div class="spacer-20"></div>

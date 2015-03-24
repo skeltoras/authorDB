@@ -76,6 +76,23 @@ Router.route('/acp/ad/bill/new/:_id', function (){
   controller: 'AcpController'
 });
 
+Router.route('/acp/ad/bill/show/:_id/:year', function (){ 
+  this.render('adBillShow', {
+    data: function () {
+      Session.set('authorId', this.params._id);
+      Session.set('billingYear', this.params.year);
+      return Billings.findOne({authorId: this.params._id, year: this.params.year})
+    },
+    action: function() {
+      if (this.ready())
+        this.render();
+    }
+  });
+}, {
+  name: 'acp.ad.bill.show',
+  controller: 'AcpController'
+});
+
 /** Books **/
 Router.route('/acp/bo/list', function (){ 
   this.render('boList');
@@ -152,6 +169,14 @@ Router.route('/acp/bo/sales/:_id', function () {
   });
 },{
   name: 'acp.bo.sales',
+  controller: 'AcpController'
+});
+
+/** Lists **/
+Router.route('/acp/lists/fee', function (){ 
+  this.render('listsFee');
+}, {
+  name: 'acp.lists.fee',
   controller: 'AcpController'
 });
 

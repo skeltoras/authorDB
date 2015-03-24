@@ -19,7 +19,7 @@ Meteor.publish('checkBillingsExist', function(authorId, year) {
 });
 
 Meteor.publish('getLastBillingsNo', function() {
-  return Billings.find({}, {sort: {submitted: -1}, limit: 1, fields: {billingNo: 1}});
+  return Billings.find({}, {sort: {submitted: -1}, limit: 1, fields: {billingNo: 1, submitted: 1}});
 });
 
 Meteor.publish('getBillData', function() {
@@ -30,4 +30,6 @@ Meteor.publish('getBillingBookList', function(authorId) {
   return Books.find({'affiliateData.authorId': authorId});
 });
 
-
+Meteor.publish('singleBilling', function(authorId, year) {
+  return Billings.find({authorId: authorId, year: year});
+});
