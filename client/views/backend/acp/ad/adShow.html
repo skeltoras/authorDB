@@ -17,6 +17,20 @@
     <!-- content xs sm -->
     <div class="row hidden-md hidden-lg">     
       <div class="col-xs-12 col-sm-6">
+        <div class="basicData">
+          <h4>Grunddaten</h4>
+          {{#if authorImage}}
+            <div class="row">           
+              <div class="col-sm-4">
+                <img src="{{authorImage}}" alt="Autorenbild {{firstName}} {{lastName}}" />
+              </div>
+              <div class="col-sm-6">
+              </div>
+            </div>
+          {{else}}
+            
+          {{/if}}
+        </div>         
         <div class="addressData">
           <h4>Postanschrift</h4>
           <hr>
@@ -134,15 +148,32 @@
       <div class="col-md-9 col-lg-9">
         <div class="row">
           <div class="col-md-6 col-lg-6">
-            <div class="addressData">
-              <h4>Postanschrift</h4>
-              <hr>
+            <div class="basicData">
+              <h3>Grunddaten</h3>
+              {{#if authorImage}}
+                <div class="row">           
+                  <div class="col-sm-4">
+                    <img src="{{authorImage}}" alt="Autorenbild {{firstName}} {{lastName}}" class="authorImage"/>
+                  </div>
+                  <div class="col-sm-6">
+                    {{title}} {{graduate}} {{firstName}} {{lastName}}<br>
+                    {{#if salutation}}<br>Briefanrede:<br> {{salutation}}{{/if}}  
+                  </div>
+                </div>
+              {{else}}
+                <strong>{{title}} {{graduate}} {{firstName}} {{lastName}}</strong><br>
+                {{#if salutation}}<br>Briefanrede:<br> {{salutation}}{{/if}}   
+              {{/if}}
+            </div>
+            <hr>
+            <div class="addressData"> 
+              <h3>Postanschrift</h3>
               <p>
                 {{#if isCompany}}
-                  {{#if company}}<strong>{{company}}</strong><br>{{/if}}
+                  {{#if company}}{{company}}<br>{{/if}}
                   {{#if lastName}}{{#if graduate}}{{graduate}}{{/if}} {{firstName}} {{lastName}}<br>{{/if}}
                 {{else}}
-                  {{#if lastName}}<strong>{{#if graduate}}{{graduate}}{{/if}} {{firstName}} {{lastName}}<br></strong>{{/if}}
+                  {{#if lastName}}{{#if graduate}}{{graduate}}{{/if}} {{firstName}} {{lastName}}<br>{{/if}}
                   {{#if company}}{{company}}<br>{{/if}}
                 {{/if}}
                 {{#if co}}{{co}}<br>{{/if}}
@@ -152,10 +183,9 @@
                 {{#if country}}{{country}}{{/if}}         
               </p>
             </div> 
-            <div class="spacer-20"></div>    
+            <hr>   
             <div class="contactData">
-              <h4>Kontaktdaten</h4>
-              <hr>
+              <h3>Kontaktdaten</h3>
               <p>
                 {{#if telephone}}Tel.: {{telephone}}<br>{{/if}}
                 {{#if telefax}}Fax: {{telefax}}<br>{{/if}}
@@ -165,24 +195,31 @@
                 {{#if url}}<a class="url" href="{{url}}" target="_blank">{{url}}</a>{{/if}}       
               </p>
             </div>
-            <div class="spacer-20"></div>    
+            <hr>   
             <div class="billingData">
-              <h4>Zahlungsdaten</h4>
-              <hr>
+              <h3>Zahlungsdaten</h3>
               <p>
                 IBAN: {{#if iban}}{{iban}}{{else}}---{{/if}}<br>
                 BIC: {{#if bic}}{{bic}}{{else}}---{{/if}}<br>
                 Bank: {{#if bank}}{{bank}}{{else}}---{{/if}}<br>
-                <hr>
+                <br>
                 Steuernummer: {{#if vatNo}}{{vatNo}}{{else}}---{{/if}}<br>
                 Steuersatz: {{#if vat}}{{vat}} %{{else}}---{{/if}}<br>
                 Steuerpflichtig: {{#if vatBool}}Ja{{else}}Nein{{/if}}<br>
               </p>
             </div>
-            <div class="spacer-20"></div>    
-            <div class="notes">
-              <h4>Notizen</h4>
+            {{#if authorBio}}
               <hr>
+              <div class="bio">
+                <h3>Autoren-Bio</h3>
+                <p>
+                  {{authorBio}}
+                </p>
+              </div>
+            {{/if}}
+            <hr>    
+            <div class="notes">
+              <h3>Notizen</h3>
               <p>
                 {{notes}}
               </p>
