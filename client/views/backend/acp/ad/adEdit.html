@@ -272,15 +272,6 @@
                   </div>
                 </div>
               </fieldset>
-              <fieldset>
-                <legend>Notizen</legend>
-                <!-- notes -->
-                <div class="form-group">
-                  <div class="col-sm-12">              
-                    <textarea rows="3" name="notes" data-schema-key="notes" maxlength="1000" class="form-control">{{notes}}</textarea>
-                  </div>           
-                </div>
-              </fieldset>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
               <fieldset>
@@ -329,6 +320,41 @@
                     {{else}}
                       <input type="checkbox" id="vatBool" name="vatBool">
                     {{/if}}            
+                  </div>           
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="spacer-20"></div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <fieldset>
+                <legend>Weitere Daten</legend>
+                <!-- authorImage -->
+                <div class="form-group form-group-sm">
+                  <label for="authorImage" class="col-sm-3 control-label">Autorenbild</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="authorImage" name="authorImage" value="{{authorImage}}" placeholder="Link zum Bild">
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset>
+                <!-- authorBio -->
+                <div class="form-group">
+                  <label for="authorBio" class="col-sm-3 control-label">Autorenbio</label>
+                  <div class="col-sm-9">              
+                    <textarea rows="3" name="authorBio" data-schema-key="authorBio" maxlength="1000" class="form-control">{{authorBio}}</textarea>
+                  </div>           
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <fieldset>
+                <legend>Notizen</legend>
+                <!-- notes -->
+                <div class="form-group">
+                  <div class="col-sm-12">              
+                    <textarea rows="3" name="notes" data-schema-key="notes" maxlength="1000" class="form-control">{{notes}}</textarea>
                   </div>           
                 </div>
               </fieldset>

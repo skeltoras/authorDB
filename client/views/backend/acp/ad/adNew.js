@@ -97,6 +97,8 @@ Template.adNew.events({
       vatBool: vatBool,
       vat: $(e.target).find('[name=vat]').val(),
       vatNo: $(e.target).find('[name=vatNo]').val(),
+      authorImage: $(e.target).find('[name=authorImage]').val(),
+      authorBio: $(e.target).find('[name=authorBio]').val(),
       notes: $(e.target).find('[name=notes]').val(),
       changes: changes,
       submitted: new Date().getTime(),
