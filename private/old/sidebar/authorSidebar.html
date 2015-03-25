@@ -1,0 +1,42 @@
+<template name="authorSidebar">
+  <ul class="nav nav-sidebar">
+    <li><a href="" class="showAuthor"><i class="fa fa-arrow-right"></i> Kontakt anschauen</a></li> 
+    <li><a href="" class="editAuthor"><i class="fa fa-arrow-right"></i> Kontakt bearbeiten</a></li>
+    <li><a href="" class="billAuthor"><i class="fa fa-arrow-right"></i> Kontakt abrechnen</a></li>
+    <hr>
+    <li><a href="" class="changelogAuthor"><i class="fa fa-arrow-right"></i> Bearbeitungslog anschauen</a></li>
+    <li><a href="" class="deleteAuthor"><i class="fa fa-arrow-right"></i> Kontakt löschen</a></li>
+  </ul>
+  {{> modalConfirmDelete}}
+</template>
+
+<template name="modalConfirmDelete">
+  <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="modalConfirmDelete" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Wirklich löschen?</h4>  
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <form class="form-horizontal" id="formConfirmDelete" role="form">
+                <fieldset>
+                  <!-- buttons -->
+                  <div class="control-group">
+                    <div class="controls">
+                      <input type="submit" id="yes" name="yes" value="Ja" class="btn btn-danger"/>
+                      <input type="reset" value="Nein" class="btn btn-default pull-right"/>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</template>

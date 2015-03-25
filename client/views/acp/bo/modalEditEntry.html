@@ -1,0 +1,61 @@
+<template name="modalEditEntry">
+  <div class="modal fade" id="editEntry" tabindex="-1" role="dialog" aria-labelledby="modalEditEntry" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Buchung bearbeiten</h4>  
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <form class="form-horizontal" id="formEditEntry" role="form">
+                {{#with getEntryData}}
+                <fieldset>
+                  <!-- entryText -->
+                  <div class="form-group form-group-sm">
+                    <label for="entryText" class="col-sm-3 control-label">Text</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="entryText" name="entryText" value="{{entryText}}">
+                    </div>
+                  </div>
+                  <!-- entryNum -->
+                  <div class="form-group form-group-sm">
+                    <label for="entryNum" class="col-sm-3 control-label">Belegnr</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="entryNum" name="entryText" value="{{entryNum}}">
+                    </div>
+                  </div>
+                  <!-- entryVal -->
+                  <div class="form-group form-group-sm">
+                    <label for="entryVal" class="col-sm-3 control-label">Betrag</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="entryVal" name="entryVal" value="{{entryVal}}">
+                    </div>
+                  </div>
+                  <!-- entryYear -->
+                  <div class="form-group form-group-sm">
+                    <label for="entryYear" class="col-sm-3 control-label">Jahr</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="entryYear" name="entryYear" value="{{entryYear}}">
+                    </div>
+                  </div>
+                </fieldset>
+                {{/with}}                  
+                <fieldset>
+                  <!-- buttons -->
+                  <div class="control-group">
+                    <div class="controls">
+                      <input type="submit" id="editEntry" name="editEntry" value="Ändern" class="btn btn-default"/>
+                      <input type="reset" value="Abbrechen" class="btn btn-default"/>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,39 @@
+<template name="salesShow">  
+  <h1 class="page-header">Verkaufsstatistik</h1>
+  <div class="row">
+    <h2>{{bookTitle}}</h2>
+    {{#each salesPerYear}}
+    <div class="col-sm-12">
+      <table class="table table-condensed table-hover">
+        <caption>{{year}}</caption>
+        <thead>
+          <tr>
+            <th class="col-sm-3">Monat</th>
+            <th class="col-sm-3">Absatz</th>
+            <th class="col-sm-3">Umsatz real</th>
+            <th class="col-sm-3">Umsatz nach Ladenpreis</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each values}}
+            <tr>
+              <td>{{formatMonth month}}</td>
+              <td>{{units}} Ex.</td>
+              <td>{{formatCurrency volumesNet}} €</td>
+              <td>{{formatCurrency volumes}} €</td>
+            </tr>          
+          {{/each}}
+          {{#each sum}}
+            <tr class="active">
+              <td>Summe</td>
+              <td>{{units}} Ex.</td>
+              <td>{{formatCurrency volumesNet}} €</td>
+              <td>{{formatCurrency volumes}} €</td>
+            </tr>
+          {{/each}} 
+        </tbody>   
+      </table>
+    </div>
+    {{/each}}
+  </div>
+</template>

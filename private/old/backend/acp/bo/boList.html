@@ -1,0 +1,68 @@
+<template name="boList">
+{{#if Template.subscriptionsReady}}  
+  <div class="container acp bo">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="page-header">Titel-Liste</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        Suche: {{> esInput index="books" placeholder="Titel / ISBN / ArtNr" }}
+      </div>
+    </div>  
+    <div class="spacer-20"></div>
+    <div class="row">      
+      <div class="col-sm-12">
+        <table class="table table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Titel</th>       
+              <th>Art.Nr.</th>        
+              <th>ISBN</th>
+              <th>Art</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#ifEsInputIsEmpty index="books"}}
+              {{> boAllList}}
+            {{/ifEsInputIsEmpty}}
+        
+            {{#esEach index="books"}}
+              {{> boSearchList}}
+            {{/esEach}}
+            
+            {{> esLoadMoreButton index="books"}}
+            
+            {{#ifEsHasNoResults index="books"}}
+                <div class="no-results">No results found!</div>
+            {{/ifEsHasNoResults}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>
+
+<template name="boAllList">
+  {{#each books}}
+    <tr>
+      <td><a href="/acp/bo/show/{{_id}}">{{bookTitle}}</a></td>                   
+      <td>{{bookArtNrI3}}</td>
+      <td>{{bookISBN}}</td>
+      <td>{{bookGroup}}</td>
+    </tr>
+  {{/each}}
+</template>
+
+<template name="boSearchList">
+  <tr>
+    <td><a href="/acp/bo/show/{{_id}}">{{bookTitle}}</a></td>
+    <td>{{bookArtNrI3}}</td>
+    <td>{{bookISBN}}</td>
+    <td>{{bookGroup}}</td>
+  </tr>
+</template>

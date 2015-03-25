@@ -1,0 +1,57 @@
+<template name="dashboard">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Willkommen {{#with currentUser}}{{#with profile}}<small>{{first_name}} {{last_name}}</small>{{/with}}{{/with}}</h1>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      {{#if currentUser}}
+        {{#if isInRole 'admin'}}
+          <div class="col-sm-4">
+            <a href="/acp">
+              <div class="dashboardBox">
+                <h2>ACP</h2>
+              </div>
+            </a>
+          </div>
+        {{/if}}
+        {{#if isInRole 'i3book'}}
+          <div class="col-sm-4">
+            <a href="/">
+              <div class="dashboardBox">
+                <h2>Autorenabrechnung Buchbereich</h2>
+              </div>
+            </a>
+          </div>          
+        {{/if}}
+        {{#if isInRole 'i3magazin'}}
+          <div class="col-sm-4">
+            <a href="/">
+              <div class="dashboardBox">
+                <h2>Autorenabrechnung Magazinbereich</h2>
+              </div>
+            </a>
+          </div>          
+        {{/if}}
+        {{#if isInRole 'authorbook'}}
+          <div class="col-sm-4">
+            <a href="/">
+              <div class="dashboardBox">
+                <h2>Meine Bücher</h2>
+              </div>
+            </a>
+          </div>          
+        {{/if}}
+        {{#if isInRole 'authormagazin'}}
+          <div class="col-sm-4">
+            <a href="/">
+              <div class="dashboardBox">
+                <h2>Meine Artikel</h2>
+              </div>
+            </a>
+          </div>        
+        {{/if}}
+      {{/if}}
+    </div>
+</template>    

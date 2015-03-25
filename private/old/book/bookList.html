@@ -1,0 +1,54 @@
+<template name="bookList">
+  {{> searchBooks}}  
+</template>
+
+<template name="searchBooks">  
+  <h1 class="page-header">Buchliste</h1>
+  Suche: {{> esInput index="books" placeholder="Titel / ISBN / ArtNr" }}
+  <div class="spacer-20"></div>
+  <table class="table table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Titel</th>       
+        <th>Art.Nr.</th>        
+        <th>ISBN</th>
+        <th>Art</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#ifEsInputIsEmpty index="books"}}
+        {{> booksAllList}}
+      {{/ifEsInputIsEmpty}}
+  
+      {{#esEach index="books"}}
+        {{> booksSearchList}}
+      {{/esEach}}
+      
+      {{> esLoadMoreButton index="books"}}
+      
+      {{#ifEsHasNoResults index="books"}}
+          <div class="no-results">No results found!</div>
+      {{/ifEsHasNoResults}}
+    </tbody>
+  </table>
+</template>
+
+<template name="booksAllList">
+      {{#each books}}
+        <tr>
+          <td><a href="/book/show/{{_id}}">{{bookTitle}}</a></td>                   
+          <td>{{bookArtNrI3}}</td>
+          <td>{{bookISBN}}</td>
+          <td>{{bookGroup}}</td>
+        </tr>
+      {{/each}}
+</template>
+
+<template name="booksSearchList">
+      <tr>
+        <td><a href="/book/show/{{_id}}">{{bookTitle}}</a></td>
+        <td>{{bookArtNrI3}}</td>
+        <td>{{bookISBN}}</td>
+        <td>{{bookGroup}}</td>
+      </tr>
+</template>

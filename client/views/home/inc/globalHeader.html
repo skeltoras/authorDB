@@ -1,0 +1,62 @@
+<template name="globalHeader">
+  <!-- header -->
+  <div class="header global">
+    <div class="container">
+      <div class="dashboardLogo"><a href="/" alt="Startseite Datenbank Autoren Info3"><img src="/img/i3_points.png"> Datenbank Autoren Info3</a> <a href="/logout" class="btn logout pull-right"><i class="fa fa-sign-out"></i> Ausloggen</a></div>
+    </div>  
+  </div>   
+</template>
+
+
+<template name="globalHeaderOld">
+  <!-- header -->
+  <div class="header global">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="siteLogo"><a href="/" alt="Startseite authorDB"><h1>Datenbank Autoren Info3</h1></a></div>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <div class="topnav">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <nav class="navbar" role="navigation">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                  {{#if isInRole 'admin'}}
+                    <li><a href="/acp"> ACP</a></li>
+                  {{/if}}
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> #<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">             
+                      <li><a href="/">#</a></li>                               
+                    </ul>
+                  </li>                 
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  {{#if currentUser}}
+                    <li><a href="/logout">Ausloggen</a></li>  
+                  {{/if}}        
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>    
+</template>

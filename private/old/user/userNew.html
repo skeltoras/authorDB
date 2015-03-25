@@ -1,0 +1,71 @@
+<template name="userNew">
+  <h1 class="page-header">Neuer Benutzer</h1>  
+  <div class="row">
+    <div class="col-sm-12">
+      <form class="form-horizontal" role="form">
+        <div class="row">
+          <div class="col-sm-6">          
+            <fieldset>
+              <legend>Benutzerdaten</legend>
+              <!-- login-username -->              
+              <div class="form-group form-group-sm">
+                <label for="login-username" class="col-sm-3 control-label">Username</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="email" name="login-username" id="login-username" placeholder="">
+                </div>               
+              </div>
+              <!-- login-email -->
+              <div class="form-group form-group-sm">
+                <label for="login-email" class="col-sm-3 control-label">Emailadresse</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="email" name="login-email" id="login-email" placeholder="">
+                </div>               
+              </div>
+              <!-- login-password -->
+              <div class="form-group form-group-sm">
+                <label for="login-password" class="col-sm-3 control-label">Passwort</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="password" name="login-password" id="login-password" placeholder="">
+                </div>                
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Profilinformationen</legend>
+              <!-- first_name -->              
+              <div class="form-group form-group-sm">
+                <label for="first_name" class="col-sm-3 control-label">Vorname(n)</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="email" name="first_name" id="first_name" placeholder="">
+                </div>               
+              </div>
+              <!-- last_name -->
+              <div class="form-group form-group-sm">
+                <label for="last_name" class="col-sm-3 control-label">Nachname</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="email" name="last_name" id="last_name" placeholder="">
+                </div>               
+              </div>
+              <!-- rolesList -->
+              <div class="form-group form-group-sm">
+                <label for="rolesList" class="col-sm-3 control-label">Rolle</label>
+                <div class="col-sm-9">
+                  {{> listRoles}}
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>        
+        <div class="spacer-20"></div>
+        <div class="row">
+          <!-- buttons -->
+          <div class="control-group">
+            <div class="controls">
+              <input type="submit" value="Benutzer anlegen" class="btn btn-default"/>
+              <input type="reset" value="Abbrechen" class="btn btn-default"/>
+            </div>
+          </div>
+        </div>       
+      </form>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,58 @@
+<template name="modalEditionEdit">
+  <div class="modal fade" id="editionEdit" tabindex="-1" role="dialog" aria-labelledby="modalEditionEdit" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal-sm">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="exampleModalLabel">Neue Auflage</h4>  
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <form class="form-horizontal" role="form">
+                <fieldset>
+                  <!-- editionNr -->
+                  <div class="form-group form-group-sm">
+                    <label for="editionNr" class="col-sm-4 control-label">Nr.</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" id="editionNr" name="editionNr" value="{{editionNr}}">
+                    </div>
+                  </div>
+                  <!-- editionText -->
+                  <div class="form-group form-group-sm">
+                    <label for="editionText" class="col-sm-4 control-label">Text</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" id="editionText" name="editionText" value="{{editionText}}">
+                    </div>
+                  </div>
+                  <!-- editionCount -->
+                  <div class="form-group form-group-sm">
+                    <label for="editionCount" class="col-sm-4 control-label">Aufl.Höhe</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" id="editionCount" name="editionCount" value="{{editionCount}}">
+                    </div>
+                  </div>
+                  <!-- releaseDate -->
+                  <div class="form-group form-group-sm">
+                    <label for="editionText" class="col-sm-4 control-label">Ersch.Datum</label>
+                    <div class="col-sm-8">
+                      <input type="date" class="form-control" id="releaseDate" name="releaseDate" value="{{releaseDate}}">
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <!-- buttons -->
+                  <div class="control-group">
+                    <div class="controls">
+                      <input type="submit" name="submit" value="Hinzufügen" class="btn btn-default"/>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

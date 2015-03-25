@@ -1,0 +1,33 @@
+<template name="modalSelectYear">
+  <div class="modal fade" id="selectYear" tabindex="-1" role="dialog" aria-labelledby="modalSelectYear" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Welches Jahr soll abgerechnet werden?</h4>  
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <form class="form-horizontal" id="formSelectYear" role="form">
+                <fieldset>
+                  {{> listYears}}
+                </fieldset>
+                <div class="spacer-20"></div>
+                <fieldset>
+                  <!-- buttons -->
+                  <div class="control-group">
+                    <div class="controls">
+                      <input type="submit" id="setYear" name="setYear" value="Auswählen" class="btn btn-default"/>
+                      <input type="reset" value="Abbrechen" class="btn btn-default"/>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

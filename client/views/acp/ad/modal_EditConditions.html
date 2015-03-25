@@ -1,0 +1,169 @@
+<template name="modalEditConditions">
+  <div class="modal fade" id="editConditions" tabindex="-1" role="dialog" aria-labelledby="modalEditConditions" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Konditionen bearbeiten</h4>  
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <form class="form-horizontal" id="formEditConditions" role="form">                
+                {{#with getConditionData}}
+                  <fieldset>
+                    <legend>Konditionen</legend>                         
+                    <!-- feeInPercent -->
+                    <div class="form-group">
+                      <label for="feeInPercent" class="col-sm-3 control-label">Honorar</label>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="feeInPercent" name="feeInPercent" value="{{feeInPercent}}" placeholder="">
+                          <span class="input-group-addon"><i class="icon-percent"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- feePerEx -->
+                    <div class="form-group">
+                      <label for="feePerEx" class="col-sm-3 control-label">Honorar/Stück</label>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="feePerEx" name="feePerEx" value="{{feePerEx}}" placeholder="">
+                          <span class="input-group-addon"><i class="icon-quantity"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- feeIs -->
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Von</label>
+                      <div class="col-sm-9">
+                        {{#if feeIsGross}}
+                          <input type="checkbox" id="feeIsGross" name="feeIsGross" checked="checked">
+                        {{else}}
+                          <input type="checkbox" id="feeIsGross" name="feeIsGross">
+                        {{/if}}                                                                                           
+                        <label for="feeIsGross" class="checkbox-inline">Brutto-LP</label>
+                        {{#if feeIsNet}}
+                          <input type="checkbox" id="feeIsNet" name="feeIsNet" checked="checked">
+                        {{else}}
+                          <input type="checkbox" id="feeIsNet" name="feeIsNet">
+                        {{/if}}                                                                                           
+                        <label for="feeIsNet" class="checkbox-inline">Netto-LP</label>
+                        {{#if feeIsOther}}
+                          <input type="checkbox" id="feeIsOther" name="feeIsOther" checked="checked">
+                        {{else}}
+                          <input type="checkbox" id="feeIsOther" name="feeIsOther">
+                        {{/if}}                                                                                           
+                        <label for="feeIsOther" class="checkbox-inline">Sonstiges, siehe Notizen</label>
+                      </div>           
+                    </div>
+                    <!-- feeFixed -->
+                    <div class="form-group">
+                      <label for="feeFixed" class="col-sm-3 control-label">Festhonorar</label>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="feeFixed" name="feeFixed" value="{{feeFixed}}" placeholder="">
+                          <span class="input-group-addon"><i class="icon-euro"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- feeBegin -->
+                    <div class="form-group">
+                      <label for="feeBegin" class="col-sm-3 control-label">anzuwenden ab</label>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="feeBegin" name="feeBegin" value="{{feeBegin}}" placeholder="x verkauften Exemplaren">
+                          <span class="input-group-addon"><i class="icon-quantity"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <hr>
+                  <fieldset>
+                    <!-- freeCopiesFirst -->
+                    <div class="form-group">
+                      <label for="freeCopiesFirst" class="col-sm-3 control-label">Freiex. 1. Auflage</label>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="freeCopiesFirst" name="freeCopiesFirst" value="{{freeCopiesFirst}}" placeholder="">
+                          <span class="input-group-addon"><i class="icon-quantity"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- freeCopiesNext -->
+                    <div class="form-group">
+                      <label for="freeCopiesNext" class="col-sm-3 control-label">Freiex. weitere Auflagen</label>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="freeCopiesNext" name="freeCopiesNext" value="{{freeCopiesNext}}" placeholder="">
+                          <span class="input-group-addon"><i class="icon-quantity"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- feeEbookPercent -->
+                    <div class="form-group">
+                      <label for="feeEbookPercent" class="col-sm-3 control-label">Honorar E-Book</label>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="feeEbookPercent" name="feeEbookPercent" value="{{feeEbookPercent}}" placeholder="">
+                          <span class="input-group-addon"><i class="icon-percent"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- feeLicencePercent -->
+                    <div class="form-group">
+                      <label for="feeLicencePercent" class="col-sm-3 control-label">Honorar Lizenzerlöse</label>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="feeLicencePercent" name="feeLicencePercent" value="{{feeLicencePercent}}" placeholder="">
+                          <span class="input-group-addon"><i class="icon-percent"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <hr>
+                  <fieldset>
+                    <!-- billingOptions -->
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Abrechnung</label>
+                      <div class="col-sm-9">
+                        {{#if isBilling}}
+                          <input type="checkbox" id="isBilling" name="isBilling" checked="checked">
+                        {{else}}
+                          <input type="checkbox" id="isBilling" name="isBilling">
+                        {{/if}}              
+                        <label for="isBilling" class="checkbox-inline">wird berechnet</label>
+                        {{#if isList}}
+                          <input type="checkbox" id="isList" name="isList" checked="checked">
+                        {{else}}
+                          <input type="checkbox" id="isList" name="isList">
+                        {{/if}} 
+                        <label for="isList" class="checkbox-inline">wird gelistet</label>
+                        {{#if isIgnore}}
+                          <input type="checkbox" id="isIgnore" name="isIgnore" checked="checked">
+                        {{else}}
+                          <input type="checkbox" id="isIgnore" name="isIgnore">
+                        {{/if}}
+                        <label for="isIgnore" class="checkbox-inline">wird ignoriert</label>
+                      </div>           
+                    </div>
+                  </fieldset>
+                  <hr>
+                {{/with}}               
+                <fieldset>
+                  <!-- buttons -->
+                  <div class="control-group">
+                    <div class="controls">
+                      <input type="submit" id="editCondition" name="editCondition" value="Aktualisieren" class="btn btn-default"/>
+                      <input type="reset" value="Abbrechen" class="btn btn-default"/>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

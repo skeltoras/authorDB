@@ -1,0 +1,203 @@
+<template name="authorBillings">
+  {{checkBilling}}  {{getVat}}
+  <h1 class="page-header">Abrechnung für {{getYear}} <small>(Vorschau)</small></h1>
+  <div class="row">
+    <div class="col-sm-12">
+      <a href="" id="{{_id}}" class="btn btn-default addBilling" role="button"><i class="fa fa-plus"></i> Beträge hinzufügen</a>
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  <div class="row">
+    <div class="col-sm-4">
+      {{#if getAuthorData}}
+        <strong>{{title}} {{#if graduate}}{{graduate}} {{/if}}{{firstName}} {{lastName}}</strong><br> 
+        {{#if company}}{{company}}<br>{{/if}}
+        {{#if co}}{{co}}<br>{{/if}}
+        {{street}}<br>
+        {{#if additional}}{{additional}}<br>{{/if}} 
+        {{plz}} {{city}}<br>
+        {{#if country}}{{country}}<br>{{/if}}
+      {{/if}}    
+    </div>
+    <div class="col-sm-4 pull-right">
+      <table class="table borderless text-right">
+        <tbody>
+          <tr>
+            <td>Abrechnungs-Nr.</td>
+            <td><strong>{{getBillingNo}}</strong></td>
+          </tr>          
+          <tr>
+            <td>Datum</td>
+            <td>{{getDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  <div class="row">
+    <div class="col-sm-12">
+    {{#if getAuthorData}}
+      <p>{{salutation}},</p>
+    {{else}}
+      <p>Sehr geehrte Damen und Herren,</p>
+    {{/if}}  
+      <p>unten aufgeführt die Verkaufszahlen der aufgelisteten Bücher für das Jahr {{getYear}}.</p>
+    </div>        
+  </div>
+  <div class="spacer-20"></div>
+  <div class="row">
+    <div class="col-sm-12">
+      <p style="color:rgba(119,119,119,1)">Positionen</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-5"><strong>Titel</strong></div>
+    <div class="col-sm-2 pull-right text-right"><strong>Honorar</strong></div>
+    <div class="col-sm-2 pull-right text-right"><strong>Menge</strong></div>
+    <div class="col-sm-3 pull-right"><strong></strong></div>
+  </div>    
+  <hr class="tabletop">
+  {{#each getBookData}}  
+    <div class="row">
+      <div class="col-sm-5">{{bookTitle}} ({{bookGroup}}) <br> {{bookISBN}}</div>
+      {{#each billingsData}}
+        <div class="col-sm-2 pull-right text-right">{{fee}} €</div>
+        <div class="col-sm-2 pull-right text-right">{{units}} Ex.</div>
+        <div class="col-sm-3 pull-right"><small><i>{{text}}</i></small></div>
+      {{/each}}    
+    </div>
+    <hr class="tablemid">
+  {{/each}}
+  <hr class="tablefoot">
+  {{#with getSum}}    
+    {{#if checkVat}}
+      <div class="row">      
+        <div class="col-sm-5"><strong>Summen</strong></div>    
+        <div class="col-sm-2 pull-right text-right">{{sumFeeGross}} €</div>
+        <div class="col-sm-2 pull-right text-right">{{sumUnits}} Ex.</div>
+        <div class="col-sm-3 pull-right"></div>
+      </div>
+      <div class="spacer-10"></div>
+      <div class="row">      
+        <div class="col-sm-5"></div>    
+        <div class="col-sm-4 pull-right text-right"><small>(Entspricht {{sumFee}} € Netto)</small></div>
+        <div class="col-sm-3 pull-right"></div>
+      </div>
+    {{else}}
+      <div class="row">      
+        <div class="col-sm-5"><strong>Summen</strong></div>    
+        <div class="col-sm-2 pull-right text-right">{{sumFee}} €</div>
+        <div class="col-sm-2 pull-right text-right">{{sumUnits}} Ex.</div>
+        <div class="col-sm-3 pull-right"></div>
+      </div>  
+    {{/if}}   
+  {{/with}} 
+  <div class="spacer-20"></div>
+  {{#if getAuthorData}}
+    {{#if checkVat}}
+      <div class="row">
+        <div class="col-sm-12">
+          <p>Da Sie umsatzsteuerpflichtig sind, weisen wir den Betrag inklusive USt. aus.<br> Ihre Steuernummer: <strong>{{vatNo}}</strong></p>
+        </div>
+      </div>
+      <div class="spacer-20"></div>
+    {{/if}}
+  <div class="row">
+    <div class="col-sm-12">
+      {{#if getBankData}}
+        {{#if iban}}
+          [x] Wir überweisen die oben genannte Summe auf:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IBAN: <strong>{{iban}}</strong> / BIC: <strong>{{bic}}</strong> / Bank: <strong>{{bank}}</strong>  
+        {{else}}
+          Bitte teilen Sie uns Ihre Bankverbindung für die Überweisung mit:<br>
+          Info3 Verlag, Autorenverwaltung, Simon Knipping<br>
+          simon.knipping@info3.de, Fax: 069-58 46 16, Postadresse: Kirchgartenstr. 1, 60439 Frankfurt.  
+        {{/if}}  
+      {{/if}}   
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  {{/if}}
+  {{#if getBillingTextTemp}}
+  <div class="row">
+    <div class="col-sm-12">
+      <p style="color:rgba(119,119,119,1)">Zusatztext</p>
+      <i>{{getBillingTextTemp}}</i>   
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  {{/if}}
+  <div class="row">
+    <div class="col-sm-12">
+      Der Verlag führt die Künstlersozialabgabe ab.<br>
+      Bitte denken Sie daran das Honorar bei Ihrer Einkommenssteuer zu berücksichtigen.
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  {{#if getVatNotice}}
+  <div class="row">
+    <div class="col-sm-12">
+      Falls Sie umsatzsteuerpflichtig sind, teilen Sie uns bitte ihre Steuernummer <br>
+      und den MwSt.-Satz mit, dann können wir die Steuer berücksichtigen.
+    </div>
+  </div>
+  <div class="spacer-50"></div>
+  {{/if}}
+  <div class="row">
+    <div class="col-sm-12">
+      Mit freundlichen Grüßen,<br><br>      
+      Simon Knipping<br>
+      Info3 Verlag
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  <div class="row">
+    <div class="col-sm-12">
+      <p style="color:rgba(119,119,119,1)">Einstellungen:</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form class="form-horizontal" id="formAddBillingText" role="form">
+        <fieldset>
+          <!-- addBillingText -->
+          <div class="form-group">
+            <textarea class="form-control" id="addBillingText" name="addBillingText" rows="3" placeholder="Zusatztext"></textarea>
+          </div>
+        </fieldset>
+        <fieldset>
+          <!-- bankTransfer -->
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="checkbox" id="bankTransfer" name="bankTransfer" checked="checked">           
+              <label for="bankTransfer" class="checkbox-inline">soll überwiesen werden</label>
+            </div>           
+          </div>
+          <!-- vatNotice -->
+          <div class="form-group">
+            <div class="col-sm-12">
+              {{#if checkVat}}
+                <input type="checkbox" id="vatNotice" name="vatNotice">
+              {{else}}
+                <input type="checkbox" id="vatNotice" name="vatNotice" checked="checked">
+              {{/if}}           
+              <label for="vatNotice" class="checkbox-inline">Steuerhinweis</label>
+            </div>           
+          </div>
+        </fieldset>
+        <fieldset>
+          <!-- buttons -->
+          <div class="control-group">
+            <div class="controls">
+              <!-- a href="" id="saveBilling" name="saveBilling" class="btn btn-default saveBilling" role="button">Abrechnung speichern</a -->
+              <input type="submit" id="saveBilling" name="saveBilling" value="Abrechnung speichern" class="btn btn-default"/>
+              <input type="submit" id="printBilling" name="printBilling" value="Abrechnung drucken" class="btn btn-primary"/>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>  
+  {{> modalAddBilling}}
+</template>

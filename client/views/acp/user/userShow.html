@@ -1,0 +1,39 @@
+<template name="userShow">
+{{#if Template.subscriptionsReady}}  
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="page-header">Benutzer <small>{{#with profile}}{{first_name}} {{last_name}}{{/with}}</small></h1>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <!-- sidebar xs sm -->
+    <div class="row hidden-md hidden-lg">     
+      <div class="col-sm-12">
+        {{> userSidebar}}    
+      </div>  
+    </div>
+    <!-- END sidebar xs sm -->
+    <!-- content xs sm -->
+    <div class="row hidden-md hidden-lg">     
+      <div class="col-xs-12 col-sm-6">      
+      </div>
+      <div class="col-xs-12 col-sm-6">
+      </div>  
+    </div>
+    <!-- END content xs sm -->
+
+    <!-- content md lg -->
+    <div class="row hidden-xs hidden-sm">
+      <!-- sidebar -->
+      <div class="col-md-3 col-lg-3">
+        {{> userSidebar}}
+      </div>
+      <!-- content -->
+      <div class="col-md-9 col-lg-9">
+      </div>
+    </div>
+    <!-- END content md lg -->
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>

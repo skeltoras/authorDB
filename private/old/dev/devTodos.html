@@ -1,0 +1,31 @@
+<template name="devTodos">
+  <h1 class="page-header">ToDo's <small>{{getVersion}}</small></h1>
+  <div class="row">
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="todoContent" name="todoContent" placeholder="ToDo eingeben">
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  <div class="row todos">
+    <div class="col-sm-6">
+      {{#each getTodos}}
+        <p>
+          {{#if finished}}
+            <s>{{content}}</s>
+            <span class="pull-right">
+              <input type="checkbox" class="toggleFinished" id="{{_id}}" name="{{_id}}" checked="checked"><label for="{{_id}}"></label>
+              <a href="" class="deleteTodo" id="{{_id}}" name="{{_id}}"><i class="fa fa-times"></i></a>
+            </span>
+          {{else}}
+            {{#if active}}<strong>{{content}}</strong>{{else}}{{content}}{{/if}}
+            <span class="pull-right">
+              <input type="checkbox" class="toggleFinished" id="{{_id}}" name="{{_id}}"><label for="{{_id}}"></label>
+              <a href="" class="deleteTodo" id="{{_id}}" name="{{_id}}"><i class="fa fa-times"></i></a>
+            </span>
+          {{/if}}
+        </p>                                                                               
+        <hr>
+      {{/each}}
+    </div>
+  </div>
+</template>

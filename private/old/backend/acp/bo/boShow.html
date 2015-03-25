@@ -1,0 +1,388 @@
+<template name="boShow">
+{{#if Template.subscriptionsReady}}  
+  {{setStats}}
+  <div class="container acp bo">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="page-header">{{bookGroup}} <small>{{bookTitle}}</small></h1>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <!-- sidebar xs sm -->
+    <div class="row hidden-md hidden-lg">     
+      <div class="col-sm-12">
+        {{> boSidebar}}    
+      </div>  
+    </div>
+    <!-- END sidebar xs sm -->
+    <!-- content xs sm -->
+    <div class="row hidden-md hidden-lg">     
+      <div class="col-xs-12 col-sm-6">
+        <table class="table table-condensed">
+          <caption>Grunddaten</caption>
+          <thead>
+            <tr>
+              <th class="col-sm-3"></th>
+              <th class="col-sm-9"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Titel</td>
+              <td><strong>{{bookTitle}}</strong></td>
+            </tr>          
+            <tr>
+              <td>Untertitel</td>
+              <td>{{#if bookSubtitle}}{{bookSubtitle}}{{else}}---{{/if}}</td>
+            </tr>
+            <tr>
+              <td>Reihe</td>
+              <td>{{#if bookSeries}}{{bookSeries}}{{else}}---{{/if}}</td>
+            </tr>
+            <tr>
+              <td>Autor(en)</td>
+              <td>{{#if authorData}}{{#each authorData}}<a href="/acp/ad/show/{{authorId}}" alt="{{authorName}}">{{authorName}}</a> {{/each}}{{else}}---{{/if}}</td>
+            </tr> 
+            <tr>
+              <td>Vertragspartner</td>
+              <td>{{#if affiliateData}}{{#each affiliateData}}<a href="/acp/ad/show/{{authorId}}" alt="{{authorName}}">{{authorName}}</a> {{/each}}{{else}}---{{/if}}</td>
+            </tr>  
+            <tr>
+              <td>Preis</td>
+              <td>{{bookPrice}} € bei {{bookPriceMwSt}}% MwSt</td>
+            </tr>
+            <tr>
+              <td>Einzelstk.-Preis</td>
+              <td>{{bookProductionPrice}} €</td>
+            </tr>
+          </tbody>   
+        </table>      
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <table class="table table-condensed">
+          <caption>Zugehörige Nummern</caption>
+          <thead>
+            <tr>
+              <th class="col-sm-3"></th>
+              <th class="col-sm-9"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ISBN</td>
+              <td><strong>{{bookISBN}}</strong></td>
+            </tr>          
+            <tr>
+              <td>EAN</td>
+              <td>{{#if bookEAN}}{{bookEAN}}{{else}}---{{/if}}</td>
+            </tr>
+            <tr>
+              <td>ISBN10</td>
+              <td>{{#if bookISBN10}}{{bookISBN10}}{{else}}---{{/if}}</td>
+            </tr>
+            <tr>
+              <td>ArtNr. I3</td>
+              <td>{{#if bookArtNrI3}}<strong>{{bookArtNrI3}}</strong>{{else}}---{{/if}}</td>
+            </tr>
+            <tr>
+              <td>ArtNr. BH</td>
+              <td>{{#if bookArtNrBH}}{{bookArtNrBH}}{{else}}---{{/if}}</td>
+            </tr>
+          </tbody>   
+        </table>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <table class="table table-condensed">
+          <caption>Weiteres</caption>
+          <thead>
+            <tr>
+              <th class="col-sm-3"></th>
+              <th class="col-sm-9"></th>
+            </tr>
+          </thead>
+          <tbody> 
+            <tr>
+              <td>Typ</td>
+              <td>{{#if bookGroup}}{{bookGroup}}{{else}}---{{/if}}</td>
+            </tr>
+            <tr>
+              <td>Einband</td>
+              <td>{{#if bookType}}{{bookType}}{{else}}---{{/if}}</td>
+            </tr>
+            <tr>
+              <td>Seiten</td>
+              <td>{{#if bookPages}}{{bookPages}}{{else}}---{{/if}}</td>
+            </tr>
+            <tr>
+              <td>Höhe</td>
+              <td>{{#if bookHeigh}}{{bookHeigh}} cm{{else}}---{{/if}}</td>
+            </tr>
+            <tr>
+              <td>Breite</td>
+              <td>{{#if bookWidth}}{{bookWidth}} cm{{else}}---{{/if}}</td>
+            </tr>
+            <tr>
+              <td>Gewicht</td>
+              <td>{{#if bookWeight}}{{bookWeight}} g{{else}}---{{/if}}</td>
+            </tr>
+            <tr>
+              <td>Lieferbarkeit</td>
+              <td>{{#if bookStatus}}{{bookStatus}}{{else}}---{{/if}}</td>
+            </tr>                                            
+          </tbody>   
+        </table>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <table class="table table-condensed">
+          <caption>Auflagen</caption>
+          <thead>
+            <tr>
+              <th class="col-sm-8"></th>
+              <th class="col-sm-2">Ersch.Dtm.</th>
+              <th class="col-sm-2">Aufl.Höhe</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each editionData}}
+              <tr>
+                <td>{{editionNr}}. {{editionText}} </td> 
+                <td>{{#if releaseDate}}{{formatDate releaseDate}}{{else}}---{{/if}}</td> 
+                <td>{{#if editionCount}}{{editionCount}}{{else}}---{{/if}}</td>
+              </tr>
+            {{/each}}
+          </tbody>   
+        </table>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <table class="table table-condensed">
+          <caption>Notizen</caption>
+          <thead>
+            <tr>
+              <th class="col-sm-12"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <i>{{#if bookNotes}}{{bookNotes}}{{else}}---{{/if}}</i>
+              </td>
+            </tr>
+          </tbody>   
+        </table>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <table class="table table-condensed">
+          <caption>Änderungslog</caption>
+          <thead>
+            <tr>
+              <th class="col-sm-12"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <ul>
+                  {{#each changes}}
+                    <li>{{formatDate date}} - {{{content}}}</li>
+                  {{/each}}
+                </ul>  
+              </td>
+            </tr>
+          </tbody>   
+        </table>
+      </div>  
+    </div>
+    <!-- END content xs sm -->
+
+    <!-- content md lg -->
+    <div class="row hidden-xs hidden-sm">
+      <!-- sidebar -->
+      <div class="col-md-3 col-lg-3">
+        {{> boSidebar}}
+      </div>
+      <!-- content -->
+      <div class="col-md-9 col-lg-9">
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            <table class="table table-condensed">
+              <caption>Grunddaten</caption>
+              <thead>
+                <tr>
+                  <th class="col-sm-3"></th>
+                  <th class="col-sm-9"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Titel</td>
+                  <td><strong>{{bookTitle}}</strong></td>
+                </tr>          
+                <tr>
+                  <td>Untertitel</td>
+                  <td>{{#if bookSubtitle}}{{bookSubtitle}}{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>Reihe</td>
+                  <td>{{#if bookSeries}}{{bookSeries}}{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>Autor(en)</td>
+                  <td>{{#if authorData}}{{#each authorData}}<a href="/acp/ad/show/{{authorId}}" alt="{{authorName}}">{{authorName}}</a> {{/each}}{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>Vertragspartner</td>
+                  <td>{{#if affiliateData}}{{#each affiliateData}}<a href="/acp/ad/show/{{authorId}}" alt="{{authorName}}">{{authorName}}</a> {{/each}}{{else}}---{{/if}}</td>
+                </tr>   
+                <tr>
+                  <td>Preis</td>
+                  <td>{{bookPrice}} € bei {{bookPriceMwSt}}% MwSt</td>
+                </tr>
+                <tr>
+                  <td>Einzelstk.-Preis</td>
+                  <td>{{bookProductionPrice}} €</td>
+                </tr>
+              </tbody>   
+            </table>
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <table class="table table-condensed">
+              <caption>Zugehörige Nummern</caption>
+              <thead>
+                <tr>
+                  <th class="col-sm-3"></th>
+                  <th class="col-sm-9"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ISBN</td>
+                  <td><strong>{{bookISBN}}</strong></td>
+                </tr>          
+                <tr>
+                  <td>EAN</td>
+                  <td>{{#if bookEAN}}{{bookEAN}}{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>ISBN10</td>
+                  <td>{{#if bookISBN10}}{{bookISBN10}}{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>ArtNr. I3</td>
+                  <td>{{#if bookArtNrI3}}<strong>{{bookArtNrI3}}</strong>{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>ArtNr. BH</td>
+                  <td>{{#if bookArtNrBH}}{{bookArtNrBH}}{{else}}---{{/if}}</td>
+                </tr>
+              </tbody>   
+            </table>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            <table class="table table-condensed">
+              <caption>Weiteres</caption>
+              <thead>
+                <tr>
+                  <th class="col-sm-3"></th>
+                  <th class="col-sm-9"></th>
+                </tr>
+              </thead>
+              <tbody> 
+                <tr>
+                  <td>Typ</td>
+                  <td>{{#if bookGroup}}{{bookGroup}}{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>Einband</td>
+                  <td>{{#if bookType}}{{bookType}}{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>Seiten</td>
+                  <td>{{#if bookPages}}{{bookPages}}{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>Höhe</td>
+                  <td>{{#if bookHeigh}}{{bookHeigh}} cm{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>Breite</td>
+                  <td>{{#if bookWidth}}{{bookWidth}} cm{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>Gewicht</td>
+                  <td>{{#if bookWeight}}{{bookWeight}} g{{else}}---{{/if}}</td>
+                </tr>
+                <tr>
+                  <td>Lieferbarkeit</td>
+                  <td>{{#if bookStatus}}{{bookStatus}}{{else}}---{{/if}}</td>
+                </tr>                                            
+              </tbody>   
+            </table>
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <table class="table table-condensed">
+              <caption>Auflagen</caption>
+              <thead>
+                <tr>
+                  <th class="col-sm-8"></th>
+                  <th class="col-sm-2">Ersch.Dtm.</th>
+                  <th class="col-sm-2">Aufl.Höhe</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each editionData}}
+                  <tr>
+                    <td>{{editionNr}}. {{editionText}} </td> 
+                    <td>{{#if releaseDate}}{{formatDate releaseDate}}{{else}}---{{/if}}</td> 
+                    <td>{{#if editionCount}}{{editionCount}}{{else}}---{{/if}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>   
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            <table class="table table-condensed">
+              <caption>Buchcover</caption>
+              <thead>
+                <tr>
+                  <th class="col-sm-12"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {{#if bookImage}}<img src="{{bookImage}}" alt="Cover {{bookTitle}}" class="bookImage" />{{/if}}
+                  </td>
+                </tr>
+              </tbody>   
+            </table>
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <table class="table table-condensed">
+              <caption>Notizen</caption>
+              <thead>
+                <tr>
+                  <th class="col-sm-12"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <i>{{#if bookNotes}}{{bookNotes}}{{else}}---{{/if}}</i>
+                  </td>
+                </tr>
+              </tbody>   
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END content md lg -->
+  </div>
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>
