@@ -1,24 +1,24 @@
 //since v0.11.0
 
 //-- template created functions
-Template.acpHeader.created = function(){
+Template.jaHeader.created = function(){
 };
 
 //-- template destroyed functions
-Template.acpHeader.destroyed = function(){
+Template.jaHeader.destroyed = function(){
 };
 
 //-- template rendered functions
-Template.acpHeader.rendered = function(){
+Template.jaHeader.rendered = function(){
   $(document).ready(function(){
     $(".header.acp").sticky({topSpacing:0});
   });
 };
 
 //-- template helpers                            
-Template.acpHeader.helpers({
+Template.jaHeader.helpers({
 });
 
 //-- template events
-Template.acpHeader.events({
+Template.jaHeader.events({
 });

@@ -1,4 +1,5 @@
 <template name="acpHome">
+  <div class="container acp">    
     <div class="row">
       <div class="col-sm-12 text-center">
         <h1>Dashboard {{#with currentUser}}{{#with profile}}<small>Willkommen {{first_name}} {{last_name}}</small>{{/with}}{{/with}}</h1>
@@ -85,10 +86,10 @@
     							<div class="infobox-content"><span class="infobox-data-number">{{getBillingData}} €</span> Honorar</div>
     						</div>
     					</div>             
-            </div>
-            
+            </div>           
           </div>
         </div>
       </div>
     </div>
+  </div>
 </template>       

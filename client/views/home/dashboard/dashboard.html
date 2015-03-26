@@ -5,53 +5,90 @@
       </div>
     </div>
     <div class="spacer-20"></div>
-    <div class="row">
-      {{#if currentUser}}
-        {{#if isInRole 'admin'}}
+    {{#if currentUser}}
+      {{#if isInRole 'i3admin'}}
+        <div class="row">
           <div class="col-sm-4">
             <a href="/acp">
               <div class="dashboardBox">
                 <h2>ACP</h2>
               </div>
             </a>
-          </div>
-        {{/if}}
-        {{#if isInRole 'i3book'}}
+          </div>  
+        </div>
+        <hr>
+      {{/if}}
+      {{#if isInRole 'i3a-book'}}
+        <div class="row">
+          <div class="col-sm-4">
+            <a href="/ba">
+              <div class="dashboardBox">
+                <h2>Verwaltung Autoren Buchbereich</h2>
+              </div>
+            </a>
+          </div> 
           <div class="col-sm-4">
             <a href="/">
               <div class="dashboardBox">
-                <h2>Buchbereich</h2>
+                <h2>Verwaltung Lizenzen Buchbereich</h2>
               </div>
             </a>
-          </div>          
-        {{/if}}
-        {{#if isInRole 'i3magazin'}}
+          </div> 
+        </div>
+        <hr>
+      {{/if}}
+      {{#if isInRole 'i3b-book'}}
+        <div class="row">
           <div class="col-sm-4">
             <a href="/">
               <div class="dashboardBox">
-                <h2>Magazinbereich</h2>
+                <h2>Verwaltung Bücher</h2>
               </div>
             </a>
-          </div>          
-        {{/if}}
-        {{#if isInRole 'authorbook'}}
+          </div>  
+        </div>
+        <hr>
+      {{/if}}
+      {{#if isInRole 'i3a-journal'}}
+        <div class="row">
+          <div class="col-sm-4">
+            <a href="/">
+              <div class="dashboardBox">
+                <h2>Verwaltung Autoren Magazinbereich</h2>
+              </div>
+            </a>
+          </div> 
+        </div>
+        <hr>
+      {{/if}}
+      <div class="row">
+        {{#if isInRole 'a-book'}}
           <div class="col-sm-4">
             <a href="/">
               <div class="dashboardBox">
                 <h2>Meine Bücher</h2>
               </div>
             </a>
-          </div>          
+          </div>
         {{/if}}
-        {{#if isInRole 'authormagazin'}}
+        {{#if isInRole 'a-journal'}}
           <div class="col-sm-4">
             <a href="/">
               <div class="dashboardBox">
                 <h2>Meine Artikel</h2>
               </div>
             </a>
-          </div>        
+          </div>
         {{/if}}
-      {{/if}}
-    </div>
+        {{#if isInRole 'user'}}
+          <div class="col-sm-4">
+            <a href="/">
+              <div class="dashboardBox">
+                <h2>Mein Profil</h2>
+              </div>
+            </a>
+          </div>
+        {{/if}}
+      </div>
+    {{/if}}
 </template>    

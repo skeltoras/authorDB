@@ -11,7 +11,7 @@ if (Meteor.users.find().count() === 0) {
       nickname: "Skeltoras"
     },
   });
-  Roles.addUsersToRoles(headAdmin, ['admin', 'i3book', 'i3magazin', 'authorbook', 'authormagazin']);
+  Roles.addUsersToRoles(headAdmin, ['i3admin', 'i3a-book', 'i3a-journal', 'i3b-book', 'a-book', 'a-journal', 'user']);
   
   secondAdmin = Accounts.createUser({
     username: 'Felix',
@@ -23,7 +23,7 @@ if (Meteor.users.find().count() === 0) {
       nickname: "Felix"
     },
   });
-  Roles.addUsersToRoles(secondAdmin, ['admin', 'i3book', 'i3magazin', 'authorbook', 'authormagazin']);
+  Roles.addUsersToRoles(secondAdmin, ['i3admin', 'i3a-book', 'i3a-journal', 'i3b-book', 'a-book', 'a-journal', 'user']);
   
   testAdmin = Accounts.createUser({
     username: 'Test',
@@ -35,7 +35,7 @@ if (Meteor.users.find().count() === 0) {
       nickname: "Test"
     },
   });
-  Roles.addUsersToRoles(testAdmin, ['admin', 'i3book', 'i3magazin', 'authorbook', 'authormagazin']);
+  Roles.addUsersToRoles(testAdmin, ['i3admin', 'i3a-book', 'i3a-journal', 'i3b-book', 'a-book', 'a-journal', 'user']);
   
   i3book = Accounts.createUser({
     username: 'i3book',
@@ -47,7 +47,7 @@ if (Meteor.users.find().count() === 0) {
       nickname: "i3book"
     },
   });
-  Roles.addUsersToRoles(i3book, ['i3book']);
+  Roles.addUsersToRoles(i3book, ['i3a-book', 'i3b-book', 'user']);
   
   i3magazin = Accounts.createUser({
     username: 'i3magazin',
@@ -59,7 +59,7 @@ if (Meteor.users.find().count() === 0) {
       nickname: "i3magazin"
     },
   });
-  Roles.addUsersToRoles(i3magazin, ['i3magazin']);
+  Roles.addUsersToRoles(i3magazin, ['i3a-journal', 'user']);
   
   authorbook = Accounts.createUser({
     username: 'authorbook',
@@ -71,7 +71,7 @@ if (Meteor.users.find().count() === 0) {
       nickname: "authorbook"
     },
   });
-  Roles.addUsersToRoles(authorbook, ['authorbook']);
+  Roles.addUsersToRoles(authorbook, ['a-book', 'user']);
   
   authormagazin = Accounts.createUser({
     username: 'authormagazin',
@@ -83,5 +83,5 @@ if (Meteor.users.find().count() === 0) {
       nickname: "authormagazin"
     },
   });
-  Roles.addUsersToRoles(authormagazin, ['authormagazin']);
+  Roles.addUsersToRoles(authormagazin, ['a-journal', 'user']);
 };
