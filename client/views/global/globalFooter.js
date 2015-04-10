@@ -1,23 +1,23 @@
 //since v0.11.0
 
 //-- template created functions
-Template.baFooter.created = function(){
+Template.globalFooter.created = function(){
 };
 
 //-- template destroyed functions
-Template.baFooter.destroyed = function(){
+Template.globalFooter.destroyed = function(){
 };
 
 //-- template rendered functions
-Template.baFooter.rendered = function(){
+Template.globalFooter.rendered = function(){
 };
 
 //-- template helpers                            
-Template.baFooter.helpers({
+Template.globalFooter.helpers({
 });
 
 //-- template events
-Template.baFooter.events({
+Template.globalFooter.events({
   'click .scroll-top': function() {
     $("html, body").animate({ scrollTop: 0 }, "slow");  
   } 

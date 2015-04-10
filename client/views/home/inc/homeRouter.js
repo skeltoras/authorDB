@@ -1,6 +1,6 @@
 //@since v0.11.7
 HomeController = RouteController.extend({
-  layoutTemplate: 'globalLayout',
+  layoutTemplate: 'homeLayout',
   loadingTemplate: 'loading',
   notFoundTemplate: 'notFound'
 });

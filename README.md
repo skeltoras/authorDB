@@ -8,6 +8,8 @@ Manage bookauthors - meteor.js based webapp
 ## Changelog
 
 ### v1.0
+- v1.0.3 - updated to meteor v1.1.0.2 
+- v1.0.2 - fixed various things
 - v1.0.1 - updated to meteor v1.0.5.0 
 - v1.0.0 - Release RC_01
 

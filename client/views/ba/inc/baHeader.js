@@ -11,7 +11,7 @@ Template.baHeader.destroyed = function(){
 //-- template rendered functions
 Template.baHeader.rendered = function(){
   $(document).ready(function(){
-    $(".header.acp").sticky({topSpacing:0});
+    $(".header.ba").sticky({topSpacing:0});
   });
 };
 
